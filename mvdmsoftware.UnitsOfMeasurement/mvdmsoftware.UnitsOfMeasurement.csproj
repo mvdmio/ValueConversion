@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeBuildOutput>true</IncludeBuildOutput>
+
+    <LangVersion>latest</LangVersion>
+    <PackageVersion>3.2.2</PackageVersion>
+    <Version>3.2.2</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>.\Ridder.UnitsOfMeasurement.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FormatWith" Version="2.2.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Ridder.Common" Version="3.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\UnitsFormatting\UnitsFormatting.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UnitsFormatting.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Update="Resources\UnitsFormatting\UnitsFormatting.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UnitsFormatting.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\UnitSymbols\UnitsFormatting.Designer.cs">
+      <DependentUpon>UnitsFormatting.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\UnitSymbols\UnitSymbols.resx">
+      <LastGenOutput>UnitSymbols.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <Compile Update="Resources\UnitSymbols\UnitSymbols.Designer.cs">
+      <DependentUpon>UnitSymbols.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+</Project>

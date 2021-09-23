@@ -1,0 +1,1039 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ridder.UnitsOfMeasurement</name>
+    </assembly>
+    <members>
+        <member name="T:Ridder.UnitsOfMeasurement.Bases.ConversionFactorQuantityBase`1">
+            <summary>
+            Base class for all quantities that use a conversion factor to convert from and to standard unit.
+            </summary>
+            <typeparam name="TEnum">The unit enum type for this quantity.</typeparam>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Bases.ConversionFactorQuantityBase`1.#ctor(Ridder.UnitsOfMeasurement.Enums.QuantityType,`0)">
+            <summary>
+            Initializes a new object for this type.
+            </summary>
+            <param name="type">The quantity enum value for this quantity.</param>
+            <param name="standardUnitType">The unit enum value for the standard unit of this quantity.</param>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Bases.ConversionFactorQuantityBase`1.GetUnits">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Bases.ConversionFactorQuantityBase`1.GetConversionFactors">
+            <summary>
+            Used to retrieve the conversion factors for this quantity. 
+            This method is called once during the objects lifetime, when the units are requested for the first time.
+            </summary>
+            <returns>The conversion factors for this quantity.</returns>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Bases.ProductCombinedQuantity.GetCombinedUnit(Ridder.UnitsOfMeasurement.Interfaces.IUnit,Ridder.UnitsOfMeasurement.Interfaces.IUnit)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Ridder.UnitsOfMeasurement.Enums.QuantityType.Scalar">
+            <summary>
+            Used for values that have no quantity.
+            </summary>
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Interfaces.IUnit">
+            <summary>
+            Interface for defining units.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Interfaces.IUnit.Identifier">
+            <summary>
+            The unit identifier. Can be used to retrieve a unit object using the <see cref="M:Ridder.UnitsOfMeasurement.Unit.GetUnit(System.String)"/> method on the <see cref="T:Ridder.UnitsOfMeasurement.Unit" /> static class.
+            The main purpose of this identifier is serialization over application boundries.
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Interfaces.IUnit.GetQuantity">
+            <summary>
+            Retrieves the quantity of this unit.
+            </summary>
+            <returns>The quantity of this unit.</returns>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Interfaces.IUnit.FromStandardUnit(System.Double,System.DateTimeOffset)">
+            <summary>
+            Converts the given value from the standard unit of this quantity into this unit.
+            </summary>
+            <param name="value">The value that should be converted.</param>
+            <param name="timestamp">The timestamp when this value was recorded. Mainly used by time-dependent conversions like Currency.</param>
+            <returns>The value converted to this unit.</returns>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Interfaces.IUnit.ToStandardUnit(System.Double,System.DateTimeOffset)">
+            <summary>
+            Converts the given value from this unit to standard unit.
+            </summary>
+            <param name="value">The value that should be converted.</param>
+            <param name="timestamp">The timestamp when this value was recorded. Mainly used by time-dependent conversions like Currency.</param>
+            <returns>The value converted to the standard unit of this quantity.</returns>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Interfaces.IUnit.GetSymbol(System.Globalization.CultureInfo)">
+            <summary>
+            Retrieves the symbol that corresponds to this unit.
+            Can be used to display this value with the correct symbol.
+            </summary>
+            <param name="cultureInfo">The cultureInfo that should be used to determine the correct symbol.</param>
+            <returns>The symbol that corresponds to this unit and the given CultureInfo.</returns>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Interfaces.IUnit.GetFormattedValue(System.Double,System.Globalization.CultureInfo)">
+            <summary>
+            Formats the given value into a string with the correct symbol.
+            Can be used to display the value as a string with the correct symbol and correct symbol placement.
+            </summary>
+            <param name="value">The value that should be formatted</param>
+            <param name="cultureInfo">The CultureInfo that should be used to determine the correct formatting.</param>
+            <returns>The value formatted with the correct symbol and correct symbol placement for the given Culture Info</returns>
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Interfaces.IUnit`1">
+            <summary>
+            Interface for defining units of a certain enum type.
+            </summary>
+            <typeparam name="TEnum">The enum type of the unit.</typeparam>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Interfaces.IUnit`1.Type">
+            <summary>
+            The enum type of the unit.
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Interfaces.IUnit`1.GetQuantity">
+            <summary>
+            Retrieves the typed quantity for this unit.
+            </summary>
+            <returns>The typed quantity for this unit.</returns>
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Quantities.AngleQuantity">
+            <summary>
+            In plane geometry, an angle is the figure formed by two rays, called the sides of the angle, sharing a common endpoint, called the vertex of the angle.
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.AngleQuantity.GetConversionFactors">
+            <inheritdoc/>     
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Quantities.AreaQuantity">
+            <summary>
+            In geometry, the area can be defined as the space occupied by a flat shape or the surface of an object. 
+            The area of a figure is the number of unit squares that cover the surface of a closed figure. 
+            Area is measured in square units such as square centimteres, square feet, square inches, etc.
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.AreaQuantity.GetConversionFactors">
+            <inheritdoc/>     
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Quantities.CurrencyQuantity">
+            <summary>
+            Currency is a medium of exchange for goods and services. 
+            In short, it's money, in the form of paper or coins, usually issued by a government and generally accepted at its face value as a method of payment.
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.CurrencyQuantity.GetUnits">
+            <inheritdoc/>     
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Quantities.DistanceQuantity">
+            <summary>
+            Distance is a numerical measurement of how far apart objects or points are. 
+            In physics or everyday usage, distance may refer to a physical length or an estimation based on other criteria (e.g. "two counties over").
+            In the SI system, it is specified in units of m (meters). 
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.DistanceQuantity.GetConversionFactors">
+            <inheritdoc/>        
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Quantities.DurationQuantity">
+            <summary>
+            The amount of elapsed time between two events.
+            In the SI system, it is specified in units of s (seconds). 
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.DurationQuantity.GetConversionFactors">
+            <inheritdoc/>     
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Quantities.ElectricConductanceQuantity">
+            <summary>
+            In electronics and electromagnetism, electronical conducance is the reciproclal quantity of electric resistance.
+            In the SI system, it is specified in units S (Siemens).
+            The resistance, and thus conductance of an object depends in large part on the material it is made of.
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.ElectricConductanceQuantity.GetConversionFactors">
+            <inheritdoc/>     
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Quantities.EnergyQuantity">
+            <summary>
+            In physics, energy is the quantitative property that must be transferred to an object in order to perform work on, or to heat, the object.
+            Energy is a conserved quantity; the law of conservation of energy states that energy can be converted in form, but not created or destroyed.
+            The SI unit of energy is the joule, which is the energy transferred to an object by the work of moving it a distance of 1 metre against a force of 1 newton. 
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.EnergyQuantity.GetConversionFactors">
+            <inheritdoc/>     
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Quantities.MassQuantity">
+            <summary>
+            Mass is both a property of a physical body and a measure of its resistance to acceleration (a change in its state of motion) when a net force is applied.
+            An object's mass also determines the strength of its gravitational attraction to other bodies. 
+            The basic SI unit of mass is the kilogram (kg).
+            
+            In physics, mass is not the same as weight, even though mass is often determined by measuring the object's weight using a spring scale, 
+            rather than balance scale comparing it directly with known masses. An object on the Moon would weigh less than it does on Earth because of the lower gravity, 
+            but it would still have the same mass. This is because weight is a force, while mass is the property that (along with gravity) determines the strength of this force. 
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.MassQuantity.GetConversionFactors">
+            <inheritdoc/>     
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Quantities.PHQuantity">
+            <summary>
+            Defines the pH quantity
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Quantities.PHQuantity.StandardUnit">
+            <inheritdoc/>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Quantities.PHQuantity.Identifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.PHQuantity.GetUnit(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.PHQuantity.Convert(Ridder.UnitsOfMeasurement.Interfaces.IQuantityValue,Ridder.UnitsOfMeasurement.Interfaces.IUnit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.PHQuantity.CreateValue(System.Double,Ridder.UnitsOfMeasurement.Interfaces.IUnit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.PHQuantity.CreateValue(System.DateTime,System.Double,Ridder.UnitsOfMeasurement.Interfaces.IUnit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.PHQuantity.GetUnits">
+            <inheritdoc/>
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Quantities.PowerQuantity">
+            <summary>
+            In physics, power is the amount of energy transferred or converted per unit time. 
+            In the SI system, the unit of power is the watt, equal to one joule per second.
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.PowerQuantity.GetConversionFactors">
+            <inheritdoc/>     
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Quantities.PressureQuantity">
+            <summary>
+            Pressure units class
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.PressureQuantity.GetConversionFactors">
+            <inheritdoc />
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Quantities.Products.EcVolumeQuantity">
+            <summary>
+            ECVolume is an approximation of the amount of fertilizer distributed in a body of water.
+            It is calculated by multiplying the average EC value of the irrigation cycle by the amount of water given in the irrigation cycle.
+            </summary>
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Quantities.Rates.ElectricConductivityQuantity">
+            <summary>
+            Electrical conductivity is the measure of a material's ability to allow the transport of an electric charge. 
+            Its SI is the siemens per meter, (A2s3m−3kg−1) (named after Werner von Siemens) or, more simply, Sm−1. 
+            It is the ratio of the current density to the electric field strength.
+            </summary>
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Quantities.Rates.IrradianceQuantity">
+            <summary>
+            Irradiance (or flux density) is a term of radiometry and is defined as the radiant flux received by some surface per unit area.
+            In the SI system, it is specified in units of W/m2 (watts per square meter). 
+            Irradiance may be applied to light or other kinds of radiation.
+            </summary>
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Quantities.Rates.VelocityQuantity">
+            <summary>
+            The velocity of an object is the rate of change of its position with respect to a frame of reference, and is a function of time. 
+            In the SI system, it is specified in units of m/s (meters per second). 
+            Velocity is equivalent to a specification of an object's speed and direction of motion (e.g. 60 km/h to the north).
+            </summary>
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Quantities.RatioQuantity">
+            <summary>
+            In mathematics, a ratio indicates how many times one number contains another.
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.RatioQuantity.GetConversionFactors">
+            <inheritdoc/>
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Quantities.ScalarQuantity">
+            <summary>
+            Used for values that do not have a unit, like count.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Quantities.ScalarQuantity.StandardUnit">
+            <inheritdoc/>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Quantities.ScalarQuantity.Identifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.ScalarQuantity.GetUnit(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.ScalarQuantity.Convert(Ridder.UnitsOfMeasurement.Interfaces.IQuantityValue,Ridder.UnitsOfMeasurement.Interfaces.IUnit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.ScalarQuantity.CreateValue(System.Double,Ridder.UnitsOfMeasurement.Interfaces.IUnit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.ScalarQuantity.CreateValue(System.DateTime,System.Double,Ridder.UnitsOfMeasurement.Interfaces.IUnit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.ScalarQuantity.GetUnits">
+            <inheritdoc/>
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Quantities.TemperatureQuantity">
+            <summary>
+            Temperature is a physical quantity that expresses hot and cold. 
+            It is the manifestation of thermal energy, present in all matter, which is the source of the occurrence of heat, a flow of energy, when a body is in contact with another that is colder.
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.TemperatureQuantity.GetUnits">
+            <inheritdoc/>
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Quantities.VolumeQuantity">
+            <summary>
+            Volume is the quantity of three-dimensional space enclosed by a closed surface, for example, the space that a substance (solid, liquid, gas, or plasma) or shape occupies or contains.
+            Volume is often quantified numerically using the SI derived unit, the cubic metre.
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Quantities.VolumeQuantity.GetConversionFactors">
+            <inheritdoc/>     
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Resources.UnitsFormatting.UnitsFormatting">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitsFormatting.UnitsFormatting.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitsFormatting.UnitsFormatting.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitsFormatting.UnitsFormatting._Default">
+            <summary>
+              Looks up a localized string similar to {v} {sym}.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitsFormatting.UnitsFormatting._ProductUnitCominationDefault">
+            <summary>
+              Looks up a localized string similar to {numSym}*{denSym}.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitsFormatting.UnitsFormatting._RateUnitCombinationDefault">
+            <summary>
+              Looks up a localized string similar to {numSym}/{denSym}.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitsFormatting.UnitsFormatting.Degree">
+            <summary>
+              Looks up a localized string similar to {v}{sym}.
+            </summary>
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Acre">
+            <summary>
+              Looks up a localized string similar to ac.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Atmosphere">
+            <summary>
+              Looks up a localized string similar to Atm.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Bar">
+            <summary>
+              Looks up a localized string similar to bar.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Calorie">
+            <summary>
+              Looks up a localized string similar to cal.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.CanadianDollar">
+            <summary>
+              Looks up a localized string similar to $.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Centibar">
+            <summary>
+              Looks up a localized string similar to cbar.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Centiliter">
+            <summary>
+              Looks up a localized string similar to cl.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Centimeter">
+            <summary>
+              Looks up a localized string similar to cm.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Century">
+            <summary>
+              Looks up a localized string similar to .
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.CubicCentimeter">
+            <summary>
+              Looks up a localized string similar to cm³.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.CubicDecimeter">
+            <summary>
+              Looks up a localized string similar to dm³.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.CubicFoot">
+            <summary>
+              Looks up a localized string similar to ft³.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.CubicHectometer">
+            <summary>
+              Looks up a localized string similar to hm³.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.CubicInch">
+            <summary>
+              Looks up a localized string similar to in³.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.CubicKilometer">
+            <summary>
+              Looks up a localized string similar to km³.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.CubicMeter">
+            <summary>
+              Looks up a localized string similar to m³.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.CubicMile">
+            <summary>
+              Looks up a localized string similar to mi³.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.CubicMillimeter">
+            <summary>
+              Looks up a localized string similar to mm³.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.CubicYard">
+            <summary>
+              Looks up a localized string similar to yd³.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Day">
+            <summary>
+              Looks up a localized string similar to d.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Decade">
+            <summary>
+              Looks up a localized string similar to .
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Decapascal">
+            <summary>
+              Looks up a localized string similar to daPa.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Decibar">
+            <summary>
+              Looks up a localized string similar to dbar.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Deciliter">
+            <summary>
+              Looks up a localized string similar to dl.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Degree">
+            <summary>
+              Looks up a localized string similar to °.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.DegreeCelsius">
+            <summary>
+              Looks up a localized string similar to °C.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.DegreeFahrenheit">
+            <summary>
+              Looks up a localized string similar to °F.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.ElectricalHorsepower">
+            <summary>
+              Looks up a localized string similar to hp(E).
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Euro">
+            <summary>
+              Looks up a localized string similar to €.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Feet">
+            <summary>
+              Looks up a localized string similar to ft.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.FeetPerSecond">
+            <summary>
+              Looks up a localized string similar to f/s.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.FluidCubicCentimeter">
+            <summary>
+              Looks up a localized string similar to cc.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Gigapascal">
+            <summary>
+              Looks up a localized string similar to GPa.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Gigawatt">
+            <summary>
+              Looks up a localized string similar to GW.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Gram">
+            <summary>
+              Looks up a localized string similar to g.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Hectare">
+            <summary>
+              Looks up a localized string similar to ha.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Hectoliter">
+            <summary>
+              Looks up a localized string similar to hl.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Hectometer">
+            <summary>
+              Looks up a localized string similar to hm.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Hectopascal">
+            <summary>
+              Looks up a localized string similar to hPa.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Hour">
+            <summary>
+              Looks up a localized string similar to h.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.HydraulicHorsepower">
+            <summary>
+              Looks up a localized string similar to hp.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.ImperialGallon">
+            <summary>
+              Looks up a localized string similar to gal.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Inch">
+            <summary>
+              Looks up a localized string similar to &quot;.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Joule">
+            <summary>
+              Looks up a localized string similar to J.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Kelvin">
+            <summary>
+              Looks up a localized string similar to K.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Kilobar">
+            <summary>
+              Looks up a localized string similar to kbar.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Kilocalorie">
+            <summary>
+              Looks up a localized string similar to kcal.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Kilogram">
+            <summary>
+              Looks up a localized string similar to kg.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Kilojoule">
+            <summary>
+              Looks up a localized string similar to kJ.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Kilometer">
+            <summary>
+              Looks up a localized string similar to km.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Kilopascal">
+            <summary>
+              Looks up a localized string similar to kPa.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Kilopound">
+            <summary>
+              Looks up a localized string similar to klb.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Kilotonne">
+            <summary>
+              Looks up a localized string similar to kt.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Kilowatt">
+            <summary>
+              Looks up a localized string similar to kW.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.KilowattHour">
+            <summary>
+              Looks up a localized string similar to kWh.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Liter">
+            <summary>
+              Looks up a localized string similar to l.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.MechanicalHorsepower">
+            <summary>
+              Looks up a localized string similar to hp(I).
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Megabar">
+            <summary>
+              Looks up a localized string similar to Mbar.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.MegaJoule">
+            <summary>
+              Looks up a localized string similar to MJ.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Megapascal">
+            <summary>
+              Looks up a localized string similar to Mpa.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Megawatt">
+            <summary>
+              Looks up a localized string similar to MW.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.MegawattHour">
+            <summary>
+              Looks up a localized string similar to MWh.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Meter">
+            <summary>
+              Looks up a localized string similar to m.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.MetricHorsepower">
+            <summary>
+              Looks up a localized string similar to hp(M).
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.MexicanPeso">
+            <summary>
+              Looks up a localized string similar to $.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Microbar">
+            <summary>
+              Looks up a localized string similar to µbar.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Microgram">
+            <summary>
+              Looks up a localized string similar to μg.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Micromole">
+            <summary>
+              Looks up a localized string similar to μmol.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Microsiemens">
+            <summary>
+              Looks up a localized string similar to μS.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Mile">
+            <summary>
+              Looks up a localized string similar to mi.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Millibar">
+            <summary>
+              Looks up a localized string similar to mbar.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Milligram">
+            <summary>
+              Looks up a localized string similar to mg.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Milliliter">
+            <summary>
+              Looks up a localized string similar to ml.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Millimeter">
+            <summary>
+              Looks up a localized string similar to mm.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Millimole">
+            <summary>
+              Looks up a localized string similar to mmol.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Millisecond">
+            <summary>
+              Looks up a localized string similar to ms.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Millisiemens">
+            <summary>
+              Looks up a localized string similar to mS.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Minute">
+            <summary>
+              Looks up a localized string similar to min.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Mole">
+            <summary>
+              Looks up a localized string similar to mol.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Month">
+            <summary>
+              Looks up a localized string similar to .
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Nanosecond">
+            <summary>
+              Looks up a localized string similar to ns.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Ounce">
+            <summary>
+              Looks up a localized string similar to oz.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.PartsPerBillion">
+            <summary>
+              Looks up a localized string similar to ppb.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.PartsPerMillion">
+            <summary>
+              Looks up a localized string similar to ppm.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Pascal">
+            <summary>
+              Looks up a localized string similar to Pa.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Percent">
+            <summary>
+              Looks up a localized string similar to %.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Permille">
+            <summary>
+              Looks up a localized string similar to ‰.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Pound">
+            <summary>
+              Looks up a localized string similar to lb.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.PoundForcePerSquareFoot">
+            <summary>
+              Looks up a localized string similar to lbf.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.PoundForcePerSquareInch">
+            <summary>
+              Looks up a localized string similar to psi.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Quarter">
+            <summary>
+              Looks up a localized string similar to .
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Radian">
+            <summary>
+              Looks up a localized string similar to rad.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Second">
+            <summary>
+              Looks up a localized string similar to s.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Siemens">
+            <summary>
+              Looks up a localized string similar to S.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.SquareCentimeter">
+            <summary>
+              Looks up a localized string similar to cm².
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.SquareDecimeter">
+            <summary>
+              Looks up a localized string similar to dm².
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.SquareFoot">
+            <summary>
+              Looks up a localized string similar to ft².
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.SquareInch">
+            <summary>
+              Looks up a localized string similar to sq in.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.SquareKilometer">
+            <summary>
+              Looks up a localized string similar to km².
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.SquareMeter">
+            <summary>
+              Looks up a localized string similar to m².
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.SquareMile">
+            <summary>
+              Looks up a localized string similar to mi².
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.SquareYard">
+            <summary>
+              Looks up a localized string similar to sq yd.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Stone">
+            <summary>
+              Looks up a localized string similar to st.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Tonne">
+            <summary>
+              Looks up a localized string similar to t.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.UnitedStatesDollar">
+            <summary>
+              Looks up a localized string similar to $.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.UsGallon">
+            <summary>
+              Looks up a localized string similar to gal.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Watt">
+            <summary>
+              Looks up a localized string similar to W.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.WattHour">
+            <summary>
+              Looks up a localized string similar to Wh.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Week">
+            <summary>
+              Looks up a localized string similar to week.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Yard">
+            <summary>
+              Looks up a localized string similar to yd.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols.Year">
+            <summary>
+              Looks up a localized string similar to .
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Unit.GetAll">
+            <summary>
+            Retrieve all known units.
+            </summary>
+            <returns>All known units.</returns>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Unit.GetAllBaseUnits">
+            <summary>
+            Retrieve all known base units.
+            </summary>
+            <returns>All known base units.</returns>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Unit.GetUnit(System.String)">
+            <summary>
+            Get the unit that matches the given unitIdentifier.
+            </summary>
+            <param name="unitIdentifier">The unitIdentifier of the unit.</param>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">Thrown if the given unitIdentifier does not match any known unit.</exception>
+            <returns>The unit that matches the given unitIdentifier.</returns>
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Units.CurrencyUnit">
+            <summary>
+            Base class for currency units.
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Units.CurrencyUnit.FromStandardUnit(System.Double,System.DateTimeOffset)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Units.CurrencyUnit.ToStandardUnit(System.Double,System.DateTimeOffset)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Units.PHUnit">
+            <summary>
+            This unit is used for values that do not have a quantity.
+            We've created a <see cref="T:Ridder.UnitsOfMeasurement.Quantities.ScalarQuantity"/> and <see cref="T:Ridder.UnitsOfMeasurement.Units.ScalarUnit"/> for these cases.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Units.PHUnit.Identifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Units.PHUnit.GetQuantity">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Units.PHUnit.FromStandardUnit(System.Double,System.DateTimeOffset)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Units.PHUnit.ToStandardUnit(System.Double,System.DateTimeOffset)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Units.PHUnit.GetSymbol(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Units.PHUnit.GetFormattedValue(System.Double,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Units.ScalarUnit">
+            <summary>
+            This unit is used for values that do not have a quantity.
+            We've created a <see cref="T:Ridder.UnitsOfMeasurement.Quantities.ScalarQuantity"/> and <see cref="T:Ridder.UnitsOfMeasurement.Units.ScalarUnit"/> for these cases.
+            </summary>
+        </member>
+        <member name="P:Ridder.UnitsOfMeasurement.Units.ScalarUnit.Identifier">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Units.ScalarUnit.GetQuantity">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Units.ScalarUnit.FromStandardUnit(System.Double,System.DateTimeOffset)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Units.ScalarUnit.ToStandardUnit(System.Double,System.DateTimeOffset)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Units.ScalarUnit.GetSymbol(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Units.ScalarUnit.GetFormattedValue(System.Double,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Units.Temperature.DegreeCelsiusUnit">
+            <summary>
+            Unit for representing temperature as degrees Celsius.
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Units.Temperature.DegreeCelsiusUnit.FromStandardUnit(System.Double,System.DateTimeOffset)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Units.Temperature.DegreeCelsiusUnit.ToStandardUnit(System.Double,System.DateTimeOffset)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Units.Temperature.DegreeFahrenheitUnit">
+            <summary>
+            Unit for representing temperature as degrees Fahrenheit.
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Units.Temperature.DegreeFahrenheitUnit.FromStandardUnit(System.Double,System.DateTimeOffset)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Units.Temperature.DegreeFahrenheitUnit.ToStandardUnit(System.Double,System.DateTimeOffset)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Units.Temperature.KelvinUnit">
+            <summary>
+            Unit for representing temperature as Kelvin.
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Units.Temperature.KelvinUnit.FromStandardUnit(System.Double,System.DateTimeOffset)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Units.Temperature.KelvinUnit.ToStandardUnit(System.Double,System.DateTimeOffset)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Ridder.UnitsOfMeasurement.Units.Temperature.TemperatureUnit">
+            <summary>
+            Base class for temperature units.
+            </summary>
+        </member>
+        <member name="M:Ridder.UnitsOfMeasurement.Units.Temperature.TemperatureUnit.#ctor(Ridder.UnitsOfMeasurement.Enums.Quantities.TemperatureType)">
+            <summary>
+            Creates a new Temperature Unit.
+            </summary>
+            <param name="type">The temperature unit type for this unit.</param>
+            
+        </member>
+    </members>
+</doc>
