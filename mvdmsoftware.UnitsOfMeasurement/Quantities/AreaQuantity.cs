@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Ridder.UnitsOfMeasurement.Bases;
-using Ridder.UnitsOfMeasurement.Enums;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Bases;
+using mvdmsoftware.UnitsOfMeasurement.Enums;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 
-namespace Ridder.UnitsOfMeasurement.Quantities
+namespace mvdmsoftware.UnitsOfMeasurement.Quantities
 {
     /// <summary>
     /// In geometry, the area can be defined as the space occupied by a flat shape or the surface of an object. 

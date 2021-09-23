@@ -4,11 +4,10 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Ridder.Common;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
-using Ridder.UnitsOfMeasurement.ExchangeRates.Providers.WebProvider.Responses;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.WebProvider.Responses;
 
-namespace Ridder.UnitsOfMeasurement.ExchangeRates.Providers.WebProvider
+namespace mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.WebProvider
 {
     public class WebExchangeRateProvider : IExchangeRateProvider
     {
@@ -61,7 +60,7 @@ namespace Ridder.UnitsOfMeasurement.ExchangeRates.Providers.WebProvider
                 if(!response.IsSuccessStatusCode)
                     throw new InvalidOperationException("An error occurred while retrieving the exchange rate");
 
-                var responseString = await response.Content.ReadAsStringAsync().ContinueOnAnyContext();
+                var responseString = await response.Content.ReadAsStringAsync();
                 var exchangeRateResponse = JsonConvert.DeserializeObject<MultipleCurrencyExchangeRatesApiResponse>(responseString);
 
                 if(!exchangeRateResponse.Rates.Any())

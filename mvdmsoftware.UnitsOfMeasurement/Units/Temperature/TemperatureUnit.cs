@@ -1,7 +1,7 @@
-﻿using Ridder.UnitsOfMeasurement.Bases;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
+﻿using mvdmsoftware.UnitsOfMeasurement.Bases;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 
-namespace Ridder.UnitsOfMeasurement.Units.Temperature
+namespace mvdmsoftware.UnitsOfMeasurement.Units.Temperature
 {
     /// <summary>
     /// Base class for temperature units.

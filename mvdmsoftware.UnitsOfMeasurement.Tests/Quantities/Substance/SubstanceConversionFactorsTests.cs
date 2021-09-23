@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ridder.Test.Common;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Tests.Utils;
 
-namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Substance
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Substance
 {
     [TestClass]
     public class SubstanceConversionFactorsTests
@@ -15,7 +15,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Substance
         public async Task MoleConversions(SubstanceType type, double expected)
         {
             var conversionFactor = await GetConversionFactor(SubstanceType.Mole, type);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -25,7 +25,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Substance
         public async Task MillimoleConversions(SubstanceType type, double expected)
         {
             var conversionFactor = await GetConversionFactor(SubstanceType.Millimole, type);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -35,7 +35,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Substance
         public async Task MicromoleConversions(SubstanceType type, double expected)
         {
             var conversionFactor = await GetConversionFactor(SubstanceType.Micromole, type);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         private static async Task<double> GetConversionFactor(SubstanceType from, SubstanceType to)

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ridder.UnitsOfMeasurement.Enums;
-using Ridder.UnitsOfMeasurement.Interfaces;
+using mvdmsoftware.UnitsOfMeasurement.Enums;
+using mvdmsoftware.UnitsOfMeasurement.Interfaces;
 
-namespace Ridder.UnitsOfMeasurement.Tests
+namespace mvdmsoftware.UnitsOfMeasurement.Tests
 {
     [TestClass]
     public class QuantityTest
@@ -32,7 +32,7 @@ namespace Ridder.UnitsOfMeasurement.Tests
         }
 
         [TestMethod]
-        public void OfIdentifier_ShouldSupportAllQuantitiyIdentifiers()
+        public void OfIdentifier_ShouldSupportAllQuantityIdentifiers()
         {
             var allQuantities = Quantity.GetAll();
 
@@ -182,7 +182,7 @@ namespace Ridder.UnitsOfMeasurement.Tests
         [DataTestMethod]
         [DataRow("Energy/(Area/Temperature)", QuantityType.Energy, QuantityType.Area, QuantityType.Temperature, DisplayName = "Radiation Temperature Ratio")]
         [DataRow("Volume/(Energy/Area)", QuantityType.Volume, QuantityType.Energy, QuantityType.Area, DisplayName = "Irrigation Volume Radiation Sum Ratio")]
-        public void Rate_ShouldSupportMulticombinedQuantities(string expectedIdentifier, params QuantityType[] quantityTypes)
+        public void Rate_ShouldSupportMultipleCombinedQuantities(string expectedIdentifier, params QuantityType[] quantityTypes)
         {
             var result = Quantity.Rate(quantityTypes);
             Assert.AreEqual(expectedIdentifier, result.Identifier);
@@ -191,7 +191,7 @@ namespace Ridder.UnitsOfMeasurement.Tests
         [DataTestMethod]
         [DataRow("Energy*(Area*Temperature)", QuantityType.Energy, QuantityType.Area, QuantityType.Temperature, DisplayName = "Random combination 1")]
         [DataRow("Volume*(Energy*Area)", QuantityType.Volume, QuantityType.Energy, QuantityType.Area, DisplayName = "Random combination 2")]
-        public void Product_ShouldSupportMulticombinedQuantities(string expectedIdentifier, params QuantityType[] quantityTypes)
+        public void Product_ShouldSupportMultipleCombinedQuantities(string expectedIdentifier, params QuantityType[] quantityTypes)
         {
             var result = Quantity.Product(quantityTypes);
             Assert.AreEqual(expectedIdentifier, result.Identifier);
@@ -226,31 +226,13 @@ namespace Ridder.UnitsOfMeasurement.Tests
 
         private static string GetExpectedIdentifier(QuantityType type)
         {
-            string expectedIdentifier;
-
-            switch (type)
-            {
-                case QuantityType.EcVolume:
-                    expectedIdentifier = Quantity.EcVolume.Identifier;
-
-                    break;
-                case QuantityType.ElectricConductivity:
-                    expectedIdentifier = Quantity.ElectricConductivity.Identifier;
-
-                    break;
-                case QuantityType.Irradiance:
-                    expectedIdentifier = Quantity.Irradiance.Identifier;
-
-                    break;
-                case QuantityType.Velocity:
-                    expectedIdentifier = Quantity.Velocity.Identifier;
-
-                    break;
-                default:
-                    expectedIdentifier = type.ToString();
-
-                    break;
-            }
+            var expectedIdentifier = type switch {
+                QuantityType.EcVolume => Quantity.EcVolume.Identifier,
+                QuantityType.ElectricConductivity => Quantity.ElectricConductivity.Identifier,
+                QuantityType.Irradiance => Quantity.Irradiance.Identifier,
+                QuantityType.Velocity => Quantity.Velocity.Identifier,
+                _ => type.ToString()
+            };
 
             return expectedIdentifier;
         }

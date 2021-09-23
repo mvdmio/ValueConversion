@@ -10,14 +10,14 @@
     <Version>3.2.2</Version>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>.\Ridder.UnitsOfMeasurement.xml</DocumentationFile>
+  <PropertyGroup Condition="'$(Configuration)|$(Platfor)'=='Debug|AnyCPU'">
+    <DocumentationFile>.\mvdmsoftware.UnitsOfMeasurement.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ardalis.GuardClauses" Version="3.2.0" />
     <PackageReference Include="FormatWith" Version="2.2.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Ridder.Common" Version="3.0.1" />
   </ItemGroup>
 
   <ItemGroup>

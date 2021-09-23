@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Ridder.UnitsOfMeasurement.Tests.Formatting
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.Formatting
 {
     [TestClass]
     public class UnitFormattingTest

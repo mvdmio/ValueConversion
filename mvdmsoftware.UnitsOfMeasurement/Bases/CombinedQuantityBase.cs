@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Ridder.UnitsOfMeasurement.Interfaces;
+using mvdmsoftware.UnitsOfMeasurement.Interfaces;
 
-namespace Ridder.UnitsOfMeasurement.Bases
+namespace mvdmsoftware.UnitsOfMeasurement.Bases
 {
     public abstract class CombinedQuantityBase : ICombinedQuantity
     {

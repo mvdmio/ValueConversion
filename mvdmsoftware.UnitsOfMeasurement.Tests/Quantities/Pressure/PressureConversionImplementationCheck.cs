@@ -1,10 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ridder.Test.Common;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 using System;
 using System.Threading.Tasks;
 
-namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Pressure
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
 {
     [TestClass]
     public class PressureConversionImplementationCheck
@@ -27,7 +26,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Pressure
                     var expected = fromValue.GetValue() * conversionFactor;
                     var actual = toValue.GetValue();
 
-                    AssertEx.WithinTolerance(expected, actual);
+                    Assert.AreEqual(expected, actual);
                 }
             }
         }

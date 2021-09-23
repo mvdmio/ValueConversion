@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ridder.UnitsOfMeasurement.Tests.Extensions
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.Extensions
 {
     public static class RandomExtensions
     {

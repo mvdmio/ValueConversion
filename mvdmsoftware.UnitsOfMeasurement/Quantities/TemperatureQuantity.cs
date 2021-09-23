@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using Ridder.UnitsOfMeasurement.Bases;
-using Ridder.UnitsOfMeasurement.Enums;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
-using Ridder.UnitsOfMeasurement.Interfaces;
-using Ridder.UnitsOfMeasurement.Units.Temperature;
+using mvdmsoftware.UnitsOfMeasurement.Bases;
+using mvdmsoftware.UnitsOfMeasurement.Enums;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Interfaces;
+using mvdmsoftware.UnitsOfMeasurement.Units.Temperature;
 
-namespace Ridder.UnitsOfMeasurement.Quantities
+namespace mvdmsoftware.UnitsOfMeasurement.Quantities
 {
     /// <summary>
     /// Temperature is a physical quantity that expresses hot and cold. 

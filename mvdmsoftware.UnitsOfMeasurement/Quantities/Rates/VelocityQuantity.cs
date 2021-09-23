@@ -1,7 +1,7 @@
-﻿using Ridder.UnitsOfMeasurement.Bases;
-using Ridder.UnitsOfMeasurement.Enums;
+﻿using mvdmsoftware.UnitsOfMeasurement.Bases;
+using mvdmsoftware.UnitsOfMeasurement.Enums;
 
-namespace Ridder.UnitsOfMeasurement.Quantities.Rates
+namespace mvdmsoftware.UnitsOfMeasurement.Quantities.Rates
 {
     /// <summary>
     /// The velocity of an object is the rate of change of its position with respect to a frame of reference, and is a function of time. 

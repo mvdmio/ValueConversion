@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Ridder.UnitsOfMeasurement.Enums;
-using Ridder.UnitsOfMeasurement.Interfaces;
+using mvdmsoftware.UnitsOfMeasurement.Enums;
+using mvdmsoftware.UnitsOfMeasurement.Interfaces;
 
-namespace Ridder.UnitsOfMeasurement.Bases
+namespace mvdmsoftware.UnitsOfMeasurement.Bases
 {
     /// <summary>
     /// Base class for all quantities that use a conversion factor to convert from and to standard unit.

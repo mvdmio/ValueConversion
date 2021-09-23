@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ridder.Test.Common;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Tests.Utils;
 
-namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Temperature
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Temperature
 {
     [TestClass]
     public class TemperaturesConversionFactorTests
@@ -25,7 +25,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Temperature
         public async Task DegreeFahrenheitConversions(double value, TemperatureType to, double expected)
         {
             var convertedTemperature = await GetConvertedValue(value, TemperatureType.DegreeFahrenheit, to);
-            AssertEx.WithinTolerance(expected, convertedTemperature);
+            AssertExtensions.AreEqual(expected, convertedTemperature);
         }
 
         [DataTestMethod]
@@ -44,7 +44,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Temperature
         public async Task DegreeCelsiusConversions(double value, TemperatureType to, double expected)
         {
             var convertedTemperature = await GetConvertedValue(value, TemperatureType.DegreeCelsius, to);
-            AssertEx.WithinTolerance(expected, convertedTemperature);
+            AssertExtensions.AreEqual(expected, convertedTemperature);
         }
 
         [DataTestMethod]
@@ -63,7 +63,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Temperature
         public async Task KelvinConversions(double value, TemperatureType to, double expected)
         {
             var convertedTemperature = await GetConvertedValue(value, TemperatureType.Kelvin, to);
-            AssertEx.WithinTolerance(expected, convertedTemperature);
+            AssertExtensions.AreEqual(expected, convertedTemperature);
         }
 
         private static async Task<double> GetConvertedValue(double value, TemperatureType from, TemperatureType to)

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Ridder.UnitsOfMeasurement.Interfaces;
+using mvdmsoftware.UnitsOfMeasurement.Interfaces;
 
-namespace Ridder.UnitsOfMeasurement.Bases
+namespace mvdmsoftware.UnitsOfMeasurement.Bases
 {
     public class ConversionFactorUnit<TEnum> : UnitBase<TEnum>
         where TEnum : Enum

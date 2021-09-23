@@ -1,4 +1,4 @@
-﻿namespace Ridder.UnitsOfMeasurement.Interfaces
+﻿namespace mvdmsoftware.UnitsOfMeasurement.Interfaces
 {
     public interface ICombinedUnit : IUnit
     {

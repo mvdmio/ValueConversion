@@ -1,4 +1,4 @@
-﻿namespace Ridder.UnitsOfMeasurement.Enums.Quantities
+﻿namespace mvdmsoftware.UnitsOfMeasurement.Enums.Quantities
 {
     public enum AreaType
     {

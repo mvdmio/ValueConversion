@@ -307,7 +307,7 @@
     <value>m</value>
   </data>
   <data name="MetricHorsepower" xml:space="preserve">
-    <value>hp(M)</value>
+    <value>hp()</value>
   </data>
   <data name="MexicanPeso" xml:space="preserve">
     <value>$</value>

@@ -48,4 +48,4 @@ if([string]::IsNullOrEmpty($file)) {
 }
 Write-Host "Publishing package $file"
 
-dotnet nuget push "bin/debug/$file" --api-key az --source ridder-gs --interactive
+dotnet nuget push "bin/debug/$file" --api-key az --source mvdmsoftware-gs --interactive

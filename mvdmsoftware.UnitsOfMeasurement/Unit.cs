@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
-using Ridder.UnitsOfMeasurement.Interfaces;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Interfaces;
 
-namespace Ridder.UnitsOfMeasurement
+namespace mvdmsoftware.UnitsOfMeasurement
 {
     public static class Unit
     {

@@ -3,11 +3,11 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
-using Ridder.UnitsOfMeasurement.ExchangeRates.Providers;
-using Ridder.UnitsOfMeasurement.ExchangeRates.Providers.WebProvider;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers;
+using mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.WebProvider;
 
-namespace Ridder.UnitsOfMeasurement.Tests.ExchangeRateProvider
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.ExchangeRateProvider
 {
     [TestClass]
     [Ignore]
@@ -36,7 +36,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.ExchangeRateProvider
         {
             var exchangeRate = await _provider.GetExchangeRate(CurrencyType.UnitedStatesDollar, CurrencyType.Euro, DateTime.Now);
 
-            Assert.IsTrue(exchangeRate.Value > 0d);
+            Assert.IsTrue(exchangeRate.Value > 0);
         }
 
         [TestMethod]
@@ -99,7 +99,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.ExchangeRateProvider
             Assert.AreEqual(5, exchangeRate.Count);
             Assert.AreEqual(mondayTwoWeeksAgo, exchangeRate.Keys.First());
             Assert.AreEqual(fridayTwoWeeksAgo, exchangeRate.Keys.Last());
-            Assert.IsTrue(exchangeRate.All(x => x.Value.Value > 0d));
+            Assert.IsTrue(exchangeRate.All(x => x.Value.Value > 0));
         }
 
         [TestMethod]
@@ -113,7 +113,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.ExchangeRateProvider
             Assert.AreEqual(todayOneWeekAgo, exchangeRate.Keys.First(), "Invalid first day");
             Assert.AreEqual(today, exchangeRate.Keys.Last(), "Invalid last day");
 
-            Assert.IsTrue(exchangeRate.All(x => x.Value.Value > 0d), "Some exchange rates do not have a value.");
+            Assert.IsTrue(exchangeRate.All(x => x.Value.Value > 0), "Some exchange rates do not have a value.");
         }
 
         [TestMethod]
@@ -127,7 +127,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.ExchangeRateProvider
             Assert.AreEqual(todayTwoWeeksAgo, exchangeRate.Keys.First(), "Invalid first day");
             Assert.AreEqual(todayOneWeekAgo, exchangeRate.Keys.Last(), "Invalid last day");
 
-            Assert.IsTrue(exchangeRate.All(x => x.Value.Value > 0d), "Some exchange rates do not have a value.");
+            Assert.IsTrue(exchangeRate.All(x => x.Value.Value > 0), "Some exchange rates do not have a value.");
         }
 
         private static bool ExchangeRateEquals(CurrencyExchangeRateValue first, CurrencyExchangeRateValue second)

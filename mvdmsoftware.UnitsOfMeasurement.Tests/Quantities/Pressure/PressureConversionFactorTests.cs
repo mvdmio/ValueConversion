@@ -1,10 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ridder.Test.Common;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Tests.Utils;
 
-namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Pressure
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
 {
     [TestClass]
     public class PressureConversionFactorTests
@@ -29,7 +28,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task PascalConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Pascal, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -52,7 +51,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task AtmosphereConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Atmosphere, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -75,7 +74,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task BarConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Bar, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -98,7 +97,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task CentibarConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Centibar, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -121,7 +120,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task DecibarConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Decibar, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -144,7 +143,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task KilobarConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Kilobar, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -167,7 +166,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task MegabarConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Megabar, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -190,7 +189,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task MillibarConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Millibar, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -213,7 +212,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task MicrobarConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Microbar, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -236,7 +235,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task DecapascalConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Decapascal, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -259,7 +258,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task GigapascalConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Gigapascal, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -282,7 +281,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task HectopascalConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Hectopascal, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -305,7 +304,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task KilopascalConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Kilopascal, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -328,7 +327,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task MegapascalConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Megapascal, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -351,7 +350,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task PoundForcePerSquareInchConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.PoundForcePerSquareInch, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -374,7 +373,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task PoundForcePerSquareFootConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.PoundForcePerSquareFoot, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         private static async Task<double> GetConversionFactor(PressureType from, PressureType to)

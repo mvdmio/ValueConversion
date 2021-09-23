@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Ridder.UnitsOfMeasurement.Bases;
-using Ridder.UnitsOfMeasurement.Enums;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Bases;
+using mvdmsoftware.UnitsOfMeasurement.Enums;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 
-namespace Ridder.UnitsOfMeasurement.Quantities
+namespace mvdmsoftware.UnitsOfMeasurement.Quantities
 {
     /// <summary>
     /// In plane geometry, an angle is the figure formed by two rays, called the sides of the angle, sharing a common endpoint, called the vertex of the angle.

@@ -1,5 +1,5 @@
 ﻿# mvdmsoftware.UnitsOfMeasurement
-Ridder.UnitsOfMeasurement can be used to create values for a specific unit, and convert those values to another unit of the same quantity at run-time.
+mvdmsoftware.UnitsOfMeasurement can be used to create values for a specific unit, and convert those values to another unit of the same quantity at run-time.
 Based on examples of [UnitsNet](https://github.com/angularsen/UnitsNet).
 
 ## Examples

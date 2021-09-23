@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Ridder.UnitsOfMeasurement.Bases;
-using Ridder.UnitsOfMeasurement.Enums;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Bases;
+using mvdmsoftware.UnitsOfMeasurement.Enums;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 
-namespace Ridder.UnitsOfMeasurement.Quantities
+namespace mvdmsoftware.UnitsOfMeasurement.Quantities
 {
     /// <summary>
     /// In physics, energy is the quantitative property that must be transferred to an object in order to perform work on, or to heat, the object.
@@ -20,7 +20,7 @@ namespace Ridder.UnitsOfMeasurement.Quantities
         /// <inheritdoc/>     
         protected override IEnumerable<(EnergyType type, double conversionFactor)> GetConversionFactors()
         {
-            return new (EnergyType, double)[] {
+            return new[] {
                 //Standard Unit
                 (EnergyType.Joule, 1),
                 

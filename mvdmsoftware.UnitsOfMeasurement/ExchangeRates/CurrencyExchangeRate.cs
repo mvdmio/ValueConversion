@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
-using Ridder.UnitsOfMeasurement.ExchangeRates.Providers;
-using Ridder.UnitsOfMeasurement.ExchangeRates.Providers.CachedExchangeRateProvider;
-using Ridder.UnitsOfMeasurement.ExchangeRates.Providers.StaticProvider;
-using Ridder.UnitsOfMeasurement.ExchangeRates.Providers.WebProvider;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers;
+using mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.CachedExchangeRateProvider;
+using mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.StaticProvider;
+using mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.WebProvider;
 
-namespace Ridder.UnitsOfMeasurement.ExchangeRates
+namespace mvdmsoftware.UnitsOfMeasurement.ExchangeRates
 {
     public static class CurrencyExchangeRate
     {

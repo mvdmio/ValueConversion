@@ -1,9 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ridder.Test.Common;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Tests.Utils;
 
-namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Angle
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Angle
 {
     [TestClass]
     public class AngleConversionFactorTests
@@ -14,7 +15,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Angle
         public async Task DegreeConversions(AngleType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AngleType.Degree, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -23,7 +24,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Angle
         public async Task RadianConversions(AngleType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AngleType.Radian, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         private static async Task<double> GetConversionFactor(AngleType from, AngleType to)

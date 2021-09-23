@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ridder.UnitsOfMeasurement.Bases;
+using mvdmsoftware.UnitsOfMeasurement.Bases;
 using System.Threading.Tasks;
 
-namespace Ridder.UnitsOfMeasurement.Tests.Quantities.RadiationTemperatureRatio
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.RadiationTemperatureRatio
 {
     [TestClass]
     public class RadiationTemperatureRatioTests

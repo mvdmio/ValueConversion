@@ -1,10 +1,10 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
-using Ridder.UnitsOfMeasurement.Interfaces;
-using Ridder.UnitsOfMeasurement.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Interfaces;
+using mvdmsoftware.UnitsOfMeasurement.Quantities;
 
-namespace Ridder.UnitsOfMeasurement.Units
+namespace mvdmsoftware.UnitsOfMeasurement.Units
 {
     /// <summary>
     /// This unit is used for values that do not have a quantity.

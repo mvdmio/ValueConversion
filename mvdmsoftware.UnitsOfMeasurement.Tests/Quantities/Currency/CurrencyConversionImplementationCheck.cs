@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ridder.Test.Common;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
-using Ridder.UnitsOfMeasurement.ExchangeRates;
-using Ridder.UnitsOfMeasurement.Tests.Mocks;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.ExchangeRates;
+using mvdmsoftware.UnitsOfMeasurement.Tests.Mocks;
 
-namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Currency
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Currency
 {
     [TestClass]
     public class CurrencyConversionImplementationCheck
@@ -35,7 +34,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Currency
                     var expected = fromValue.GetValue() * conversionFactor;
                     var actual = toValue.GetValue();
 
-                    AssertEx.WithinTolerance(expected, actual);
+                    Assert.AreEqual(expected, actual);
                 }
             }
         }

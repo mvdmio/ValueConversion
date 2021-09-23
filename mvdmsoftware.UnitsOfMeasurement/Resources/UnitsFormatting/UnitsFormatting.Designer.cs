@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Ridder.UnitsOfMeasurement.Resources.UnitsFormatting {
+namespace mvdmsoftware.UnitsOfMeasurement.Resources.UnitsFormatting {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Ridder.UnitsOfMeasurement.Resources.UnitsFormatting {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Ridder.UnitsOfMeasurement.Resources.UnitsFormatting.UnitsFormatting", typeof(UnitsFormatting).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("mvdmsoftware.UnitsOfMeasurement.Resources.UnitsFormatting.UnitsFormatting", typeof(UnitsFormatting).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

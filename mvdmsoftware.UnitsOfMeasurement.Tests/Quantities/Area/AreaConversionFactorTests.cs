@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ridder.Test.Common;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Tests.Utils;
 
-namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Area
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Area
 {
     [TestClass]
     public class AreaConversionFactorTests
@@ -22,7 +22,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Area
         public async Task AcreConversions(AreaType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AreaType.Acre, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -39,7 +39,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Area
         public async Task HectareConversions(AreaType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AreaType.Hectare, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -56,7 +56,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Area
         public async Task SquareCentimeterConversions(AreaType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AreaType.SquareCentimeter, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -73,7 +73,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Area
         public async Task SquareDecimeterConversions(AreaType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AreaType.SquareDecimeter, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -90,7 +90,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Area
         public async Task SquareFootConversions(AreaType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AreaType.SquareFoot, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -107,7 +107,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Area
         public async Task SquareInchConversions(AreaType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AreaType.SquareInch, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -124,7 +124,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Area
         public async Task SquareKilometerConversions(AreaType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AreaType.SquareKilometer, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -141,7 +141,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Area
         public async Task SquareMeterConversions(AreaType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AreaType.SquareMeter, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -158,7 +158,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Area
         public async Task SquareMileConversions(AreaType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AreaType.SquareMile, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -175,7 +175,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Area
         public async Task SquareYardConversions(AreaType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AreaType.SquareYard, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         private static async Task<double> GetConversionFactor(AreaType from, AreaType to)

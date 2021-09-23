@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 using System.Threading.Tasks;
 
-namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Velocity
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Velocity
 {
     [TestClass]
     public class VelocityConversionTests

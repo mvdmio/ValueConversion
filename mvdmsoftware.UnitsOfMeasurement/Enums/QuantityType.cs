@@ -1,4 +1,4 @@
-﻿namespace Ridder.UnitsOfMeasurement.Enums
+﻿namespace mvdmsoftware.UnitsOfMeasurement.Enums
 {
     public enum QuantityType
     {

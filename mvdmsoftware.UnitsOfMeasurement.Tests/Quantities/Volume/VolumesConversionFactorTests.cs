@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ridder.Test.Common;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Tests.Utils;
 
-namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Volume
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Volume
 {
     [TestClass]
     public class VolumeConversionFactorTests
@@ -29,7 +29,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Volume
         public async Task CentiliterConversions(VolumeType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(VolumeType.Centiliter, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -53,7 +53,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Volume
         public async Task CubicCentimeterConversions(VolumeType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(VolumeType.CubicCentimeter, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -77,7 +77,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Volume
         public async Task CubicDecimeterConversions(VolumeType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(VolumeType.CubicDecimeter, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -101,7 +101,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Volume
         public async Task CubicFootConversions(VolumeType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(VolumeType.CubicFoot, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -125,7 +125,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Volume
         public async Task CubicHectometerConversions(VolumeType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(VolumeType.CubicHectometer, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -149,7 +149,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Volume
         public async Task CubicInchConversions(VolumeType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(VolumeType.CubicInch, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -173,7 +173,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Volume
         public async Task CubicKilometerConversions(VolumeType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(VolumeType.CubicKilometer, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -197,7 +197,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Volume
         public async Task CubicMeterConversions(VolumeType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(VolumeType.CubicMeter, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -221,7 +221,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Volume
         public async Task CubicMileConversions(VolumeType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(VolumeType.CubicMile, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -245,7 +245,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Volume
         public async Task CubicMillimeterConversions(VolumeType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(VolumeType.CubicMillimeter, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -269,7 +269,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Volume
         public async Task CubicYardConversions(VolumeType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(VolumeType.CubicYard, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -293,7 +293,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Volume
         public async Task DeciliterConversions(VolumeType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(VolumeType.Deciliter, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -317,7 +317,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Volume
         public async Task HectoliterConversions(VolumeType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(VolumeType.Hectoliter, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -341,7 +341,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Volume
         public async Task ImperialGallonConversions(VolumeType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(VolumeType.ImperialGallon, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -365,7 +365,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Volume
         public async Task LiterConversions(VolumeType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(VolumeType.Liter, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -389,7 +389,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Volume
         public async Task MilliliterConversions(VolumeType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(VolumeType.Milliliter, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -413,7 +413,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Volume
         public async Task UsGallonConversions(VolumeType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(VolumeType.UsGallon, to);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         private static async Task<double> GetConversionFactor(VolumeType from, VolumeType to)

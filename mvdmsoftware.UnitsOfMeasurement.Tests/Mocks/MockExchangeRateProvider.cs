@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
-using Ridder.UnitsOfMeasurement.ExchangeRates.Providers;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers;
 
-namespace Ridder.UnitsOfMeasurement.Tests.Mocks
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.Mocks
 {
     public class MockExchangeRateProvider : IExchangeRateProvider
     {
-        private readonly IDictionary<CurrencyType, double> conversionDictionary = new Dictionary<CurrencyType, double> {
+        private readonly IDictionary<CurrencyType, double> _conversionDictionary = new Dictionary<CurrencyType, double> {
             { CurrencyType.UnitedStatesDollar, 1 },
             { CurrencyType.Euro, 0.896688083 },
             { CurrencyType.MexicanPeso, 19.0363785 },
@@ -22,10 +22,10 @@ namespace Ridder.UnitsOfMeasurement.Tests.Mocks
 
         public Task<CurrencyExchangeRateValue> GetExchangeRate(CurrencyType from, CurrencyType to, DateTime date)
         {
-            if (!conversionDictionary.TryGetValue(from, out var fromValue))
+            if (!_conversionDictionary.TryGetValue(from, out var fromValue))
                 throw new InvalidOperationException($"No mocked exchange rate could be found for {from}");
 
-            if (!conversionDictionary.TryGetValue(to, out var toValue))
+            if (!_conversionDictionary.TryGetValue(to, out var toValue))
                 throw new InvalidOperationException($"No mocked exchange rate could be found for {from}");
 
             var exchangeRate = toValue / fromValue;

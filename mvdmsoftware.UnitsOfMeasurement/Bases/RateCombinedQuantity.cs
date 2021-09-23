@@ -1,7 +1,7 @@
-﻿using Ridder.UnitsOfMeasurement.Enums;
-using Ridder.UnitsOfMeasurement.Interfaces;
+﻿using mvdmsoftware.UnitsOfMeasurement.Enums;
+using mvdmsoftware.UnitsOfMeasurement.Interfaces;
 
-namespace Ridder.UnitsOfMeasurement.Bases
+namespace mvdmsoftware.UnitsOfMeasurement.Bases
 {
     public class RateCombinedQuantity : CombinedQuantityBase
     {

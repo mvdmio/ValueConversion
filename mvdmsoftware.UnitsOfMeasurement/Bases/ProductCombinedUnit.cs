@@ -2,10 +2,10 @@
 using System.Globalization;
 using System.Threading.Tasks;
 using FormatWith;
-using Ridder.UnitsOfMeasurement.Interfaces;
-using Ridder.UnitsOfMeasurement.Resources.UnitsFormatting;
+using mvdmsoftware.UnitsOfMeasurement.Interfaces;
+using mvdmsoftware.UnitsOfMeasurement.Resources.UnitsFormatting;
 
-namespace Ridder.UnitsOfMeasurement.Bases
+namespace mvdmsoftware.UnitsOfMeasurement.Bases
 {
     public class ProductCombinedUnit : CombinedUnitBase
     {

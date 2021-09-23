@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Ridder.UnitsOfMeasurement.Resources.UnitSymbols {
+namespace mvdmsoftware.UnitsOfMeasurement.Resources.UnitSymbols {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Ridder.UnitsOfMeasurement.Resources.UnitSymbols {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Ridder.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols", typeof(UnitSymbols).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("mvdmsoftware.UnitsOfMeasurement.Resources.UnitSymbols.UnitSymbols", typeof(UnitSymbols).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -628,7 +628,7 @@ namespace Ridder.UnitsOfMeasurement.Resources.UnitSymbols {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to hp(M).
+        ///   Looks up a localized string similar to hp().
         /// </summary>
         internal static string MetricHorsepower {
             get {

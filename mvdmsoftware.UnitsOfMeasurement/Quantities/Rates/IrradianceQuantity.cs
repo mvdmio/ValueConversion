@@ -1,7 +1,7 @@
-﻿using Ridder.UnitsOfMeasurement.Bases;
-using Ridder.UnitsOfMeasurement.Enums;
+﻿using mvdmsoftware.UnitsOfMeasurement.Bases;
+using mvdmsoftware.UnitsOfMeasurement.Enums;
 
-namespace Ridder.UnitsOfMeasurement.Quantities.Rates
+namespace mvdmsoftware.UnitsOfMeasurement.Quantities.Rates
 {
     /// <summary>
     /// Irradiance (or flux density) is a term of radiometry and is defined as the radiant flux received by some surface per unit area.

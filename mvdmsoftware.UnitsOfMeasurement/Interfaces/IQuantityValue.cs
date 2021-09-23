@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Threading.Tasks;
 
-namespace Ridder.UnitsOfMeasurement.Interfaces
+namespace mvdmsoftware.UnitsOfMeasurement.Interfaces
 {
     public interface IQuantityValue
     {

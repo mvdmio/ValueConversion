@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ridder.Test.Common;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Tests.Utils;
 
-namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Distance
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Distance
 {
     [TestClass]
     public class DistanceConversionFactorsTests
@@ -21,7 +21,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Distance
         public async Task CentimeterConversions(DistanceType type, double expected)
         {
             var conversionFactor = await GetConversionFactor(DistanceType.Centimeter, type);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -37,7 +37,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Distance
         public async Task FeetConversions(DistanceType type, double expected)
         {
             var conversionFactor = await GetConversionFactor(DistanceType.Feet, type);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -53,7 +53,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Distance
         public async Task HectometerConversions(DistanceType type, double expected)
         {
             var conversionFactor = await GetConversionFactor(DistanceType.Hectometer, type);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -69,7 +69,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Distance
         public async Task InchConversions(DistanceType type, double expected)
         {
             var conversionFactor = await GetConversionFactor(DistanceType.Inch, type);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -85,7 +85,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Distance
         public async Task KilometerConversions(DistanceType type, double expected)
         {
             var conversionFactor = await GetConversionFactor(DistanceType.Kilometer, type);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -101,7 +101,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Distance
         public async Task MeterConversions(DistanceType type, double expected)
         {
             var conversionFactor = await GetConversionFactor(DistanceType.Meter, type);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -117,7 +117,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Distance
         public async Task MileConversions(DistanceType type, double expected)
         {
             var conversionFactor = await GetConversionFactor(DistanceType.Mile, type);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -133,7 +133,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Distance
         public async Task MillimeterConversions(DistanceType type, double expected)
         {
             var conversionFactor = await GetConversionFactor(DistanceType.Millimeter, type);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -149,7 +149,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Distance
         public async Task YardConversions(DistanceType type, double expected)
         {
             var conversionFactor = await GetConversionFactor(DistanceType.Yard, type);
-            AssertEx.WithinTolerance(expected, conversionFactor);
+            AssertExtensions.AreEqual(expected, conversionFactor);
         }
 
         private static async Task<double> GetConversionFactor(DistanceType from, DistanceType to)

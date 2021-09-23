@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading.Tasks;
-using Ridder.Common;
-using Ridder.UnitsOfMeasurement.Interfaces;
+using mvdmsoftware.UnitsOfMeasurement.Interfaces;
+using mvdmsoftware.UnitsOfMeasurement.Utils;
 
-namespace Ridder.UnitsOfMeasurement.Bases
+namespace mvdmsoftware.UnitsOfMeasurement.Bases
 {
     public class QuantityValue : IQuantityValue
     {
@@ -53,7 +53,7 @@ namespace Ridder.UnitsOfMeasurement.Bases
             var thisStandardValue = await GetStandardValue();
             var otherStandardValue = await other.GetStandardValue();
 
-            return Compare.IsRelativeEqual(thisStandardValue, otherStandardValue);
+            return Comparer.IsWithinTolerance(thisStandardValue, otherStandardValue);
         }
 
         public string GetFormattedValue(CultureInfo cultureInfo)

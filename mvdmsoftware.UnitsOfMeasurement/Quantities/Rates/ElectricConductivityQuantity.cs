@@ -1,7 +1,7 @@
-﻿using Ridder.UnitsOfMeasurement.Bases;
-using Ridder.UnitsOfMeasurement.Enums;
+﻿using mvdmsoftware.UnitsOfMeasurement.Bases;
+using mvdmsoftware.UnitsOfMeasurement.Enums;
 
-namespace Ridder.UnitsOfMeasurement.Quantities.Rates
+namespace mvdmsoftware.UnitsOfMeasurement.Quantities.Rates
 {
     /// <summary>
     /// Electrical conductivity is the measure of a material's ability to allow the transport of an electric charge. 

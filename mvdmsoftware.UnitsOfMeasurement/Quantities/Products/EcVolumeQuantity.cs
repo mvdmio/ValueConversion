@@ -1,7 +1,7 @@
-﻿using Ridder.UnitsOfMeasurement.Bases;
-using Ridder.UnitsOfMeasurement.Enums;
+﻿using mvdmsoftware.UnitsOfMeasurement.Bases;
+using mvdmsoftware.UnitsOfMeasurement.Enums;
 
-namespace Ridder.UnitsOfMeasurement.Quantities.Products
+namespace mvdmsoftware.UnitsOfMeasurement.Quantities.Products
 {
     /// <summary>
     /// ECVolume is an approximation of the amount of fertilizer distributed in a body of water.

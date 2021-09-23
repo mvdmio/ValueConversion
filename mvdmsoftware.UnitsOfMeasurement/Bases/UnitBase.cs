@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 using FormatWith;
-using Ridder.UnitsOfMeasurement.Interfaces;
-using Ridder.UnitsOfMeasurement.Resources.UnitsFormatting;
-using Ridder.UnitsOfMeasurement.Resources.UnitSymbols;
+using mvdmsoftware.UnitsOfMeasurement.Interfaces;
+using mvdmsoftware.UnitsOfMeasurement.Resources.UnitsFormatting;
+using mvdmsoftware.UnitsOfMeasurement.Resources.UnitSymbols;
 
-namespace Ridder.UnitsOfMeasurement.Bases
+namespace mvdmsoftware.UnitsOfMeasurement.Bases
 {
     public abstract class UnitBase<TEnum> : IUnit<TEnum> 
         where TEnum : Enum

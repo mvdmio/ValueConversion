@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Ridder.Common;
-using Ridder.UnitsOfMeasurement.Bases;
-using Ridder.UnitsOfMeasurement.Enums;
-using Ridder.UnitsOfMeasurement.Interfaces;
-using Ridder.UnitsOfMeasurement.Quantities;
-using Ridder.UnitsOfMeasurement.Quantities.Products;
-using Ridder.UnitsOfMeasurement.Quantities.Rates;
+using Ardalis.GuardClauses;
+using mvdmsoftware.UnitsOfMeasurement.Bases;
+using mvdmsoftware.UnitsOfMeasurement.Enums;
+using mvdmsoftware.UnitsOfMeasurement.Interfaces;
+using mvdmsoftware.UnitsOfMeasurement.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Quantities.Products;
+using mvdmsoftware.UnitsOfMeasurement.Quantities.Rates;
 
-namespace Ridder.UnitsOfMeasurement
+namespace mvdmsoftware.UnitsOfMeasurement
 {
     public static class Quantity
     {
@@ -115,7 +115,7 @@ namespace Ridder.UnitsOfMeasurement
 
         public static IQuantity Of(string identifier)
         {
-            Guard.NotNull(identifier, nameof(identifier));
+            Guard.Against.NullOrWhiteSpace(identifier, nameof(identifier));
 
             var matches = Regex.Match(identifier, @"(.*)([\/*])(?![^(]*\))(.*)");
 
@@ -161,7 +161,7 @@ namespace Ridder.UnitsOfMeasurement
 
         public static RateCombinedQuantity Rate(params QuantityType[] types)
         {
-            Guard.NotNull(types, nameof(types));
+            Guard.Against.NullOrEmpty(types, nameof(types));
 
             var quantities = types.Select(Of).ToArray();
             return Rate(quantities);
@@ -169,15 +169,15 @@ namespace Ridder.UnitsOfMeasurement
 
         public static RateCombinedQuantity Rate(IQuantity numeratorQuantity, IQuantity denominatorQuantity)
         {
-            Guard.NotNull(numeratorQuantity, nameof(numeratorQuantity));
-            Guard.NotNull(denominatorQuantity, nameof(denominatorQuantity));
+            Guard.Against.Null(numeratorQuantity, nameof(numeratorQuantity));
+            Guard.Against.Null(denominatorQuantity, nameof(denominatorQuantity));
 
             return new RateCombinedQuantity(numeratorQuantity, denominatorQuantity);
         }
 
         public static RateCombinedQuantity Rate(params IQuantity[] quantities)
         {
-            Guard.NotNull(quantities, nameof(quantities));
+            Guard.Against.NullOrEmpty(quantities, nameof(quantities));
 
             if(quantities.Length < 2)
                 throw new NotSupportedException("A rate must have at least two quantities");
@@ -198,7 +198,7 @@ namespace Ridder.UnitsOfMeasurement
 
         public static ProductCombinedQuantity Product(params QuantityType[] quantityTypes)
         {
-            Guard.NotNull(quantityTypes, nameof(quantityTypes));
+            Guard.Against.NullOrEmpty(quantityTypes, nameof(quantityTypes));
 
             var quantities = quantityTypes.Select(x => Of(x)).ToArray();
             return Product(quantities);
@@ -206,18 +206,18 @@ namespace Ridder.UnitsOfMeasurement
 
         public static ProductCombinedQuantity Product(IQuantity numeratorQuantity, IQuantity denominatorQuantity)
         {
-            Guard.NotNull(numeratorQuantity, nameof(numeratorQuantity));
-            Guard.NotNull(denominatorQuantity, nameof(denominatorQuantity));
+            Guard.Against.Null(numeratorQuantity, nameof(numeratorQuantity));
+            Guard.Against.Null(denominatorQuantity, nameof(denominatorQuantity));
 
             return new ProductCombinedQuantity(numeratorQuantity, denominatorQuantity);
         }
 
         public static ProductCombinedQuantity Product(params IQuantity[] quantities)
         {
-            Guard.NotNull(quantities, nameof(quantities));
+            Guard.Against.Null(quantities, nameof(quantities));
 
             if(quantities.Length < 2)
-                throw new NotSupportedException("A rate must have at least two quantities");
+                throw new NotSupportedException("A product must have at least two quantities");
 
             if(quantities.Length == 2)
                 return Product(quantities[0], quantities[1]);

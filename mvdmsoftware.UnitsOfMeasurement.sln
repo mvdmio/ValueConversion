@@ -3,14 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ridder.UnitsOfMeasurement", "Ridder.UnitsOfMeasurement\Ridder.UnitsOfMeasurement.csproj", "{25412465-7B69-4077-A346-4049531F4207}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mvdmsoftware.UnitsOfMeasurement", "mvdmsoftware.UnitsOfMeasurement\mvdmsoftware.UnitsOfMeasurement.csproj", "{25412465-7B69-4077-A346-4049531F4207}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ridder.UnitsOfMeasurement.Tests", "Ridder.UnitsOfMeasurement.Tests\Ridder.UnitsOfMeasurement.Tests.csproj", "{8AC06FD7-5C30-44E2-A63E-BC8683C5F9DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mvdmsoftware.UnitsOfMeasurement.Tests", "mvdmsoftware.UnitsOfMeasurement.Tests\mvdmsoftware.UnitsOfMeasurement.Tests.csproj", "{8AC06FD7-5C30-44E2-A63E-BC8683C5F9DD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DFAB5F60-305C-482F-B453-18C576E3120A}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-		build-and-publish.yml = build-and-publish.yml
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject

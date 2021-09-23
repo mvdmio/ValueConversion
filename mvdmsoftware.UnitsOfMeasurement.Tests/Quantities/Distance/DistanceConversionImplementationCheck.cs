@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ridder.Test.Common;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 
-namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Distance
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Distance
 {
     [TestClass]
     public class DistanceConversionImplementationCheck
@@ -27,7 +26,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Distance
                     var expected = fromValue.GetValue() * conversionFactor;
                     var actual = toValue.GetValue();
 
-                    AssertEx.WithinTolerance(expected, actual);
+                    Assert.AreEqual(expected, actual);
                 }
             }
         }

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
-using Ridder.UnitsOfMeasurement.ExchangeRates.Providers;
-using Ridder.UnitsOfMeasurement.ExchangeRates.Providers.CachedExchangeRateProvider;
-using Ridder.UnitsOfMeasurement.Tests.Extensions;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers;
+using mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.CachedExchangeRateProvider;
+using mvdmsoftware.UnitsOfMeasurement.Tests.Extensions;
 
-namespace Ridder.UnitsOfMeasurement.Tests.ExchangeRateProvider
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.ExchangeRateProvider
 {
     [TestClass]
     public class CachedExchangeRateProviderTest

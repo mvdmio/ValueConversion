@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 
-namespace Ridder.UnitsOfMeasurement.Units.Temperature
+namespace mvdmsoftware.UnitsOfMeasurement.Units.Temperature
 {
     /// <summary>
     /// Unit for representing temperature as degrees Fahrenheit.

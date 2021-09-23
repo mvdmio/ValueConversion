@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Ridder.UnitsOfMeasurement.Bases;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
-using Ridder.UnitsOfMeasurement.ExchangeRates;
+using mvdmsoftware.UnitsOfMeasurement.Bases;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.ExchangeRates;
 
-namespace Ridder.UnitsOfMeasurement.Units
+namespace mvdmsoftware.UnitsOfMeasurement.Units
 {
     /// <summary>
     /// Base class for currency units.

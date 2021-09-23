@@ -1,6 +1,6 @@
-﻿using Ridder.UnitsOfMeasurement.Enums.Quantities;
+﻿using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 
-namespace Ridder.UnitsOfMeasurement.ExchangeRates.Providers
+namespace mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers
 {
     public class CurrencyExchangeRateValue
     {

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ridder.Test.Common;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 
-namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Temperature
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Temperature
 {
     [TestClass]
     public class TemperaturesConversionImplementationCheck

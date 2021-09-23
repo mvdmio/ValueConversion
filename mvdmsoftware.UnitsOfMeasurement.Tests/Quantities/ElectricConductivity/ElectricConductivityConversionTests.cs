@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 using System.Threading.Tasks;
 
-namespace Ridder.UnitsOfMeasurement.Tests.Quantities.ElectricConductivity
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.ElectricConductivity
 {
     [TestClass]
     public class ElectricConductivityConversionTests

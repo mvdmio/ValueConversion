@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Ridder.UnitsOfMeasurement.ExchangeRates.Providers.WebProvider.Responses
+namespace mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.WebProvider.Responses
 {
     public class SingleCurrencyExchangeRateApiResponse
     {

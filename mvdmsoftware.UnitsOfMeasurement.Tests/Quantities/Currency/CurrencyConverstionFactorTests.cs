@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ridder.Test.Common;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
-using Ridder.UnitsOfMeasurement.ExchangeRates;
-using Ridder.UnitsOfMeasurement.Tests.Mocks;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.ExchangeRates;
+using mvdmsoftware.UnitsOfMeasurement.Tests.Mocks;
+using mvdmsoftware.UnitsOfMeasurement.Tests.Utils;
 
-namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Currency
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Currency
 {
     [TestClass]
     public class CurrencyConverstionTests
@@ -25,7 +25,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Currency
         {
             var exchangeRate = await GetConversionFactor(CurrencyType.UnitedStatesDollar, type);
 
-            AssertEx.WithinTolerance(expected, exchangeRate);
+            AssertExtensions.AreEqual(expected, exchangeRate);
         }
 
         [DataTestMethod]
@@ -37,7 +37,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Currency
         {
             var exchangeRate = await GetConversionFactor(CurrencyType.Euro, type);
 
-            AssertEx.WithinTolerance(expected, exchangeRate);
+            AssertExtensions.AreEqual(expected, exchangeRate);
         }
 
         [DataTestMethod]
@@ -49,7 +49,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Currency
         {
             var exchangeRate = await GetConversionFactor(CurrencyType.MexicanPeso, type);
 
-            AssertEx.WithinTolerance(expected, exchangeRate);
+            AssertExtensions.AreEqual(expected, exchangeRate);
         }
 
         [DataTestMethod]
@@ -61,7 +61,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.Quantities.Currency
         {
             var exchangeRate = await GetConversionFactor(CurrencyType.CanadianDollar, type);
 
-            AssertEx.WithinTolerance(expected, exchangeRate);
+            AssertExtensions.AreEqual(expected, exchangeRate);
         }
 
         private static async Task<double> GetConversionFactor(CurrencyType from, CurrencyType to)

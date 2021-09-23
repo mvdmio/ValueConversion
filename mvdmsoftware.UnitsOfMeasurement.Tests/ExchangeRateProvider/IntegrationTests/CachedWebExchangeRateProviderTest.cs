@@ -2,12 +2,12 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ridder.UnitsOfMeasurement.Enums.Quantities;
-using Ridder.UnitsOfMeasurement.ExchangeRates.Providers;
-using Ridder.UnitsOfMeasurement.ExchangeRates.Providers.CachedExchangeRateProvider;
-using Ridder.UnitsOfMeasurement.ExchangeRates.Providers.WebProvider;
+using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers;
+using mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.CachedExchangeRateProvider;
+using mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.WebProvider;
 
-namespace Ridder.UnitsOfMeasurement.Tests.ExchangeRateProvider.IntegrationTests
+namespace mvdmsoftware.UnitsOfMeasurement.Tests.ExchangeRateProvider.IntegrationTests
 {
     [TestClass]
     [Ignore]
@@ -34,7 +34,7 @@ namespace Ridder.UnitsOfMeasurement.Tests.ExchangeRateProvider.IntegrationTests
         {
             var exchangeRate = await _provider.GetExchangeRate(CurrencyType.Euro, CurrencyType.UnitedStatesDollar, DateTime.Now);
 
-            Assert.IsTrue(exchangeRate.Value > 0d);
+            Assert.IsTrue(exchangeRate.Value > 0);
         }
     }
 }
