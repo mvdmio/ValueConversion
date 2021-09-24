@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 
@@ -9,7 +8,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
     public class DurationConversionImplementationCheck
     {
         [TestMethod]
-        public async Task ShouldConvertAllAreaCombinationsIntoAllOtherAreaCombinations()
+        public void ShouldConvertAllAreaCombinationsIntoAllOtherAreaCombinations()
         {
             foreach (AreaType fromAreaType in Enum.GetValues(typeof(AreaType)))
             {
@@ -18,9 +17,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
                 foreach (AreaType toAreaType in Enum.GetValues(typeof(AreaType)))
                 {
                     var toUnit = Quantity.Area.GetUnit(toAreaType);
-                    var toValue = await fromValue.As(toUnit);
+                    var toValue = fromValue.As(toUnit);
 
-                    Assert.IsTrue(await fromValue.IsEqualTo(toValue), $"Conversion from {fromAreaType} to {toAreaType} did not result in equal quantities.");
+                    Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromAreaType} to {toAreaType} did not result in equal quantities.");
 
                     var conversionFactor = toValue.GetValue();
                     var expected = fromValue.GetValue() * conversionFactor;

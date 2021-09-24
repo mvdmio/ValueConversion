@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Angle
 {
@@ -7,9 +6,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Angle
     public class AngleConversionImplementationCheck : ConversionImplementationCheckBase
     {
         [TestMethod]
-        public async Task ShouldConvertAllAreaCombinationsIntoAllOtherAreaCombinations()
+        public void ShouldConvertAllAreaCombinationsIntoAllOtherAreaCombinations()
         {
-            await TestQuantityConversionImplementation(Quantity.Angle);
+            TestQuantityConversionImplementation(Quantity.Angle);
         }
     }
 }

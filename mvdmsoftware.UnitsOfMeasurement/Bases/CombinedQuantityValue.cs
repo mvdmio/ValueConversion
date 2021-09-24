@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Threading.Tasks;
 using mvdmsoftware.UnitsOfMeasurement.Interfaces;
 using mvdmsoftware.UnitsOfMeasurement.Utils;
 
@@ -48,30 +47,30 @@ namespace mvdmsoftware.UnitsOfMeasurement.Bases
             return _value;
         }
 
-        public Task<double> GetStandardValue()
+        public double GetStandardValue()
         {
             return _unit.ToStandardUnit(_value, Timestamp);
         }
 
-        public async Task<IQuantityValue> As(IUnit unit)
+        public IQuantityValue As(IUnit unit)
         {
             if (unit is ICombinedUnit typedUnit)
             {
-                return await As(typedUnit);
+                return As(typedUnit);
             }
 
             throw new InvalidCastException($"Cannot use {unit.GetType().FullName} as {typeof(ICombinedUnit).FullName}");
         }
 
-        public Task<IQuantityValue> As(ICombinedUnit toUnit)
+        public IQuantityValue As(ICombinedUnit toUnit)
         {
             return _quantity.Convert(this, toUnit);
         }
 
-        public async Task<bool> IsEqualTo(IQuantityValue other)
+        public bool IsEqualTo(IQuantityValue other)
         {
-            var thisStandardValue = await GetStandardValue();
-            var otherStandardValue = await other.GetStandardValue();
+            var thisStandardValue = GetStandardValue();
+            var otherStandardValue = other.GetStandardValue();
 
             return Comparer.IsWithinTolerance(thisStandardValue, otherStandardValue);
         }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 using System;
-using System.Threading.Tasks;
 
 namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
 {
@@ -9,7 +8,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
     public class PressureConversionImplementationCheck
     {
         [TestMethod]
-        public async Task ShouldConvertAllPressureCombinationsIntoAllOtherPressureCombinations()
+        public void ShouldConvertAllPressureCombinationsIntoAllOtherPressureCombinations()
         {
             foreach (PressureType fromType in Enum.GetValues(typeof(PressureType)))
             {
@@ -18,9 +17,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
                 foreach (PressureType toPressureType in Enum.GetValues(typeof(PressureType)))
                 {
                     var toUnit = Quantity.Pressure.GetUnit(toPressureType);
-                    var toValue = await fromValue.As(toUnit);
+                    var toValue = fromValue.As(toUnit);
 
-                    Assert.IsTrue(await fromValue.IsEqualTo(toValue), $"Conversion from {fromType} to {toPressureType} did not result in equal quantities.");
+                    Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromType} to {toPressureType} did not result in equal quantities.");
 
                     var conversionFactor = toValue.GetValue();
                     var expected = fromValue.GetValue() * conversionFactor;

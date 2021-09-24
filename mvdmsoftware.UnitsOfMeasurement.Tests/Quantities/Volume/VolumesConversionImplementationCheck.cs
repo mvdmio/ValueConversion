@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 
@@ -9,7 +8,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Volume
     public class VolumeConversionImplementationCheck
     {
         [TestMethod]
-        public async Task ShouldConvertAllVolumeCombinationsIntoAllOtherVolumeCombinations()
+        public void ShouldConvertAllVolumeCombinationsIntoAllOtherVolumeCombinations()
         {
             foreach (VolumeType fromVolumeType in Enum.GetValues(typeof(VolumeType)))
             {
@@ -18,9 +17,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Volume
                 foreach (VolumeType toVolumeType in Enum.GetValues(typeof(VolumeType)))
                 {
                     var toUnit = Quantity.Volume.GetUnit(toVolumeType);
-                    var toValue = await fromValue.As(toUnit);
+                    var toValue = fromValue.As(toUnit);
 
-                    Assert.IsTrue(await fromValue.IsEqualTo(toValue), $"Conversion from {fromVolumeType} to {toVolumeType} did not result in equal quantities.");
+                    Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromVolumeType} to {toVolumeType} did not result in equal quantities.");
 
                     var conversionFactor = toValue.GetValue();
                     var expected = fromValue.GetValue() * conversionFactor;

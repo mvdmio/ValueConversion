@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 
-namespace mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.CachedExchangeRateProvider
+namespace mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.CachedProvider
 {
     public class CachedExchangeRateProvider : IExchangeRateProvider
     {
         private readonly IExchangeRateProvider _exchangeRateProvider;
 
         private DateTime _cacheStartDate;
-        private readonly object lockObject = new object();
+        private readonly object _lockObject = new();
         private readonly IDictionary<DateTime, IList<CurrencyExchangeRateValue>> _cache;
 
         public CachedExchangeRateProvider(IExchangeRateProvider exchangeRateProvider)
@@ -23,42 +22,42 @@ namespace mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.CachedExchange
             _cache = new SortedDictionary<DateTime, IList<CurrencyExchangeRateValue>>();
         }
 
-        public async Task<CurrencyExchangeRateValue> GetLatestExchangeRate(CurrencyType from, CurrencyType to)
+        public CurrencyExchangeRateValue GetLatestExchangeRate(CurrencyType from, CurrencyType to)
         {
-            var cacheWorkingCopy = await RetrieveCacheWorkingCopy();
+            var cacheWorkingCopy = RetrieveCacheWorkingCopy();
 
             var latestCachedExchangeRate = cacheWorkingCopy.Max();
             var exchangeRate = latestCachedExchangeRate.Value.FirstOrDefault(x => x.From == from && x.To == to);
 
             if (exchangeRate == null)
-                return await _exchangeRateProvider.GetLatestExchangeRate(from, to);
+                return _exchangeRateProvider.GetLatestExchangeRate(from, to);
 
             return exchangeRate;
         }
 
-        public async Task<CurrencyExchangeRateValue> GetExchangeRate(CurrencyType from, CurrencyType to, DateTime utcDate)
+        public CurrencyExchangeRateValue GetExchangeRate(CurrencyType from, CurrencyType to, DateTime utcDate)
         {
             var usedDate = utcDate.Date;
-            var cacheWorkingCopy = await RetrieveCacheWorkingCopy(usedDate);
+            var cacheWorkingCopy = RetrieveCacheWorkingCopy(usedDate);
             
             if (!cacheWorkingCopy.ContainsKey(usedDate))
                 // If the cache still does not contain the value after rebuild, try retrieving the values without the cache.
-                return await _exchangeRateProvider.GetExchangeRate(from, to, usedDate);
+                return _exchangeRateProvider.GetExchangeRate(from, to, usedDate);
 
             var cachedExchangeRates = cacheWorkingCopy[usedDate];
             var exchangeRate = cachedExchangeRates.FirstOrDefault(x => x.From == from && x.To == to);
 
             if(exchangeRate == null)
                 // If the cache does not contain the value after rebuild, try retrieving the values without the cache.
-                return await _exchangeRateProvider.GetExchangeRate(from, to, usedDate);
+                return _exchangeRateProvider.GetExchangeRate(from, to, usedDate);
 
             return exchangeRate;
         }
 
-        public async Task<IDictionary<DateTime, CurrencyExchangeRateValue>> GetExchangeRates(CurrencyType from, CurrencyType to, DateTime fromDate)
+        public IDictionary<DateTime, CurrencyExchangeRateValue> GetExchangeRates(CurrencyType from, CurrencyType to, DateTime fromDate)
         {
             var usedDate = fromDate.Date;
-            var cacheWorkingCopy = await RetrieveCacheWorkingCopy(usedDate);
+            var cacheWorkingCopy = RetrieveCacheWorkingCopy(usedDate);
 
             var result = new SortedDictionary<DateTime, CurrencyExchangeRateValue>();
             var relevantKeys = cacheWorkingCopy.Keys.Where(x => x.Date >= usedDate);
@@ -73,11 +72,11 @@ namespace mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.CachedExchange
             return result;
         }
 
-        public async Task<IDictionary<DateTime, CurrencyExchangeRateValue>> GetExchangeRates(CurrencyType from, CurrencyType to, DateTime fromDate, DateTime end)
+        public IDictionary<DateTime, CurrencyExchangeRateValue> GetExchangeRates(CurrencyType from, CurrencyType to, DateTime fromDate, DateTime end)
         {
             var usedFromDate = fromDate.Date;
             var usedToDate = end.Date;
-            var cacheWorkingCopy = await RetrieveCacheWorkingCopy(usedFromDate);
+            var cacheWorkingCopy = RetrieveCacheWorkingCopy(usedFromDate);
 
             var result = new SortedDictionary<DateTime, CurrencyExchangeRateValue>();
             var relevantKeys = cacheWorkingCopy.Keys.Where(x => x.Date >= usedFromDate && x.Date <= usedToDate);
@@ -92,7 +91,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.CachedExchange
             return result;
         }
 
-        private async Task RebuildCache(DateTime? cacheStartDate = null)
+        private void RebuildCache(DateTime? cacheStartDate = null)
         {
             if (cacheStartDate.HasValue && cacheStartDate.Value < _cacheStartDate)
                 // If the requested utcDate is before the start-utcDate of the cache, make sure that the cache is filled with the entire year of the requested utcDate.
@@ -107,7 +106,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.CachedExchange
                     if(fromCurrencyType == toCurrencyType)
                         continue;
                     
-                    var retrievedExchangeRates = await _exchangeRateProvider.GetExchangeRates(fromCurrencyType, toCurrencyType, _cacheStartDate);
+                    var retrievedExchangeRates = _exchangeRateProvider.GetExchangeRates(fromCurrencyType, toCurrencyType, _cacheStartDate);
 
                     foreach (var exchangeRate in retrievedExchangeRates)
                     {
@@ -123,15 +122,15 @@ namespace mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.CachedExchange
             }
         }
 
-        private async Task<IDictionary<DateTime, IList<CurrencyExchangeRateValue>>> RetrieveCacheWorkingCopy(DateTime? minUsedDate = null)
+        private IDictionary<DateTime, IList<CurrencyExchangeRateValue>> RetrieveCacheWorkingCopy(DateTime? minUsedDate = null)
         {
             // Rebuilding the cache, if needed. Should be done thread-safe.
-            return await LockCache(
-                async () => {
+            return LockCache(
+                () => {
                     if(!_cache.Keys.Any() || _cache.Keys.Max().Date < DateTime.UtcNow.Date)
                     {
                         //Rebuild the cache if it has become outdated. This could happen when we retain the cache for more than a day.
-                        await RebuildCache(minUsedDate);
+                        RebuildCache(minUsedDate);
 
                         //Return a working-copy of the cache, that way the cache can be rebuild while some other thread is still using the previous cache.
                         return new ReadOnlyDictionary<DateTime, IList<CurrencyExchangeRateValue>>(_cache);
@@ -143,7 +142,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.CachedExchange
                         return new ReadOnlyDictionary<DateTime, IList<CurrencyExchangeRateValue>>(_cache);
                     }
                     
-                    await RebuildCache(minUsedDate);
+                    RebuildCache(minUsedDate);
 
                     //Return a working-copy of the cache, that way the cache can be rebuild while some other thread is still using the previous cache.
                     return new ReadOnlyDictionary<DateTime, IList<CurrencyExchangeRateValue>>(_cache);
@@ -153,7 +152,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.CachedExchange
 
         private TReturn LockCache<TReturn>(Func<TReturn> action)
         {
-            lock (lockObject)
+            lock (_lockObject)
             {
                 return action.Invoke();
             }

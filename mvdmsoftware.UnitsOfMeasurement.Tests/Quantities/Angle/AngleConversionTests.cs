@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 using mvdmsoftware.UnitsOfMeasurement.Interfaces;
@@ -13,31 +12,31 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Angle
         private readonly IUnit _radianUnit = Quantity.Angle.GetUnit(AngleType.Radian);
 
         [TestMethod]
-        public async Task DegreeToDegree()
+        public void DegreeToDegree()
         {
-            await TestConversion(1, _degreeUnit, 1, _degreeUnit);
+            TestConversion(1, _degreeUnit, 1, _degreeUnit);
         }
 
         [DataTestMethod]
         [DataRow(1, Math.PI / 180)]
         [DataRow(2, (Math.PI / 180) * 2)]
-        public async Task DegreeToRadian(double degreesInput, double expectedRadian)
+        public void DegreeToRadian(double degreesInput, double expectedRadian)
         {
-            await TestConversion(degreesInput, _degreeUnit, expectedRadian, _radianUnit);
+            TestConversion(degreesInput, _degreeUnit, expectedRadian, _radianUnit);
         }
 
         [TestMethod]
-        public async Task RadianToRadian()
+        public void RadianToRadian()
         {
-            await TestConversion(1, _radianUnit, 1, _radianUnit);
+            TestConversion(1, _radianUnit, 1, _radianUnit);
         }
 
         [DataTestMethod]
         [DataRow(1, 180 / Math.PI)]
         [DataRow(2, (180 / Math.PI) * 2)]
-        public async Task RadianToDegree(double radianInput, double expectedDegrees)
+        public void RadianToDegree(double radianInput, double expectedDegrees)
         {
-            await TestConversion(radianInput, _radianUnit, expectedDegrees, _degreeUnit);
+            TestConversion(radianInput, _radianUnit, expectedDegrees, _degreeUnit);
         }
     }
 }

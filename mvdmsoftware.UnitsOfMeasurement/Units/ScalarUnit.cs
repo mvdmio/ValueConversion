@@ -1,6 +1,5 @@
 using System;
 using System.Globalization;
-using System.Threading.Tasks;
 using mvdmsoftware.UnitsOfMeasurement.Interfaces;
 using mvdmsoftware.UnitsOfMeasurement.Quantities;
 
@@ -29,15 +28,15 @@ namespace mvdmsoftware.UnitsOfMeasurement.Units
         }
 
         /// <inheritdoc/>
-        public Task<double> FromStandardUnit(double value, DateTimeOffset timestamp)
+        public double FromStandardUnit(double value, DateTimeOffset timestamp)
         {
-            return Task.FromResult(value);
+            return value;
         }
 
         /// <inheritdoc/>
-        public Task<double> ToStandardUnit(double value, DateTimeOffset timestamp)
+        public double ToStandardUnit(double value, DateTimeOffset timestamp)
         {
-            return Task.FromResult(value);
+            return value;
         }
 
         /// <inheritdoc/>

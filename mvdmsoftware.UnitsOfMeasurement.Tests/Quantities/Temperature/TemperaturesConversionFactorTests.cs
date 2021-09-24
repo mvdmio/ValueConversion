@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 using mvdmsoftware.UnitsOfMeasurement.Tests.Utils;
 
@@ -22,9 +21,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Temperature
         [DataRow(-1, TemperatureType.Kelvin, 254.816666666667)]
         [DataRow(-10, TemperatureType.Kelvin, 249.816666666667)]
         
-        public async Task DegreeFahrenheitConversions(double value, TemperatureType to, double expected)
+        public void DegreeFahrenheitConversions(double value, TemperatureType to, double expected)
         {
-            var convertedTemperature = await GetConvertedValue(value, TemperatureType.DegreeFahrenheit, to);
+            var convertedTemperature = GetConvertedValue(value, TemperatureType.DegreeFahrenheit, to);
             AssertExtensions.AreWithinPercentTolerance(expected, convertedTemperature);
         }
 
@@ -41,9 +40,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Temperature
         [DataRow(10, TemperatureType.Kelvin, 283.15)]
         [DataRow(-1, TemperatureType.Kelvin, 272.15)]
         [DataRow(-10, TemperatureType.Kelvin, 263.15)]
-        public async Task DegreeCelsiusConversions(double value, TemperatureType to, double expected)
+        public void DegreeCelsiusConversions(double value, TemperatureType to, double expected)
         {
-            var convertedTemperature = await GetConvertedValue(value, TemperatureType.DegreeCelsius, to);
+            var convertedTemperature = GetConvertedValue(value, TemperatureType.DegreeCelsius, to);
             AssertExtensions.AreWithinPercentTolerance(expected, convertedTemperature);
         }
 
@@ -60,16 +59,16 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Temperature
         [DataRow(10, TemperatureType.Kelvin, 10)]
         [DataRow(100, TemperatureType.Kelvin, 100)]
         [DataRow(1000, TemperatureType.Kelvin, 1000)]
-        public async Task KelvinConversions(double value, TemperatureType to, double expected)
+        public void KelvinConversions(double value, TemperatureType to, double expected)
         {
-            var convertedTemperature = await GetConvertedValue(value, TemperatureType.Kelvin, to);
+            var convertedTemperature = GetConvertedValue(value, TemperatureType.Kelvin, to);
             AssertExtensions.AreWithinPercentTolerance(expected, convertedTemperature);
         }
 
-        private static async Task<double> GetConvertedValue(double value, TemperatureType from, TemperatureType to)
+        private static double GetConvertedValue(double value, TemperatureType from, TemperatureType to)
         {
             var quantityValue = Quantity.Temperature.CreateValue(value, from);
-            var convertedValue = await Quantity.Temperature.Convert(quantityValue, to);
+            var convertedValue = Quantity.Temperature.Convert(quantityValue, to);
             var conversionFactor = convertedValue.GetValue();
 
             return conversionFactor;

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using mvdmsoftware.UnitsOfMeasurement.Bases;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 using mvdmsoftware.UnitsOfMeasurement.ExchangeRates;
@@ -20,17 +19,17 @@ namespace mvdmsoftware.UnitsOfMeasurement.Units
         }
 
         /// <inheritdoc/>
-        public override async Task<double> FromStandardUnit(double value, DateTimeOffset timestamp)
+        public override double FromStandardUnit(double value, DateTimeOffset timestamp)
         {
-            var exchangerate = await CurrencyExchangeRate.Get(Quantity.Currency.StandardUnit.Type, _currency, timestamp.DateTime);
-            return value * exchangerate;
+            var exchangeRate = CurrencyExchangeRate.Get(Quantity.Currency.StandardUnit.Type, _currency, timestamp.DateTime);
+            return value * exchangeRate;
         }
 
         /// <inheritdoc/>
-        public override async Task<double> ToStandardUnit(double value, DateTimeOffset timestamp)
+        public override double ToStandardUnit(double value, DateTimeOffset timestamp)
         {
-            var exchangerate = await CurrencyExchangeRate.Get(Quantity.Currency.StandardUnit.Type, _currency, timestamp.DateTime);
-            return value / exchangerate;
+            var exchangeRate = CurrencyExchangeRate.Get(Quantity.Currency.StandardUnit.Type, _currency, timestamp.DateTime);
+            return value / exchangeRate;
         }
     }
 }

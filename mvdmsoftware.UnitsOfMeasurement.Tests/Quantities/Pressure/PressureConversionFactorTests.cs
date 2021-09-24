@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 using mvdmsoftware.UnitsOfMeasurement.Tests.Utils;
 
@@ -25,9 +24,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         [DataRow(PressureType.Pascal, 1)]
         [DataRow(PressureType.PoundForcePerSquareFoot, 2.0885434224572595E-08)]
         [DataRow(PressureType.PoundForcePerSquareInch, 1.450377377968587E-09)]
-        public async Task PascalConversions(PressureType to, double expected)
+        public void PascalConversions(PressureType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(PressureType.Pascal, to);
+            var conversionFactor = GetConversionFactor(PressureType.Pascal, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -48,9 +47,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         [DataRow(PressureType.Pascal, 101325)]
         [DataRow(PressureType.PoundForcePerSquareFoot, 0.0021162166228048183)]
         [DataRow(PressureType.PoundForcePerSquareInch, 0.00014695948782266708)]
-        public async Task AtmosphereConversions(PressureType to, double expected)
+        public void AtmosphereConversions(PressureType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(PressureType.Atmosphere, to);
+            var conversionFactor = GetConversionFactor(PressureType.Atmosphere, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -71,9 +70,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         [DataRow(PressureType.Pascal, 100000)]
         [DataRow(PressureType.PoundForcePerSquareFoot, 0.0020885434224572593)]
         [DataRow(PressureType.PoundForcePerSquareInch, 0.0001450377377968587)]
-        public async Task BarConversions(PressureType to, double expected)
+        public void BarConversions(PressureType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(PressureType.Bar, to);
+            var conversionFactor = GetConversionFactor(PressureType.Bar, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -94,9 +93,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         [DataRow(PressureType.Pascal, 1000)]
         [DataRow(PressureType.PoundForcePerSquareFoot, 2.0885434224572596E-05)]
         [DataRow(PressureType.PoundForcePerSquareInch, 1.450377377968587E-06)]
-        public async Task CentibarConversions(PressureType to, double expected)
+        public void CentibarConversions(PressureType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(PressureType.Centibar, to);
+            var conversionFactor = GetConversionFactor(PressureType.Centibar, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -117,9 +116,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         [DataRow(PressureType.Pascal, 10000)]
         [DataRow(PressureType.PoundForcePerSquareFoot, 0.00020885434224572594)]
         [DataRow(PressureType.PoundForcePerSquareInch, 1.4503773779685869E-05)]
-        public async Task DecibarConversions(PressureType to, double expected)
+        public void DecibarConversions(PressureType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(PressureType.Decibar, to);
+            var conversionFactor = GetConversionFactor(PressureType.Decibar, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -140,9 +139,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         [DataRow(PressureType.Pascal, 100000000)]
         [DataRow(PressureType.PoundForcePerSquareFoot, 2.0885434224572594)]
         [DataRow(PressureType.PoundForcePerSquareInch, 0.1450377377968587)]
-        public async Task KilobarConversions(PressureType to, double expected)
+        public void KilobarConversions(PressureType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(PressureType.Kilobar, to);
+            var conversionFactor = GetConversionFactor(PressureType.Kilobar, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -163,9 +162,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         [DataRow(PressureType.Pascal, 100000000000)]
         [DataRow(PressureType.PoundForcePerSquareFoot, 2088.5434224572596)]
         [DataRow(PressureType.PoundForcePerSquareInch, 145.0377377968587)]
-        public async Task MegabarConversions(PressureType to, double expected)
+        public void MegabarConversions(PressureType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(PressureType.Megabar, to);
+            var conversionFactor = GetConversionFactor(PressureType.Megabar, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -186,9 +185,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         [DataRow(PressureType.Pascal, 100)]
         [DataRow(PressureType.PoundForcePerSquareFoot, 2.0885434224572595E-06)]
         [DataRow(PressureType.PoundForcePerSquareInch, 1.450377377968587E-07)]
-        public async Task MillibarConversions(PressureType to, double expected)
+        public void MillibarConversions(PressureType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(PressureType.Millibar, to);
+            var conversionFactor = GetConversionFactor(PressureType.Millibar, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -209,9 +208,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         [DataRow(PressureType.Pascal, 0.1)]
         [DataRow(PressureType.PoundForcePerSquareFoot, 2.0885434224572598E-09)]
         [DataRow(PressureType.PoundForcePerSquareInch, 1.450377377968587E-10)]
-        public async Task MicrobarConversions(PressureType to, double expected)
+        public void MicrobarConversions(PressureType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(PressureType.Microbar, to);
+            var conversionFactor = GetConversionFactor(PressureType.Microbar, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -232,9 +231,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         [DataRow(PressureType.Pascal, 10)]
         [DataRow(PressureType.PoundForcePerSquareFoot, 2.0885434224572595E-07)]
         [DataRow(PressureType.PoundForcePerSquareInch, 1.450377377968587E-08)]
-        public async Task DecapascalConversions(PressureType to, double expected)
+        public void DecapascalConversions(PressureType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(PressureType.Decapascal, to);
+            var conversionFactor = GetConversionFactor(PressureType.Decapascal, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -255,9 +254,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         [DataRow(PressureType.Pascal, 1000000000)]
         [DataRow(PressureType.PoundForcePerSquareFoot, 20.885434224572595)]
         [DataRow(PressureType.PoundForcePerSquareInch, 1.450377377968587)]
-        public async Task GigapascalConversions(PressureType to, double expected)
+        public void GigapascalConversions(PressureType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(PressureType.Gigapascal, to);
+            var conversionFactor = GetConversionFactor(PressureType.Gigapascal, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -278,9 +277,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         [DataRow(PressureType.Pascal, 100)]
         [DataRow(PressureType.PoundForcePerSquareFoot, 2.0885434224572595E-06)]
         [DataRow(PressureType.PoundForcePerSquareInch, 1.450377377968587E-07)]
-        public async Task HectopascalConversions(PressureType to, double expected)
+        public void HectopascalConversions(PressureType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(PressureType.Hectopascal, to);
+            var conversionFactor = GetConversionFactor(PressureType.Hectopascal, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -301,9 +300,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         [DataRow(PressureType.Pascal, 1000)]
         [DataRow(PressureType.PoundForcePerSquareFoot, 2.0885434224572596E-05)]
         [DataRow(PressureType.PoundForcePerSquareInch, 1.450377377968587E-06)]
-        public async Task KilopascalConversions(PressureType to, double expected)
+        public void KilopascalConversions(PressureType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(PressureType.Kilopascal, to);
+            var conversionFactor = GetConversionFactor(PressureType.Kilopascal, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -324,9 +323,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         [DataRow(PressureType.Pascal, 1000000)]
         [DataRow(PressureType.PoundForcePerSquareFoot, 0.020885434224572594)]
         [DataRow(PressureType.PoundForcePerSquareInch, 0.0014503773779685869)]
-        public async Task MegapascalConversions(PressureType to, double expected)
+        public void MegapascalConversions(PressureType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(PressureType.Megapascal, to);
+            var conversionFactor = GetConversionFactor(PressureType.Megapascal, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -347,9 +346,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         [DataRow(PressureType.Pascal, 689475729)]
         [DataRow(PressureType.PoundForcePerSquareFoot, 14.399999987468739)]
         [DataRow(PressureType.PoundForcePerSquareInch, 1)]
-        public async Task PoundForcePerSquareInchConversions(PressureType to, double expected)
+        public void PoundForcePerSquareInchConversions(PressureType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(PressureType.PoundForcePerSquareInch, to);
+            var conversionFactor = GetConversionFactor(PressureType.PoundForcePerSquareInch, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -370,16 +369,16 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         [DataRow(PressureType.Pascal, 47880259)]
         [DataRow(PressureType.PoundForcePerSquareFoot, 1)]
         [DataRow(PressureType.PoundForcePerSquareInch, 0.06944444450487683)]
-        public async Task PoundForcePerSquareFootConversions(PressureType to, double expected)
+        public void PoundForcePerSquareFootConversions(PressureType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(PressureType.PoundForcePerSquareFoot, to);
+            var conversionFactor = GetConversionFactor(PressureType.PoundForcePerSquareFoot, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
-        private static async Task<double> GetConversionFactor(PressureType from, PressureType to)
+        private static double GetConversionFactor(PressureType from, PressureType to)
         {
             var quantityValue = Quantity.Pressure.CreateValue(value: 1, from);
-            var convertedValue = await Quantity.Pressure.Convert(quantityValue, to);
+            var convertedValue = Quantity.Pressure.Convert(quantityValue, to);
             var conversionFactor = convertedValue.GetValue();
 
             return conversionFactor;

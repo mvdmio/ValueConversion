@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Area
@@ -7,9 +6,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Area
     public class AreaConversionImplementationCheck : ConversionImplementationCheckBase
     {
         [TestMethod]
-        public async Task ShouldConvertAllAreaCombinationsIntoAllOtherAreaCombinations()
+        public void ShouldConvertAllAreaCombinationsIntoAllOtherAreaCombinations()
         {
-            await TestQuantityConversionImplementation(Quantity.Area);
+            TestQuantityConversionImplementation(Quantity.Area);
         }
     }
 }

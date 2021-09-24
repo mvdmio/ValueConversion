@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using mvdmsoftware.UnitsOfMeasurement.Bases;
 using mvdmsoftware.UnitsOfMeasurement.Enums;
 using mvdmsoftware.UnitsOfMeasurement.Interfaces;
@@ -39,9 +38,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Quantities
         }
 
         /// <inheritdoc/>
-        public Task<IQuantityValue> Convert(IQuantityValue quantityValue, IUnit toUnit)
+        public IQuantityValue Convert(IQuantityValue quantityValue, IUnit toUnit)
         {
-            return Task.FromResult(quantityValue); // Scalar values don't support conversions, just return the original.
+            return quantityValue; // Scalar values don't support conversions, just return the original.
         }
 
         /// <inheritdoc/>

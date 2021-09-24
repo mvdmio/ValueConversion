@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using mvdmsoftware.UnitsOfMeasurement.Bases;
-using System.Threading.Tasks;
 
 namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.RadiationTemperatureRatio
 {
@@ -8,7 +7,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.RadiationTemperatureR
     public class RadiationTemperatureRatioTests
     {
         [TestMethod]
-        public async Task ShouldProduceTheCorrectQuantityWhenDeserlializingTheQuantityIdentifier()
+        public void ShouldProduceTheCorrectQuantityWhenDeserlializingTheQuantityIdentifier()
         {
             var radiation = Quantity.Rate(Quantity.Energy, Quantity.Area);
             var radiationTemperatureRatio = Quantity.Rate(radiation, Quantity.Temperature);

@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
-using System.Threading.Tasks;
 
 namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.ElectricConductivity
 {
@@ -8,23 +7,23 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.ElectricConductivity
     public class ElectricConductivityConversionTests
     {
         [TestMethod]
-        public async Task ShouldConvertToStandardUnitCorrectly()
+        public void ShouldConvertToStandardUnitCorrectly()
         {
             var milliSiemensPerCentimeter = Quantity.ElectricConductivity.GetUnit(Quantity.ElectricConductance.GetUnit(ElectricConductanceType.Millisiemens), Quantity.Distance.GetUnit(DistanceType.Centimeter));
             
             var value = Quantity.ElectricConductivity.CreateValue(5, milliSiemensPerCentimeter);
-            var standardUnitValue = await value.GetStandardValue();
+            var standardUnitValue = value.GetStandardValue();
 
             Assert.AreEqual(0.5, standardUnitValue);
         }
 
          [TestMethod]
-        public async Task ShouldConvertFromStandardUnitCorrectly()
+        public void ShouldConvertFromStandardUnitCorrectly()
         {
             var milliSiemensPerCentimeter = Quantity.ElectricConductivity.GetUnit(Quantity.ElectricConductance.GetUnit(ElectricConductanceType.Millisiemens), Quantity.Distance.GetUnit(DistanceType.Centimeter));
             
             var value = Quantity.ElectricConductivity.CreateValue(0.5, Quantity.ElectricConductivity.StandardUnit);
-            var milliSiemensPerCentimeterValue = await value.As(milliSiemensPerCentimeter);
+            var milliSiemensPerCentimeterValue = value.As(milliSiemensPerCentimeter);
 
             Assert.AreEqual(5, milliSiemensPerCentimeterValue.GetValue());
         }

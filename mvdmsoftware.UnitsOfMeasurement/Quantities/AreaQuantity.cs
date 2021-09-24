@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using mvdmsoftware.UnitsOfMeasurement.Bases;
 using mvdmsoftware.UnitsOfMeasurement.Enums;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;

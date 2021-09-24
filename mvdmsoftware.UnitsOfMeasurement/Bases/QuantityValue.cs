@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Threading.Tasks;
 using mvdmsoftware.UnitsOfMeasurement.Interfaces;
 using mvdmsoftware.UnitsOfMeasurement.Utils;
 
@@ -38,20 +37,20 @@ namespace mvdmsoftware.UnitsOfMeasurement.Bases
             return _value;
         }
 
-        public Task<double> GetStandardValue()
+        public double GetStandardValue()
         {
             return _unit.ToStandardUnit(_value, Timestamp);
         }
 
-        public Task<IQuantityValue> As(IUnit unit)
+        public IQuantityValue As(IUnit unit)
         {
             return _quantity.Convert(this, unit);
         }
 
-        public async Task<bool> IsEqualTo(IQuantityValue other)
+        public bool IsEqualTo(IQuantityValue other)
         {
-            var thisStandardValue = await GetStandardValue();
-            var otherStandardValue = await other.GetStandardValue();
+            var thisStandardValue = GetStandardValue();
+            var otherStandardValue = other.GetStandardValue();
 
             return Comparer.IsWithinTolerance(thisStandardValue, otherStandardValue);
         }
@@ -84,7 +83,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Bases
             return _unit;
         }
 
-        public Task<IQuantityValue> As(TEnum unitEnum)
+        public IQuantityValue As(TEnum unitEnum)
         {
             var unit = _quantity.GetUnit(unitEnum);
             return As(unit);

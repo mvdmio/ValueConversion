@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 using mvdmsoftware.UnitsOfMeasurement.Tests.Utils;
 
@@ -26,9 +25,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Volume
         [DataRow(VolumeType.Liter, 0.01)]
         [DataRow(VolumeType.Milliliter, 10)]
         [DataRow(VolumeType.UsGallon, 0.00264172052637296)]
-        public async Task CentiliterConversions(VolumeType to, double expected)
+        public void CentiliterConversions(VolumeType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(VolumeType.Centiliter, to);
+            var conversionFactor = GetConversionFactor(VolumeType.Centiliter, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -50,9 +49,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Volume
         [DataRow(VolumeType.Liter, 0.001)]
         [DataRow(VolumeType.Milliliter, 1)]
         [DataRow(VolumeType.UsGallon, 0.000264172052637296)]
-        public async Task CubicCentimeterConversions(VolumeType to, double expected)
+        public void CubicCentimeterConversions(VolumeType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(VolumeType.CubicCentimeter, to);
+            var conversionFactor = GetConversionFactor(VolumeType.CubicCentimeter, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -74,9 +73,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Volume
         [DataRow(VolumeType.Liter, 1)]
         [DataRow(VolumeType.Milliliter, 1000)]
         [DataRow(VolumeType.UsGallon, 0.264172052637296)]
-        public async Task CubicDecimeterConversions(VolumeType to, double expected)
+        public void CubicDecimeterConversions(VolumeType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(VolumeType.CubicDecimeter, to);
+            var conversionFactor = GetConversionFactor(VolumeType.CubicDecimeter, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -98,9 +97,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Volume
         [DataRow(VolumeType.Liter, 28.3168466)]
         [DataRow(VolumeType.Milliliter, 28316.8466)]
         [DataRow(VolumeType.UsGallon, 7.48051949053743)]
-        public async Task CubicFootConversions(VolumeType to, double expected)
+        public void CubicFootConversions(VolumeType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(VolumeType.CubicFoot, to);
+            var conversionFactor = GetConversionFactor(VolumeType.CubicFoot, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -122,9 +121,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Volume
         [DataRow(VolumeType.Liter, 1000000000)]
         [DataRow(VolumeType.Milliliter, 1000000000000)]
         [DataRow(VolumeType.UsGallon, 264172052.637296)]
-        public async Task CubicHectometerConversions(VolumeType to, double expected)
+        public void CubicHectometerConversions(VolumeType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(VolumeType.CubicHectometer, to);
+            var conversionFactor = GetConversionFactor(VolumeType.CubicHectometer, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -146,9 +145,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Volume
         [DataRow(VolumeType.Liter, 0.016387064)]
         [DataRow(VolumeType.Milliliter, 16.387064)]
         [DataRow(VolumeType.UsGallon, 0.00432900433357874)]
-        public async Task CubicInchConversions(VolumeType to, double expected)
+        public void CubicInchConversions(VolumeType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(VolumeType.CubicInch, to);
+            var conversionFactor = GetConversionFactor(VolumeType.CubicInch, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -170,9 +169,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Volume
         [DataRow(VolumeType.Liter, 1000000000000)]
         [DataRow(VolumeType.Milliliter, 1E+15)]
         [DataRow(VolumeType.UsGallon, 264172052637.296)]
-        public async Task CubicKilometerConversions(VolumeType to, double expected)
+        public void CubicKilometerConversions(VolumeType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(VolumeType.CubicKilometer, to);
+            var conversionFactor = GetConversionFactor(VolumeType.CubicKilometer, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -194,9 +193,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Volume
         [DataRow(VolumeType.Liter, 1000)]
         [DataRow(VolumeType.Milliliter, 1000000)]
         [DataRow(VolumeType.UsGallon, 264.172052637296)]
-        public async Task CubicMeterConversions(VolumeType to, double expected)
+        public void CubicMeterConversions(VolumeType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(VolumeType.CubicMeter, to);
+            var conversionFactor = GetConversionFactor(VolumeType.CubicMeter, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -218,9 +217,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Volume
         [DataRow(VolumeType.Liter, 4168181830000)]
         [DataRow(VolumeType.Milliliter, 4.16818183E+15)]
         [DataRow(VolumeType.UsGallon, 1101117149796.58)]
-        public async Task CubicMileConversions(VolumeType to, double expected)
+        public void CubicMileConversions(VolumeType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(VolumeType.CubicMile, to);
+            var conversionFactor = GetConversionFactor(VolumeType.CubicMile, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -242,9 +241,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Volume
         [DataRow(VolumeType.Liter, 1E-06)]
         [DataRow(VolumeType.Milliliter, 0.001)]
         [DataRow(VolumeType.UsGallon, 2.64172052637296E-07)]
-        public async Task CubicMillimeterConversions(VolumeType to, double expected)
+        public void CubicMillimeterConversions(VolumeType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(VolumeType.CubicMillimeter, to);
+            var conversionFactor = GetConversionFactor(VolumeType.CubicMillimeter, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -266,9 +265,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Volume
         [DataRow(VolumeType.Liter, 764.554858)]
         [DataRow(VolumeType.Milliliter, 764554.858)]
         [DataRow(VolumeType.UsGallon, 201.974026191676)]
-        public async Task CubicYardConversions(VolumeType to, double expected)
+        public void CubicYardConversions(VolumeType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(VolumeType.CubicYard, to);
+            var conversionFactor = GetConversionFactor(VolumeType.CubicYard, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -290,9 +289,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Volume
         [DataRow(VolumeType.Liter, 0.1)]
         [DataRow(VolumeType.Milliliter, 100)]
         [DataRow(VolumeType.UsGallon, 0.0264172052637296)]
-        public async Task DeciliterConversions(VolumeType to, double expected)
+        public void DeciliterConversions(VolumeType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(VolumeType.Deciliter, to);
+            var conversionFactor = GetConversionFactor(VolumeType.Deciliter, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -314,9 +313,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Volume
         [DataRow(VolumeType.Liter, 100)]
         [DataRow(VolumeType.Milliliter, 100000)]
         [DataRow(VolumeType.UsGallon, 26.4172052637296)]
-        public async Task HectoliterConversions(VolumeType to, double expected)
+        public void HectoliterConversions(VolumeType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(VolumeType.Hectoliter, to);
+            var conversionFactor = GetConversionFactor(VolumeType.Hectoliter, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -338,9 +337,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Volume
         [DataRow(VolumeType.Liter, 4.54609188)]
         [DataRow(VolumeType.Milliliter, 4546.09188)]
         [DataRow(VolumeType.UsGallon, 1.20095042341734)]
-        public async Task ImperialGallonConversions(VolumeType to, double expected)
+        public void ImperialGallonConversions(VolumeType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(VolumeType.ImperialGallon, to);
+            var conversionFactor = GetConversionFactor(VolumeType.ImperialGallon, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -362,9 +361,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Volume
         [DataRow(VolumeType.Liter, 1)]
         [DataRow(VolumeType.Milliliter, 1000)]
         [DataRow(VolumeType.UsGallon, 0.264172052637296)]
-        public async Task LiterConversions(VolumeType to, double expected)
+        public void LiterConversions(VolumeType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(VolumeType.Liter, to);
+            var conversionFactor = GetConversionFactor(VolumeType.Liter, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -386,9 +385,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Volume
         [DataRow(VolumeType.Liter, 0.001)]
         [DataRow(VolumeType.Milliliter, 1)]
         [DataRow(VolumeType.UsGallon, 0.000264172052637296)]
-        public async Task MilliliterConversions(VolumeType to, double expected)
+        public void MilliliterConversions(VolumeType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(VolumeType.Milliliter, to);
+            var conversionFactor = GetConversionFactor(VolumeType.Milliliter, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -410,16 +409,16 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Volume
         [DataRow(VolumeType.Liter, 3.78541178)]
         [DataRow(VolumeType.Milliliter, 3785.41178)]
         [DataRow(VolumeType.UsGallon, 1)]
-        public async Task UsGallonConversions(VolumeType to, double expected)
+        public void UsGallonConversions(VolumeType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(VolumeType.UsGallon, to);
+            var conversionFactor = GetConversionFactor(VolumeType.UsGallon, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
-        private static async Task<double> GetConversionFactor(VolumeType from, VolumeType to)
+        private static double GetConversionFactor(VolumeType from, VolumeType to)
         {
             var value = Quantity.Volume.CreateValue(value: 1, from);
-            var convertedValue = await Quantity.Volume.Convert(value, to);
+            var convertedValue = Quantity.Volume.Convert(value, to);
             var conversionFactor = convertedValue.GetValue();
 
             return conversionFactor;

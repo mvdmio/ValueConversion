@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Threading.Tasks;
 using FormatWith;
 using mvdmsoftware.UnitsOfMeasurement.Interfaces;
 using mvdmsoftware.UnitsOfMeasurement.Resources.UnitsFormatting;
@@ -24,8 +23,8 @@ namespace mvdmsoftware.UnitsOfMeasurement.Bases
             DenominatorUnit = denominatorUnit;
         }
 
-        public abstract Task<double> FromStandardUnit(double value, DateTimeOffset timestamp);
-        public abstract Task<double> ToStandardUnit(double value, DateTimeOffset timestamp);
+        public abstract double FromStandardUnit(double value, DateTimeOffset timestamp);
+        public abstract double ToStandardUnit(double value, DateTimeOffset timestamp);
         public abstract string GetSymbol(CultureInfo cultureInfo);
         
         IQuantity IUnit.GetQuantity()

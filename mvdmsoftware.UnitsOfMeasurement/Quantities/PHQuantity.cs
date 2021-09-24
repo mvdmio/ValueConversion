@@ -5,7 +5,6 @@ using mvdmsoftware.UnitsOfMeasurement.Units;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace mvdmsoftware.UnitsOfMeasurement.Quantities
 {
@@ -43,9 +42,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Quantities
         }
 
         /// <inheritdoc/>
-        public Task<IQuantityValue> Convert(IQuantityValue quantityValue, IUnit toUnit)
+        public IQuantityValue Convert(IQuantityValue quantityValue, IUnit toUnit)
         {
-            return Task.FromResult(quantityValue); // pH values don't support conversions, just return the original.
+            return quantityValue; // pH values don't support conversions, just return the original.
         }
 
         /// <inheritdoc/>
@@ -68,17 +67,17 @@ namespace mvdmsoftware.UnitsOfMeasurement.Quantities
         /// <inheritdoc/>
         public IEnumerable<IUnit> GetUnits()
         {
-            if (_units == null)
+            if (_units != null)
+                return _units;
+
+            lock (_lockObject)
             {
-                lock (_lockObject)
-                {
-                    if (_units == null)
-                    {
-                        _units = new List<IUnit> {
-                            new PHUnit(this)
-                        };
-                    }
-                }
+                if (_units != null)
+                    return _units;
+
+                _units = new List<IUnit> {
+                        new PHUnit(this)
+                };
             }
 
             return _units;

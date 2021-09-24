@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 using mvdmsoftware.UnitsOfMeasurement.ExchangeRates;
@@ -17,7 +16,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Currency
         }
 
         [TestMethod]
-        public async Task ShouldConvertAllCurrencyCombinationsIntoAllOtherCurrencyCombinations()
+        public void ShouldConvertAllCurrencyCombinationsIntoAllOtherCurrencyCombinations()
         {
             foreach (CurrencyType fromCurrencyType in Enum.GetValues(typeof(CurrencyType)))
             {
@@ -26,9 +25,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Currency
                 foreach (CurrencyType toCurrencyType in Enum.GetValues(typeof(CurrencyType)))
                 {
                     var toUnit = Quantity.Currency.GetUnit(toCurrencyType);
-                    var toValue = await fromValue.As(toUnit);
+                    var toValue = fromValue.As(toUnit);
 
-                    Assert.IsTrue(await fromValue.IsEqualTo(toValue), $"Conversion from {fromCurrencyType} to {toCurrencyType} did not result in equal quantities.");
+                    Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromCurrencyType} to {toCurrencyType} did not result in equal quantities.");
 
                     var conversionFactor = toValue.GetValue();
                     var expected = fromValue.GetValue() * conversionFactor;

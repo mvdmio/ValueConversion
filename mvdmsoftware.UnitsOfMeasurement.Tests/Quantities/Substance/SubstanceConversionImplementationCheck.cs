@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 
@@ -9,7 +8,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Substance
     public class SubstanceConversionImplementationCheck
     {
         [TestMethod]
-        public async Task ShouldConvertAllSubstanceCombinationsIntoAllOtherSubstanceCombinations()
+        public void ShouldConvertAllSubstanceCombinationsIntoAllOtherSubstanceCombinations()
         {
             foreach (SubstanceType fromSubstanceType in Enum.GetValues(typeof(SubstanceType)))
             {
@@ -18,9 +17,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Substance
                 foreach (SubstanceType toSubstanceType in Enum.GetValues(typeof(SubstanceType)))
                 {
                     var toUnit = Quantity.Substance.GetUnit(toSubstanceType);
-                    var toValue = await fromValue.As(toUnit);
+                    var toValue = fromValue.As(toUnit);
 
-                    Assert.IsTrue(await fromValue.IsEqualTo(toValue), $"Conversion from {fromSubstanceType} to {toSubstanceType} did not result in equal quantities.");
+                    Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromSubstanceType} to {toSubstanceType} did not result in equal quantities.");
 
                     var conversionFactor = toValue.GetValue();
                     var expected = fromValue.GetValue() * conversionFactor;

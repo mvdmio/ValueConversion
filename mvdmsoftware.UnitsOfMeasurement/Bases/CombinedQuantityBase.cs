@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using mvdmsoftware.UnitsOfMeasurement.Interfaces;
 
 namespace mvdmsoftware.UnitsOfMeasurement.Bases
@@ -60,7 +59,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Bases
 
         public IQuantityValue CreateValue(DateTime timestamp, double value, IUnit unit)
         {
-            if (!(unit is ICombinedUnit typedUnit) || GetUnits().All(x => x.Identifier != unit.Identifier))
+            if (unit is not ICombinedUnit typedUnit || GetUnits().All(x => x.Identifier != unit.Identifier))
                 throw new InvalidCastException($"Cannot create value of unit {unit.Identifier} from quantity {GetType().FullName}");
 
             return CreateValue(timestamp, value, typedUnit);
@@ -68,35 +67,35 @@ namespace mvdmsoftware.UnitsOfMeasurement.Bases
 
         public IEnumerable<ICombinedUnit> GetUnits()
         {
-            if (_units == null)
+            if (_units != null)
+                return _units;
+
+            lock (_lockObject)
             {
-                lock (_lockObject)
-                {
-                    if (_units == null)
-                    {
-                        _units = CalculateUnits(NumeratorQuantity, DenominatorQuantity);
-                    }
-                }
+                if (_units != null)
+                    return _units;
+
+                _units = CalculateUnits(NumeratorQuantity, DenominatorQuantity);
             }
 
             return _units;
         }
         
-        public async Task<IQuantityValue> Convert(IQuantityValue quantityValue, IUnit toUnit)
+        public IQuantityValue Convert(IQuantityValue quantityValue, IUnit toUnit)
         {
-            if (!(toUnit is ICombinedUnit typedUnit))
+            if (toUnit is not ICombinedUnit typedUnit)
                 throw new InvalidCastException($"Cannot convert to unit {toUnit.Identifier} from quantity {GetType().FullName}");
 
-            return await Convert(quantityValue, typedUnit);
+            return Convert(quantityValue, typedUnit);
         }
 
-        public async Task<IQuantityValue> Convert(IQuantityValue quantityValue, ICombinedUnit toUnit)
+        public IQuantityValue Convert(IQuantityValue quantityValue, ICombinedUnit toUnit)
         {
             if (quantityValue.GetQuantity().Identifier != this.Identifier)
                 throw new InvalidCastException($"{GetType().FullName} cannot convert quantity values of quantity type {quantityValue.GetQuantity().Identifier}");
 
-            var value = await quantityValue.GetStandardValue();
-            var convertedValue = await toUnit.FromStandardUnit(value, quantityValue.Timestamp);
+            var value = quantityValue.GetStandardValue();
+            var convertedValue = toUnit.FromStandardUnit(value, quantityValue.Timestamp);
             
             return new CombinedQuantityValue(quantityValue.Timestamp, convertedValue, toUnit);
         }

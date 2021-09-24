@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 using mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers;
-using mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.CachedExchangeRateProvider;
+using mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.CachedProvider;
 using mvdmsoftware.UnitsOfMeasurement.Tests.Extensions;
 
 namespace mvdmsoftware.UnitsOfMeasurement.Tests.ExchangeRateProvider
@@ -27,24 +26,24 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.ExchangeRateProvider
         }
 
         [TestMethod]
-        public async Task ShouldRetrieveExchangeRatesOnceForTheEntireYear()
+        public void ShouldRetrieveExchangeRatesOnceForTheEntireYear()
         {
             var usedDate = DateTime.Now;
 
-            await _cachedExchangeRateProvider.GetExchangeRate(CurrencyType.Euro, CurrencyType.UnitedStatesDollar, usedDate);
-            await _cachedExchangeRateProvider.GetExchangeRate(CurrencyType.Euro, CurrencyType.UnitedStatesDollar, usedDate);
+            _cachedExchangeRateProvider.GetExchangeRate(CurrencyType.Euro, CurrencyType.UnitedStatesDollar, usedDate);
+            _cachedExchangeRateProvider.GetExchangeRate(CurrencyType.Euro, CurrencyType.UnitedStatesDollar, usedDate);
 
             VerifyCacheRebuildFromDate(new DateTime(usedDate.Year, month: 1, day: 1));
         }
 
         [TestMethod]
-        public async Task ShouldRetrieveNewExchangeRatesIfValuesAreRetrieveForAPreviousYear()
+        public void ShouldRetrieveNewExchangeRatesIfValuesAreRetrieveForAPreviousYear()
         {
             var firstUsedDate = DateTime.Now;
             var secondUsedDate = new DateTime(firstUsedDate.Year - 1, firstUsedDate.Month, firstUsedDate.Day, firstUsedDate.Hour, firstUsedDate.Minute, firstUsedDate.Second);
 
-            await _cachedExchangeRateProvider.GetExchangeRate(CurrencyType.Euro, CurrencyType.UnitedStatesDollar, firstUsedDate);
-            await _cachedExchangeRateProvider.GetExchangeRate(CurrencyType.Euro, CurrencyType.UnitedStatesDollar, secondUsedDate);
+            _cachedExchangeRateProvider.GetExchangeRate(CurrencyType.Euro, CurrencyType.UnitedStatesDollar, firstUsedDate);
+            _cachedExchangeRateProvider.GetExchangeRate(CurrencyType.Euro, CurrencyType.UnitedStatesDollar, secondUsedDate);
 
             VerifyCacheRebuildFromDate(new DateTime(firstUsedDate.Year, month: 1, day: 1));
             VerifyCacheRebuildFromDate(new DateTime(secondUsedDate.Year, month: 1, day: 1));
@@ -68,11 +67,11 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.ExchangeRateProvider
         {
             _exchangeRateProviderMock
                 .Setup(x => x.GetExchangeRates(It.IsAny<CurrencyType>(), It.IsAny<CurrencyType>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()))
-                .ReturnsAsync((CurrencyType from, CurrencyType to, DateTime fromDate, DateTime toDate) => GenerateExchangeRates(from, to, fromDate, toDate));
+                .Returns((CurrencyType from, CurrencyType to, DateTime fromDate, DateTime toDate) => GenerateExchangeRates(from, to, fromDate, toDate));
 
             _exchangeRateProviderMock
                 .Setup(x => x.GetExchangeRates(It.IsAny<CurrencyType>(), It.IsAny<CurrencyType>(), It.IsAny<DateTime>()))
-                .ReturnsAsync((CurrencyType from, CurrencyType to, DateTime fromDate) => GenerateExchangeRates(from, to, fromDate, DateTime.Now));
+                .Returns((CurrencyType from, CurrencyType to, DateTime fromDate) => GenerateExchangeRates(from, to, fromDate, DateTime.Now));
         }
 
         private static Dictionary<DateTime, CurrencyExchangeRateValue> GenerateExchangeRates(CurrencyType fromCurrency, CurrencyType toCurrency, DateTime fromDate, DateTime toDate)

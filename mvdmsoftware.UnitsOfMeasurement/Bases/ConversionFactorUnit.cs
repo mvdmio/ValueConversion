@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using mvdmsoftware.UnitsOfMeasurement.Interfaces;
 
 namespace mvdmsoftware.UnitsOfMeasurement.Bases
@@ -15,14 +14,14 @@ namespace mvdmsoftware.UnitsOfMeasurement.Bases
             _toStandardValueConversionFactor = toStandardValueConversionFactor;
         }
 
-        public sealed override Task<double> FromStandardUnit(double value, DateTimeOffset timestamp)
+        public sealed override double FromStandardUnit(double value, DateTimeOffset timestamp)
         {
-            return Task.FromResult(value / _toStandardValueConversionFactor);
+            return value / _toStandardValueConversionFactor;
         }
 
-        public sealed override Task<double> ToStandardUnit(double value, DateTimeOffset timestamp)
+        public sealed override double ToStandardUnit(double value, DateTimeOffset timestamp)
         {
-            return Task.FromResult(value * _toStandardValueConversionFactor);
+            return value * _toStandardValueConversionFactor;
         }
     }
 }

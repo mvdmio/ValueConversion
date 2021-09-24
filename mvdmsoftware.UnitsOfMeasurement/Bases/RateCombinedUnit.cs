@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Threading.Tasks;
 using FormatWith;
 using mvdmsoftware.UnitsOfMeasurement.Interfaces;
 using mvdmsoftware.UnitsOfMeasurement.Resources.UnitsFormatting;
@@ -19,18 +18,18 @@ namespace mvdmsoftware.UnitsOfMeasurement.Bases
             Identifier = GetCombinedUnitIdentifier(numeratorUnit, denominatorUnit);
         }
 
-        public override async Task<double> FromStandardUnit(double value, DateTimeOffset timestamp)
+        public override double FromStandardUnit(double value, DateTimeOffset timestamp)
         {
-            var numeratorUnitConversionFactor = await NumeratorUnit.FromStandardUnit(1, timestamp);
-            var denominatorUnitConversionFactor = await DenominatorUnit.FromStandardUnit(1, timestamp);
+            var numeratorUnitConversionFactor = NumeratorUnit.FromStandardUnit(1, timestamp);
+            var denominatorUnitConversionFactor = DenominatorUnit.FromStandardUnit(1, timestamp);
 
             return value * (numeratorUnitConversionFactor / denominatorUnitConversionFactor);
         }
 
-        public override async Task<double> ToStandardUnit(double value, DateTimeOffset timestamp)
+        public override double ToStandardUnit(double value, DateTimeOffset timestamp)
         {
-            var numeratorUnitConversionFactor = await NumeratorUnit.ToStandardUnit(1, timestamp);
-            var denominatorUnitConversionFactor = await DenominatorUnit.ToStandardUnit(1, timestamp);
+            var numeratorUnitConversionFactor = NumeratorUnit.ToStandardUnit(1, timestamp);
+            var denominatorUnitConversionFactor = DenominatorUnit.ToStandardUnit(1, timestamp);
 
             return value * (numeratorUnitConversionFactor / denominatorUnitConversionFactor);
         }

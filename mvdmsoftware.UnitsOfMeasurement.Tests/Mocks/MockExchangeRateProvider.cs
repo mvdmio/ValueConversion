@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 using mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers;
 
@@ -15,12 +14,12 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Mocks
             { CurrencyType.CanadianDollar, 1.41 },
         };
 
-        public Task<CurrencyExchangeRateValue> GetLatestExchangeRate(CurrencyType from, CurrencyType to)
+        public CurrencyExchangeRateValue GetLatestExchangeRate(CurrencyType from, CurrencyType to)
         {
             return GetExchangeRate(from, to, DateTime.Now);
         }
 
-        public Task<CurrencyExchangeRateValue> GetExchangeRate(CurrencyType from, CurrencyType to, DateTime date)
+        public CurrencyExchangeRateValue GetExchangeRate(CurrencyType from, CurrencyType to, DateTime date)
         {
             if (!_conversionDictionary.TryGetValue(from, out var fromValue))
                 throw new InvalidOperationException($"No mocked exchange rate could be found for {from}");
@@ -31,18 +30,18 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Mocks
             var exchangeRate = toValue / fromValue;
             var result = new CurrencyExchangeRateValue(from, to, exchangeRate);
 
-            return Task.FromResult(result);
+            return result;
         }
 
-        public Task<IDictionary<DateTime, CurrencyExchangeRateValue>> GetExchangeRates(CurrencyType from, CurrencyType to, DateTime start)
+        public IDictionary<DateTime, CurrencyExchangeRateValue> GetExchangeRates(CurrencyType from, CurrencyType to, DateTime start)
         {
             return GetExchangeRates(from, to, start, DateTime.Now);
         }
 
-        public async Task<IDictionary<DateTime, CurrencyExchangeRateValue>> GetExchangeRates(CurrencyType from, CurrencyType to, DateTime start, DateTime end)
+        public IDictionary<DateTime, CurrencyExchangeRateValue> GetExchangeRates(CurrencyType from, CurrencyType to, DateTime start, DateTime end)
         {
             var totalDays = (start.Date - end.Date).TotalDays;
-            var exchangeRate = await GetLatestExchangeRate(from, to);
+            var exchangeRate = GetLatestExchangeRate(from, to);
 
             var result = new Dictionary<DateTime, CurrencyExchangeRateValue>();
             for (var i = 0; i < totalDays; i++)

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using mvdmsoftware.UnitsOfMeasurement.Enums;
 using mvdmsoftware.UnitsOfMeasurement.Interfaces;
 
@@ -41,27 +40,27 @@ namespace mvdmsoftware.UnitsOfMeasurement.Bases
             return unit;
         }
 
-        public Task<IQuantityValue> Convert(IQuantityValue quantityValue, TEnum toUnitType)
+        public IQuantityValue Convert(IQuantityValue quantityValue, TEnum toUnitType)
         {
             var toUnit = GetUnit(toUnitType);
             return Convert(quantityValue, toUnit);
         }
 
-        public async Task<IQuantityValue> Convert(IQuantityValue quantityValue, IUnit toUnit)
+        public IQuantityValue Convert(IQuantityValue quantityValue, IUnit toUnit)
         {
-            if (!(toUnit is IUnit<TEnum> typedUnit))
+            if (toUnit is not IUnit<TEnum> typedUnit)
                 throw new InvalidCastException($"Cannot use {toUnit.GetType().FullName} as {typeof(IUnit<TEnum>).FullName}");
 
-            return await Convert(quantityValue, typedUnit);
+            return Convert(quantityValue, typedUnit);
         }
 
-        public async Task<IQuantityValue> Convert(IQuantityValue quantityValue, IUnit<TEnum> toUnit)
+        public IQuantityValue Convert(IQuantityValue quantityValue, IUnit<TEnum> toUnit)
         {
             if (quantityValue.GetQuantity().Identifier != Identifier)
                 throw new InvalidCastException($"{GetType().FullName} cannot convert quantity of type {quantityValue.GetQuantity().Identifier}");
 
-            var standardValue = await quantityValue.GetStandardValue();
-            var convertedValue = await toUnit.FromStandardUnit(standardValue, quantityValue.Timestamp);
+            var standardValue = quantityValue.GetStandardValue();
+            var convertedValue = toUnit.FromStandardUnit(standardValue, quantityValue.Timestamp);
 
             return new QuantityValue(quantityValue.Timestamp, convertedValue, toUnit);
         }

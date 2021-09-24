@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Threading.Tasks;
 
 namespace mvdmsoftware.UnitsOfMeasurement.Interfaces
 {
@@ -27,7 +26,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Interfaces
         /// <param name="value">The value that should be converted.</param>
         /// <param name="timestamp">The timestamp when this value was recorded. Mainly used by time-dependent conversions like Currency.</param>
         /// <returns>The value converted to this unit.</returns>
-        Task<double> FromStandardUnit(double value, DateTimeOffset timestamp);
+        double FromStandardUnit(double value, DateTimeOffset timestamp);
 
         /// <summary>
         /// Converts the given value from this unit to standard unit.
@@ -35,7 +34,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Interfaces
         /// <param name="value">The value that should be converted.</param>
         /// <param name="timestamp">The timestamp when this value was recorded. Mainly used by time-dependent conversions like Currency.</param>
         /// <returns>The value converted to the standard unit of this quantity.</returns>
-        Task<double> ToStandardUnit(double value, DateTimeOffset timestamp);
+        double ToStandardUnit(double value, DateTimeOffset timestamp);
 
         /// <summary>
         /// Retrieves the symbol that corresponds to this unit.

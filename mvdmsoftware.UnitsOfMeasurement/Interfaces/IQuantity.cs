@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace mvdmsoftware.UnitsOfMeasurement.Interfaces
 {
@@ -12,7 +11,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Interfaces
         IEnumerable<IUnit> GetUnits();
         IUnit GetUnit(string unitIdentifier);
 
-        Task<IQuantityValue> Convert(IQuantityValue quantityValue, IUnit toUnit);
+        IQuantityValue Convert(IQuantityValue quantityValue, IUnit toUnit);
         IQuantityValue CreateValue(double value, IUnit unit);
         IQuantityValue CreateValue(DateTime timestamp, double value, IUnit unit);
     }
@@ -23,8 +22,8 @@ namespace mvdmsoftware.UnitsOfMeasurement.Interfaces
         new IUnit<TEnum> StandardUnit { get; }
         IUnit<TEnum> GetUnit(TEnum unit);
         new IDictionary<TEnum, IUnit<TEnum>> GetUnits();
-        Task<IQuantityValue> Convert(IQuantityValue quantityValue, TEnum toUnitType);
-        Task<IQuantityValue> Convert(IQuantityValue quantityValue, IUnit<TEnum> toUnit);
+        IQuantityValue Convert(IQuantityValue quantityValue, TEnum toUnitType);
+        IQuantityValue Convert(IQuantityValue quantityValue, IUnit<TEnum> toUnit);
         IQuantityValue<TEnum> CreateValue(double value, TEnum unitType);
         IQuantityValue<TEnum> CreateValue(double value, IUnit<TEnum> unit);
         IQuantityValue<TEnum> CreateValue(DateTime timestamp, double value, TEnum unitType);

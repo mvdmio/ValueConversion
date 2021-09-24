@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Threading.Tasks;
 
 namespace mvdmsoftware.UnitsOfMeasurement.Interfaces
 {
@@ -12,10 +11,10 @@ namespace mvdmsoftware.UnitsOfMeasurement.Interfaces
         IUnit GetUnit();
 
         double GetValue();
-        Task<double> GetStandardValue();
+        double GetStandardValue();
 
-        Task<IQuantityValue> As(IUnit unit);
-        Task<bool> IsEqualTo(IQuantityValue other);
+        IQuantityValue As(IUnit unit);
+        bool IsEqualTo(IQuantityValue other);
 
         string GetFormattedValue(CultureInfo cultureInfo);
     }
@@ -24,6 +23,6 @@ namespace mvdmsoftware.UnitsOfMeasurement.Interfaces
     {
         new IQuantity<TEnum> GetQuantity();
         new IUnit<TEnum> GetUnit();
-        Task<IQuantityValue> As(TEnum unitEnum);
+        IQuantityValue As(TEnum unitEnum);
     }
 }

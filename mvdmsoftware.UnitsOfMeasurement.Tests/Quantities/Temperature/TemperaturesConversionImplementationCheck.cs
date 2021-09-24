@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 
@@ -9,7 +8,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Temperature
     public class TemperaturesConversionImplementationCheck
     {
         [TestMethod]
-        public async Task ShouldConvertAllVolumeCombinationsIntoAllOtherVolumeCombinations()
+        public void ShouldConvertAllVolumeCombinationsIntoAllOtherVolumeCombinations()
         {
             foreach (TemperatureType fromVolumeType in Enum.GetValues(typeof(TemperatureType)))
             {
@@ -18,9 +17,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Temperature
                 foreach (TemperatureType toVolumeType in Enum.GetValues(typeof(TemperatureType)))
                 {
                     var toUnit = Quantity.Temperature.GetUnit(toVolumeType);
-                    var toValue = await fromValue.As(toUnit);
+                    var toValue = fromValue.As(toUnit);
 
-                    Assert.IsTrue(await fromValue.IsEqualTo(toValue), $"Conversion from {fromVolumeType} to {toVolumeType} did not result in equal quantities.");
+                    Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromVolumeType} to {toVolumeType} did not result in equal quantities.");
                 }
             }
         }

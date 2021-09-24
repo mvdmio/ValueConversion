@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 using mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.WebProvider.Responses;
@@ -25,14 +24,17 @@ namespace mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.WebProvider
             _httpClient = httpClient;
         }
 
-        public async Task<CurrencyExchangeRateValue> GetLatestExchangeRate(CurrencyType from, CurrencyType to)
+        public CurrencyExchangeRateValue GetLatestExchangeRate(CurrencyType from, CurrencyType to)
         {
-            using (var response = await _httpClient.GetAsync($"https://api.exchangeratesapi.io/latest?base={GetApiCurrencySymbol(from)}&symbols={GetApiCurrencySymbol(to)}"))
+            // TODO: This is async over sync, bad practice!
+            var asyncRequest = _httpClient.GetAsync($"https://api.exchangeratesapi.io/latest?base={GetApiCurrencySymbol(@from)}&symbols={GetApiCurrencySymbol(to)}");
+            using (var response = asyncRequest.Result)
             {
                 if(!response.IsSuccessStatusCode)
                     throw new InvalidOperationException("An error occurred while retrieving the exchange rate");
 
-                var responseString = await response.Content.ReadAsStringAsync();
+                var asyncResponseContent = response.Content.ReadAsStringAsync();
+                var responseString = asyncResponseContent.Result; // TODO: This is async over sync, bad practice!
                 var exchangeRateResponse = JsonConvert.DeserializeObject<SingleCurrencyExchangeRateApiResponse>(responseString);
                 var apiCurrencySymbol = GetApiCurrencySymbol(to);
 
@@ -43,7 +45,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.WebProvider
             }
         }
 
-        public async Task<CurrencyExchangeRateValue> GetExchangeRate(CurrencyType from, CurrencyType to, DateTime utcDate)
+        public CurrencyExchangeRateValue GetExchangeRate(CurrencyType from, CurrencyType to, DateTime utcDate)
         {
             
             var utcStartDay = utcDate.Date;
@@ -52,21 +54,24 @@ namespace mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.WebProvider
             if (utcStartDay >= DateTime.UtcNow.Date || utcEndDay >= DateTime.UtcNow)
             {
                 // If the requested utcDate is in the future, return the latest known exchange rate.
-                return await GetLatestExchangeRate(from, to);
+                return GetLatestExchangeRate(from, to);
             }
-            
-            using (var response = await _httpClient.GetAsync($"https://api.exchangeratesapi.io/history?base={GetApiCurrencySymbol(from)}&symbols={GetApiCurrencySymbol(to)}&start_at={FormatDate(utcStartDay)}&end_at={FormatDate(utcEndDay)}"))
+
+            // TODO: This is async over sync, bad practice!
+            var asyncRequest = _httpClient.GetAsync($"https://api.exchangeratesapi.io/history?base={GetApiCurrencySymbol(@from)}&symbols={GetApiCurrencySymbol(to)}&start_at={FormatDate(utcStartDay)}&end_at={FormatDate(utcEndDay)}");
+            using (var response = asyncRequest.Result)
             {
                 if(!response.IsSuccessStatusCode)
                     throw new InvalidOperationException("An error occurred while retrieving the exchange rate");
 
-                var responseString = await response.Content.ReadAsStringAsync();
+                var asyncResponseContent = response.Content.ReadAsStringAsync(); // TODO: This is async over sync, bad practice!
+                var responseString = asyncResponseContent.Result;
                 var exchangeRateResponse = JsonConvert.DeserializeObject<MultipleCurrencyExchangeRatesApiResponse>(responseString);
 
                 if(!exchangeRateResponse.Rates.Any())
                 {
                     // If no exchange rates are available for today for any reason, try retrieving exchange rates for tomorrow.
-                    return await GetExchangeRate(from, to, utcDate.AddDays(1));
+                    return GetExchangeRate(from, to, utcDate.AddDays(1));
                 }
 
                 var exchangeRates = exchangeRateResponse.Rates.First().Value;
@@ -79,23 +84,26 @@ namespace mvdmsoftware.UnitsOfMeasurement.ExchangeRates.Providers.WebProvider
             }
         }
 
-        public Task<IDictionary<DateTime, CurrencyExchangeRateValue>> GetExchangeRates(CurrencyType from, CurrencyType to, DateTime start)
+        public IDictionary<DateTime, CurrencyExchangeRateValue> GetExchangeRates(CurrencyType from, CurrencyType to, DateTime start)
         {
             return GetExchangeRates(from, to, start, DateTime.Now);
         }
 
-        public async Task<IDictionary<DateTime, CurrencyExchangeRateValue>> GetExchangeRates(CurrencyType from, CurrencyType to, DateTime start, DateTime end)
+        public IDictionary<DateTime, CurrencyExchangeRateValue> GetExchangeRates(CurrencyType from, CurrencyType to, DateTime start, DateTime end)
         {
             var startDay = start.Date;
             var endDay = GetCorrectedEndDay(end);
             var totalDays = (endDay - startDay).TotalDays;
 
-            using (var response = await _httpClient.GetAsync($"https://api.exchangeratesapi.io/history?base={GetApiCurrencySymbol(from)}&symbols={GetApiCurrencySymbol(to)}&start_at={FormatDate(startDay)}&end_at={FormatDate(endDay)}"))
+            // TODO: This is async over sync, bad practice!
+            var asyncRequest = _httpClient.GetAsync($"https://api.exchangeratesapi.io/history?base={GetApiCurrencySymbol(@from)}&symbols={GetApiCurrencySymbol(to)}&start_at={FormatDate(startDay)}&end_at={FormatDate(endDay)}");
+            using (var response = asyncRequest.Result)
             {
                 if(!response.IsSuccessStatusCode)
                     throw new InvalidOperationException("An error occurred while retrieving the exchange rate");
 
-                var responseString = await response.Content.ReadAsStringAsync();
+                var asyncResponseContent = response.Content.ReadAsStringAsync();
+                var responseString = asyncResponseContent.Result; // TODO: This is async over sync, bad practice!
                 var exchangeRateResponse = JsonConvert.DeserializeObject<MultipleCurrencyExchangeRatesApiResponse>(responseString);
 
                 if(!exchangeRateResponse.Rates.Values.Any(x => x.ContainsKey(GetApiCurrencySymbol(to))))

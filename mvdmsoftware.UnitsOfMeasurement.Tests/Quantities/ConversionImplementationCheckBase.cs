@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using mvdmsoftware.UnitsOfMeasurement.Interfaces;
 
@@ -7,7 +6,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities
 {
     public class ConversionImplementationCheckBase
     {
-        protected async Task TestQuantityConversionImplementation<T>(IQuantity<T> quantity) where T : Enum
+        protected void TestQuantityConversionImplementation<T>(IQuantity<T> quantity) where T : Enum
         {
             foreach (T fromEnumType in Enum.GetValues(typeof(T)))
             {
@@ -16,9 +15,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities
                 foreach (T toEnumType in Enum.GetValues(typeof(T)))
                 {
                     var toUnit = quantity.GetUnit(toEnumType);
-                    var toValue = await fromValue.As(toUnit);
+                    var toValue = fromValue.As(toUnit);
 
-                    Assert.IsTrue(await fromValue.IsEqualTo(toValue), $"Conversion from {fromEnumType} to {toEnumType} did not result in equal quantities.");
+                    Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromEnumType} to {toEnumType} did not result in equal quantities.");
 
                     var conversionFactor = toValue.GetValue();
                     var expected = fromValue.GetValue() * conversionFactor;

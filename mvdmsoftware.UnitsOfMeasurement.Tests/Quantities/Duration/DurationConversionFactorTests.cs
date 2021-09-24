@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 using mvdmsoftware.UnitsOfMeasurement.Tests.Utils;
 
@@ -21,9 +20,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         [DataRow(DurationType.Year, 3.16887646154128E-17)]
         [DataRow(DurationType.Decade, 3.16887646154128E-18)]
         [DataRow(DurationType.Century, 3.16887646154128E-19)]
-        public async Task NanosecondConversions(DurationType to, double expected)
+        public void NanosecondConversions(DurationType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(DurationType.Nanosecond, to);
+            var conversionFactor = GetConversionFactor(DurationType.Nanosecond, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -40,9 +39,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         [DataRow(DurationType.Year, 3.16887646154128E-11)]
         [DataRow(DurationType.Decade, 3.16887646154128E-12)]
         [DataRow(DurationType.Century, 3.16887646154128E-13)]
-        public async Task MillisecondConversions(DurationType to, double expected)
+        public void MillisecondConversions(DurationType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(DurationType.Millisecond, to);
+            var conversionFactor = GetConversionFactor(DurationType.Millisecond, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -59,9 +58,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         [DataRow(DurationType.Year, 3.16887646154128E-08)]
         [DataRow(DurationType.Decade, 3.16887646154128E-09)]
         [DataRow(DurationType.Century, 3.16887646154128E-10)]
-        public async Task SecondConversions(DurationType to, double expected)
+        public void SecondConversions(DurationType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(DurationType.Second, to);
+            var conversionFactor = GetConversionFactor(DurationType.Second, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -78,9 +77,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         [DataRow(DurationType.Year, 1.90132587692477E-06)]
         [DataRow(DurationType.Decade, 1.90132587692477E-07)]
         [DataRow(DurationType.Century, 1.90132587692477E-08)]
-        public async Task MinuteConversions(DurationType to, double expected)
+        public void MinuteConversions(DurationType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(DurationType.Minute, to);
+            var conversionFactor = GetConversionFactor(DurationType.Minute, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -97,9 +96,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         [DataRow(DurationType.Year, 0.000114079552615486)]
         [DataRow(DurationType.Decade, 1.14079552615486E-05)]
         [DataRow(DurationType.Century, 1.14079552615486E-06)]
-        public async Task HourConversions(DurationType to, double expected)
+        public void HourConversions(DurationType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(DurationType.Hour, to);
+            var conversionFactor = GetConversionFactor(DurationType.Hour, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -116,9 +115,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         [DataRow(DurationType.Year, 0.00273790926277167)]
         [DataRow(DurationType.Decade, 0.000273790926277167)]
         [DataRow(DurationType.Century, 2.73790926277167E-05)]
-        public async Task DayConversions(DurationType to, double expected)
+        public void DayConversions(DurationType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(DurationType.Day, to);
+            var conversionFactor = GetConversionFactor(DurationType.Day, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -135,9 +134,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         [DataRow(DurationType.Year, 0.0191653648394017)]
         [DataRow(DurationType.Decade, 0.00191653648394017)]
         [DataRow(DurationType.Century, 0.000191653648394017)]
-        public async Task WeekConversions(DurationType to, double expected)
+        public void WeekConversions(DurationType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(DurationType.Week, to);
+            var conversionFactor = GetConversionFactor(DurationType.Week, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -154,9 +153,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         [DataRow(DurationType.Year, 0.0833333332277041)]
         [DataRow(DurationType.Decade, 0.00833333332277041)]
         [DataRow(DurationType.Century, 0.000833333332277041)]
-        public async Task MonthConversions(DurationType to, double expected)
+        public void MonthConversions(DurationType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(DurationType.Month, to);
+            var conversionFactor = GetConversionFactor(DurationType.Month, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -173,9 +172,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         [DataRow(DurationType.Year, 0.249999999683112)]
         [DataRow(DurationType.Decade, 0.0249999999683112)]
         [DataRow(DurationType.Century, 0.00249999999683112)]
-        public async Task QuarterConversions(DurationType to, double expected)
+        public void QuarterConversions(DurationType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(DurationType.Quarter, to);
+            var conversionFactor = GetConversionFactor(DurationType.Quarter, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -192,9 +191,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         [DataRow(DurationType.Year, 1)]
         [DataRow(DurationType.Decade, 0.1)]
         [DataRow(DurationType.Century, 0.01)]
-        public async Task YearConversions(DurationType to, double expected)
+        public void YearConversions(DurationType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(DurationType.Year, to);
+            var conversionFactor = GetConversionFactor(DurationType.Year, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -211,9 +210,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         [DataRow(DurationType.Year, 10)]
         [DataRow(DurationType.Decade, 1)]
         [DataRow(DurationType.Century, 0.1)]
-        public async Task DecadeConversions(DurationType to, double expected)
+        public void DecadeConversions(DurationType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(DurationType.Decade, to);
+            var conversionFactor = GetConversionFactor(DurationType.Decade, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
@@ -230,16 +229,16 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         [DataRow(DurationType.Year, 100)]
         [DataRow(DurationType.Decade, 10)]
         [DataRow(DurationType.Century, 1)]
-        public async Task CenturyConversions(DurationType to, double expected)
+        public void CenturyConversions(DurationType to, double expected)
         {
-            var conversionFactor = await GetConversionFactor(DurationType.Century, to);
+            var conversionFactor = GetConversionFactor(DurationType.Century, to);
             AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
-        private static async Task<double> GetConversionFactor(DurationType from, DurationType to)
+        private static double GetConversionFactor(DurationType from, DurationType to)
         {
             var quantityValue = Quantity.Duration.CreateValue(value: 1, from);
-            var convertedValue = await Quantity.Duration.Convert(quantityValue, to);
+            var convertedValue = Quantity.Duration.Convert(quantityValue, to);
             var conversionFactor = convertedValue.GetValue();
 
             return conversionFactor;
