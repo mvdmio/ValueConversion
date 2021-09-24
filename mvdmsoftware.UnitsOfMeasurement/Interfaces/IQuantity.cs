@@ -25,9 +25,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Interfaces
         new IDictionary<TEnum, IUnit<TEnum>> GetUnits();
         Task<IQuantityValue> Convert(IQuantityValue quantityValue, TEnum toUnitType);
         Task<IQuantityValue> Convert(IQuantityValue quantityValue, IUnit<TEnum> toUnit);
-        IQuantityValue CreateValue(double value, TEnum unitType);
-        IQuantityValue CreateValue(double value, IUnit<TEnum> unit);
-        IQuantityValue CreateValue(DateTime timestamp, double value, TEnum unitType);
-        IQuantityValue CreateValue(DateTime timestamp, double value, IUnit<TEnum> unit);
+        IQuantityValue<TEnum> CreateValue(double value, TEnum unitType);
+        IQuantityValue<TEnum> CreateValue(double value, IUnit<TEnum> unit);
+        IQuantityValue<TEnum> CreateValue(DateTime timestamp, double value, TEnum unitType);
+        IQuantityValue<TEnum> CreateValue(DateTime timestamp, double value, IUnit<TEnum> unit);
     }
 }

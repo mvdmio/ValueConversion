@@ -76,7 +76,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Bases
             return units[unit];
         }
 
-        public IQuantityValue CreateValue(double value, TEnum unitType)
+        public IQuantityValue<TEnum> CreateValue(double value, TEnum unitType)
         {
             return CreateValue(value, GetUnit(unitType));
         }
@@ -86,12 +86,12 @@ namespace mvdmsoftware.UnitsOfMeasurement.Bases
             return CreateValue(DateTime.UtcNow, value, unit);
         }
 
-        public IQuantityValue CreateValue(double value, IUnit<TEnum> unit)
+        public IQuantityValue<TEnum> CreateValue(double value, IUnit<TEnum> unit)
         {
             return CreateValue(DateTime.UtcNow, value, unit);
         }
 
-        public IQuantityValue CreateValue(DateTime timestamp, double value, TEnum unitType)
+        public IQuantityValue<TEnum> CreateValue(DateTime timestamp, double value, TEnum unitType)
         {
             return CreateValue(timestamp, value, GetUnit(unitType));
         }
@@ -106,9 +106,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Bases
             throw new InvalidCastException($"Cannot use {unit.GetType().FullName} as typed unit {typeof(IUnit<TEnum>).FullName}");
         }
 
-        public IQuantityValue CreateValue(DateTime timestamp, double value, IUnit<TEnum> unit)
+        public IQuantityValue<TEnum> CreateValue(DateTime timestamp, double value, IUnit<TEnum> unit)
         {
-            return new QuantityValue(timestamp, value, unit);
+            return new QuantityValue<TEnum>(timestamp, value, unit);
         }
     }
 }

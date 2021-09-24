@@ -19,4 +19,11 @@ namespace mvdmsoftware.UnitsOfMeasurement.Interfaces
 
         string GetFormattedValue(CultureInfo cultureInfo);
     }
+
+    public interface IQuantityValue<TEnum> : IQuantityValue where TEnum : Enum
+    {
+        new IQuantity<TEnum> GetQuantity();
+        new IUnit<TEnum> GetUnit();
+        Task<IQuantityValue> As(TEnum unitEnum);
+    }
 }

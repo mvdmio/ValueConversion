@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using mvdmsoftware.UnitsOfMeasurement.Bases;
 using mvdmsoftware.UnitsOfMeasurement.Enums;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
@@ -21,6 +22,8 @@ namespace mvdmsoftware.UnitsOfMeasurement.Quantities
         /// <inheritdoc/>     
         protected override IEnumerable<(AreaType type, double conversionFactor)> GetConversionFactors()
         {
+            var meter = Quantity.Distance.CreateValue(1, DistanceType.Meter);
+
             return new[] {
                 //Standard Unit
                 (AreaType.SquareMeter, 1),
@@ -32,7 +35,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Quantities
                 (AreaType.SquareKilometer, 1000000),
                 
                 //Imperial
-                (AreaType.Acre, 4046.85642),
+                (AreaType.Acre, 4046.8564224),
                 (AreaType.SquareFoot, 0.09290304),
                 (AreaType.SquareInch, 0.00064516),
                 (AreaType.SquareMile, 2589988.11),

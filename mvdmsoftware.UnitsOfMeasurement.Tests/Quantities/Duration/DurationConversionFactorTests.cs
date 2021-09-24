@@ -24,7 +24,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         public async Task NanosecondConversions(DurationType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(DurationType.Nanosecond, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -43,7 +43,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         public async Task MillisecondConversions(DurationType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(DurationType.Millisecond, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -62,7 +62,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         public async Task SecondConversions(DurationType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(DurationType.Second, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -81,7 +81,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         public async Task MinuteConversions(DurationType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(DurationType.Minute, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -100,7 +100,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         public async Task HourConversions(DurationType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(DurationType.Hour, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -119,7 +119,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         public async Task DayConversions(DurationType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(DurationType.Day, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -138,7 +138,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         public async Task WeekConversions(DurationType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(DurationType.Week, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -157,7 +157,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         public async Task MonthConversions(DurationType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(DurationType.Month, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -176,7 +176,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         public async Task QuarterConversions(DurationType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(DurationType.Quarter, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -195,7 +195,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         public async Task YearConversions(DurationType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(DurationType.Year, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -214,7 +214,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         public async Task DecadeConversions(DurationType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(DurationType.Decade, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -233,7 +233,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Duration
         public async Task CenturyConversions(DurationType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(DurationType.Century, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         private static async Task<double> GetConversionFactor(DurationType from, DurationType to)

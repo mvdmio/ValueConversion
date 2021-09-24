@@ -28,22 +28,23 @@ namespace mvdmsoftware.UnitsOfMeasurement.Bases
         /// <inheritdoc/>
         public sealed override IDictionary<TEnum, IUnit<TEnum>> GetUnits()
         {
-            if (_units == null)
-            {
-                lock (_lockObject)
-                {
-                    if (_units == null)
-                    {
-                        var conversionFactors = GetConversionFactors();
+            if (_units != null)
+                return _units;
 
-                        var units = new Dictionary<TEnum, IUnit<TEnum>>();
-                        foreach (var (type, conversionFactor) in conversionFactors)
-                        {
-                            units.Add(type, new ConversionFactorUnit<TEnum>(this, type, conversionFactor));
-                        }
-                        _units = units;
-                    }
+            lock (_lockObject)
+            {
+                if (_units != null)
+                    return _units;
+
+                var conversionFactors = GetConversionFactors();
+
+                var units = new Dictionary<TEnum, IUnit<TEnum>>();
+                foreach (var (type, conversionFactor) in conversionFactors)
+                {
+                    units.Add(type, new ConversionFactorUnit<TEnum>(this, type, conversionFactor));
                 }
+
+                _units = units;
             }
 
             return _units;

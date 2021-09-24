@@ -1,13 +1,46 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
+using mvdmsoftware.UnitsOfMeasurement.Interfaces;
 using mvdmsoftware.UnitsOfMeasurement.Tests.Utils;
 
 namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Area
 {
     [TestClass]
-    public class AreaConversionFactorTests
+    public class AreaConversionFactorTests : ConversionTestBase
     {
+        private readonly IUnit _acreUnit = Quantity.Area.GetUnit(AreaType.Acre);
+        private readonly IUnit _hectareUnit = Quantity.Area.GetUnit(AreaType.Hectare);
+        private readonly IUnit _squareCentimeterUnit = Quantity.Area.GetUnit(AreaType.SquareCentimeter);
+        private readonly IUnit _squareDecimeterUnit = Quantity.Area.GetUnit(AreaType.SquareDecimeter);
+        private readonly IUnit _squareFootUnit = Quantity.Area.GetUnit(AreaType.SquareFoot);
+        private readonly IUnit _squareInchUnit = Quantity.Area.GetUnit(AreaType.SquareInch);
+        private readonly IUnit _squareKilometerUnit = Quantity.Area.GetUnit(AreaType.SquareKilometer);
+        private readonly IUnit _squareMeterUnit = Quantity.Area.GetUnit(AreaType.SquareMeter);
+        private readonly IUnit _squareMileUnit = Quantity.Area.GetUnit(AreaType.SquareMile);
+        private readonly IUnit _squareYardUnit = Quantity.Area.GetUnit(AreaType.SquareYard);
+
+        [TestMethod]
+        public async Task AcreToAcre()
+        {
+            await TestConversion(1, _acreUnit, 1, _acreUnit);
+        }
+
+        [DataTestMethod]
+        [DataRow(1, 0.4046856422)]
+        [DataRow(2, 0.8093712844)]
+        public async Task AcreToHectare(double acreInput, double expectedHectare)
+        {
+            await TestConversion(acreInput, _acreUnit, expectedHectare, _hectareUnit);
+        }
+
+        [DataTestMethod]
+        [DataRow(1, 1)]
+        public async Task AcreToSquareCentimeter(double acreInput, double expectedSquareCentimeter)
+        {
+
+        }
+
         [DataTestMethod]
         [DataRow(AreaType.Acre, 1)]
         [DataRow(AreaType.Hectare, 0.404685642)]
@@ -19,10 +52,15 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Area
         [DataRow(AreaType.SquareMeter, 4046.85642)]
         [DataRow(AreaType.SquareMile, 0.00156249999927606)]
         [DataRow(AreaType.SquareYard, 4839.99999712962)]
-        public async Task AcreConversions(AreaType to, double expected)
+        public async Task AcreToHectare(AreaType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AreaType.Acre, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
+        }
+
+        public async Task AcreToSuareCentimeter()
+        {
+
         }
 
         [DataTestMethod]
@@ -39,7 +77,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Area
         public async Task HectareConversions(AreaType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AreaType.Hectare, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -56,7 +94,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Area
         public async Task SquareCentimeterConversions(AreaType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AreaType.SquareCentimeter, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -73,7 +111,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Area
         public async Task SquareDecimeterConversions(AreaType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AreaType.SquareDecimeter, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -90,7 +128,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Area
         public async Task SquareFootConversions(AreaType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AreaType.SquareFoot, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -107,7 +145,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Area
         public async Task SquareInchConversions(AreaType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AreaType.SquareInch, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -124,7 +162,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Area
         public async Task SquareKilometerConversions(AreaType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AreaType.SquareKilometer, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -141,7 +179,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Area
         public async Task SquareMeterConversions(AreaType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AreaType.SquareMeter, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -158,7 +196,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Area
         public async Task SquareMileConversions(AreaType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AreaType.SquareMile, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -175,7 +213,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Area
         public async Task SquareYardConversions(AreaType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(AreaType.SquareYard, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         private static async Task<double> GetConversionFactor(AreaType from, AreaType to)

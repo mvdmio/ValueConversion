@@ -28,7 +28,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task PascalConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Pascal, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -51,7 +51,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task AtmosphereConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Atmosphere, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -74,7 +74,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task BarConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Bar, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -97,7 +97,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task CentibarConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Centibar, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -120,7 +120,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task DecibarConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Decibar, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -143,7 +143,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task KilobarConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Kilobar, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -166,7 +166,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task MegabarConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Megabar, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -189,7 +189,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task MillibarConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Millibar, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -212,7 +212,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task MicrobarConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Microbar, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -235,7 +235,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task DecapascalConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Decapascal, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -258,7 +258,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task GigapascalConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Gigapascal, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -281,7 +281,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task HectopascalConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Hectopascal, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -304,7 +304,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task KilopascalConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Kilopascal, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -327,7 +327,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task MegapascalConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.Megapascal, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -350,7 +350,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task PoundForcePerSquareInchConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.PoundForcePerSquareInch, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -373,7 +373,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Pressure
         public async Task PoundForcePerSquareFootConversions(PressureType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(PressureType.PoundForcePerSquareFoot, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         private static async Task<double> GetConversionFactor(PressureType from, PressureType to)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using mvdmsoftware.UnitsOfMeasurement.Bases;
 using mvdmsoftware.UnitsOfMeasurement.Enums;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
@@ -20,7 +21,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Quantities
         {
             return new (AngleType, double)[] {
                 (AngleType.Degree, 1),
-                (AngleType.Radian, 57.2957795),
+                (AngleType.Radian, 180 / Math.PI),
             };
         }
     }

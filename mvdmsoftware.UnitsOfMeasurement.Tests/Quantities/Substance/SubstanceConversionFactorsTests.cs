@@ -15,7 +15,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Substance
         public async Task MoleConversions(SubstanceType type, double expected)
         {
             var conversionFactor = await GetConversionFactor(SubstanceType.Mole, type);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -25,7 +25,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Substance
         public async Task MillimoleConversions(SubstanceType type, double expected)
         {
             var conversionFactor = await GetConversionFactor(SubstanceType.Millimole, type);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -35,7 +35,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Substance
         public async Task MicromoleConversions(SubstanceType type, double expected)
         {
             var conversionFactor = await GetConversionFactor(SubstanceType.Micromole, type);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         private static async Task<double> GetConversionFactor(SubstanceType from, SubstanceType to)

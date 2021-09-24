@@ -25,7 +25,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Temperature
         public async Task DegreeFahrenheitConversions(double value, TemperatureType to, double expected)
         {
             var convertedTemperature = await GetConvertedValue(value, TemperatureType.DegreeFahrenheit, to);
-            AssertExtensions.AreEqual(expected, convertedTemperature);
+            AssertExtensions.AreWithinPercentTolerance(expected, convertedTemperature);
         }
 
         [DataTestMethod]
@@ -44,7 +44,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Temperature
         public async Task DegreeCelsiusConversions(double value, TemperatureType to, double expected)
         {
             var convertedTemperature = await GetConvertedValue(value, TemperatureType.DegreeCelsius, to);
-            AssertExtensions.AreEqual(expected, convertedTemperature);
+            AssertExtensions.AreWithinPercentTolerance(expected, convertedTemperature);
         }
 
         [DataTestMethod]
@@ -63,7 +63,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Temperature
         public async Task KelvinConversions(double value, TemperatureType to, double expected)
         {
             var convertedTemperature = await GetConvertedValue(value, TemperatureType.Kelvin, to);
-            AssertExtensions.AreEqual(expected, convertedTemperature);
+            AssertExtensions.AreWithinPercentTolerance(expected, convertedTemperature);
         }
 
         private static async Task<double> GetConvertedValue(double value, TemperatureType from, TemperatureType to)

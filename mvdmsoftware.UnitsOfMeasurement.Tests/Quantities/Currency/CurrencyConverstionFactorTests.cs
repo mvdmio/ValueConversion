@@ -25,7 +25,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Currency
         {
             var exchangeRate = await GetConversionFactor(CurrencyType.UnitedStatesDollar, type);
 
-            AssertExtensions.AreEqual(expected, exchangeRate);
+            AssertExtensions.AreWithinPercentTolerance(expected, exchangeRate);
         }
 
         [DataTestMethod]
@@ -37,7 +37,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Currency
         {
             var exchangeRate = await GetConversionFactor(CurrencyType.Euro, type);
 
-            AssertExtensions.AreEqual(expected, exchangeRate);
+            AssertExtensions.AreWithinPercentTolerance(expected, exchangeRate);
         }
 
         [DataTestMethod]
@@ -49,7 +49,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Currency
         {
             var exchangeRate = await GetConversionFactor(CurrencyType.MexicanPeso, type);
 
-            AssertExtensions.AreEqual(expected, exchangeRate);
+            AssertExtensions.AreWithinPercentTolerance(expected, exchangeRate);
         }
 
         [DataTestMethod]
@@ -61,7 +61,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Currency
         {
             var exchangeRate = await GetConversionFactor(CurrencyType.CanadianDollar, type);
 
-            AssertExtensions.AreEqual(expected, exchangeRate);
+            AssertExtensions.AreWithinPercentTolerance(expected, exchangeRate);
         }
 
         private static async Task<double> GetConversionFactor(CurrencyType from, CurrencyType to)

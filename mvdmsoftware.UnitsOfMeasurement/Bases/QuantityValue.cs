@@ -61,4 +61,33 @@ namespace mvdmsoftware.UnitsOfMeasurement.Bases
             return _unit.GetFormattedValue(_value, cultureInfo);
         }
     }
+
+    public class QuantityValue<TEnum> : QuantityValue, IQuantityValue<TEnum> where TEnum : Enum
+    {
+        private readonly IQuantity<TEnum> _quantity;
+        private readonly IUnit<TEnum> _unit;
+
+        public QuantityValue(DateTimeOffset timestamp, double value, IUnit<TEnum> unit)
+            : base(timestamp, value, unit)
+        {
+            _quantity = unit.GetQuantity();
+            _unit = unit;
+        }
+
+        public new IQuantity<TEnum> GetQuantity()
+        {
+            return _quantity;
+        }
+
+        public new IUnit<TEnum> GetUnit()
+        {
+            return _unit;
+        }
+
+        public Task<IQuantityValue> As(TEnum unitEnum)
+        {
+            var unit = _quantity.GetUnit(unitEnum);
+            return As(unit);
+        }
+    }
 }

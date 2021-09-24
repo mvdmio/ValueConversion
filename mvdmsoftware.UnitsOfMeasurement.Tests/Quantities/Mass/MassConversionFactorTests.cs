@@ -21,7 +21,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Mass
         public async Task GramConversions(MassType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(MassType.Gram, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -37,7 +37,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Mass
         public async Task KilogramConversions(MassType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(MassType.Kilogram, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -53,7 +53,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Mass
         public async Task KilopoundConversions(MassType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(MassType.Kilopound, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -69,7 +69,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Mass
         public async Task KilotonneConversions(MassType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(MassType.Kilotonne, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -85,7 +85,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Mass
         public async Task MicrogramConversions(MassType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(MassType.Microgram, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -101,7 +101,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Mass
         public async Task MilligramConversions(MassType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(MassType.Milligram, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -117,7 +117,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Mass
         public async Task OunceConversions(MassType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(MassType.Ounce, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -133,7 +133,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Mass
         public async Task PoundConversions(MassType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(MassType.Pound, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         [DataTestMethod]
@@ -149,7 +149,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Quantities.Mass
         public async Task TonneConversions(MassType to, double expected)
         {
             var conversionFactor = await GetConversionFactor(MassType.Tonne, to);
-            AssertExtensions.AreEqual(expected, conversionFactor);
+            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
         }
 
         private static async Task<double> GetConversionFactor(MassType from, MassType to)
