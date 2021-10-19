@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using mvdmsoftware.UnitsOfMeasurement.Bases;
 using mvdmsoftware.UnitsOfMeasurement.Enums;
 using mvdmsoftware.UnitsOfMeasurement.Interfaces;
 
@@ -221,6 +222,25 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests
             foreach (var product in allProducts)
             {
                 Assert.IsTrue(retrievedQuantities.Any(x => x.Identifier == product.Identifier), $"Missing product quantity {product.Identifier}");
+            }
+        }
+
+        [TestMethod]
+        public void AllBaseQuantitiesShouldBeAvailableAsProperty()
+        {
+            var quantityInterfaceType = typeof(IQuantity);
+            var allBaseQuantities = quantityInterfaceType.Assembly.GetTypes().
+                Where(x => quantityInterfaceType.IsAssignableFrom(x) && x.IsAbstract == false && x.IsInterface == false).
+                Except(new List<Type> {
+                    typeof(ProductCombinedQuantity),
+                    typeof(RateCombinedQuantity)
+                }
+            );
+
+            var staticQuantityType = typeof(Quantity);
+            foreach (var quantity in allBaseQuantities)
+            {
+                Assert.IsTrue(staticQuantityType.GetProperties().Any(x => x.GetMethod is not null && x.GetMethod.ReturnType == quantity), $"Quantity is missing a property for {quantity.FullName}");
             }
         }
 

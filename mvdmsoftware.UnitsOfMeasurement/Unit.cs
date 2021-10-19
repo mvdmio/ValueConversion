@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
+using mvdmsoftware.UnitsOfMeasurement.Bases;
 using mvdmsoftware.UnitsOfMeasurement.Enums.Quantities;
 using mvdmsoftware.UnitsOfMeasurement.Interfaces;
 
@@ -33,9 +36,27 @@ namespace mvdmsoftware.UnitsOfMeasurement
         /// <returns>The unit that matches the given unitIdentifier.</returns>
         public static IUnit GetUnit(string unitIdentifier)
         {
-            var unit = Quantity.GetAll().SelectMany(x => x.GetUnits()).SingleOrDefault(x => x.Identifier == unitIdentifier);
-            
-            if(unit == null)
+            var matches = Regex.Match(unitIdentifier, @"(.*)([\/*])(?![^(]*\))(.*)");
+
+            if (matches.Success)
+            {
+                var numeratorString = matches.Groups[1].Value.Trim('(', ')');
+                var operatorCharacter = matches.Groups[2].Value;
+                var denominatorString = matches.Groups[3].Value.Trim('(', ')');
+
+                if (operatorCharacter == "/")
+                    return Rate(GetUnit(numeratorString), GetUnit(denominatorString));
+
+                if (operatorCharacter == "*")
+                    return Product(GetUnit(numeratorString), GetUnit(denominatorString));
+
+                throw new KeyNotFoundException($"Could not find quantity with identifier {unitIdentifier}.");
+            }
+
+            // At this point, the identifier must be a base-quantity, so check the base quantities for a match
+            var unit = GetAllBaseUnits().SingleOrDefault(x => x.Identifier.Equals(unitIdentifier, StringComparison.InvariantCultureIgnoreCase));
+
+            if (unit == null)
                 throw new KeyNotFoundException($"Could not find unit for identifier ${unitIdentifier}");
 
             return unit;
@@ -120,6 +141,16 @@ namespace mvdmsoftware.UnitsOfMeasurement
         public static IUnit<VolumeType> OfVolume(VolumeType volumeType)
         {
             return Quantity.Volume.GetUnit(volumeType);
+        }
+
+        private static IUnit Rate(IUnit numeratorUnit, IUnit denominatorUnit)
+        {
+            return new RateCombinedUnit(numeratorUnit, denominatorUnit, Quantity.Rate(numeratorUnit.GetQuantity(), denominatorUnit.GetQuantity()));
+        }
+
+        private static IUnit Product(IUnit numeratorUnit, IUnit denominatorUnit)
+        {
+            return new ProductCombinedUnit(numeratorUnit, denominatorUnit, Quantity.Product(numeratorUnit.GetQuantity(), denominatorUnit.GetQuantity()));
         }
     }
 }

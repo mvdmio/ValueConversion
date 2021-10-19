@@ -10,34 +10,35 @@ using mvdmsoftware.UnitsOfMeasurement.Quantities;
 using mvdmsoftware.UnitsOfMeasurement.Quantities.Products;
 using mvdmsoftware.UnitsOfMeasurement.Quantities.Rates;
 
+// ReSharper disable ConvertToAutoPropertyWhenPossible
 namespace mvdmsoftware.UnitsOfMeasurement
 {
     public static class Quantity
     {
         // DO NOT use auto properties here, IGNORE IDE0032 code analysis warning.
-        private static readonly AngleQuantity _angle = new AngleQuantity();
-        private static readonly AreaQuantity _area = new AreaQuantity();
-        private static readonly CurrencyQuantity _currency = new CurrencyQuantity();
-        private static readonly DistanceQuantity _distance = new DistanceQuantity();
-        private static readonly DurationQuantity _duration = new DurationQuantity();
-        private static readonly ElectricConductanceQuantity _electricConductance = new ElectricConductanceQuantity();
-        private static readonly EnergyQuantity _energy = new EnergyQuantity();
-        private static readonly MassQuantity _mass = new MassQuantity();
-        private static readonly PowerQuantity _power = new PowerQuantity();
-        private static readonly RatioQuantity _ratio = new RatioQuantity();
-        private static readonly SubstanceQuantity _substance = new SubstanceQuantity();
-        private static readonly TemperatureQuantity _temperature = new TemperatureQuantity();
-        private static readonly VolumeQuantity _volume = new VolumeQuantity();
+        private static readonly AngleQuantity _angle = new();
+        private static readonly AreaQuantity _area = new();
+        private static readonly CurrencyQuantity _currency = new();
+        private static readonly DistanceQuantity _distance = new();
+        private static readonly DurationQuantity _duration = new();
+        private static readonly ElectricConductanceQuantity _electricConductance = new();
+        private static readonly EnergyQuantity _energy = new();
+        private static readonly MassQuantity _mass = new();
+        private static readonly PowerQuantity _power = new();
+        private static readonly RatioQuantity _ratio = new();
+        private static readonly SubstanceQuantity _substance = new();
+        private static readonly TemperatureQuantity _temperature = new();
+        private static readonly VolumeQuantity _volume = new();
 
-        private static readonly ScalarQuantity _scalar = new ScalarQuantity();
-        private static readonly ElectricConductivityQuantity _electricConductivity = new ElectricConductivityQuantity();
-        private static readonly EcVolumeQuantity _ecVolume = new EcVolumeQuantity();
-        private static readonly IrradianceQuantity _irradiance = new IrradianceQuantity();
-        private static readonly PPFDQuantity _ppfd = new PPFDQuantity();
-        private static readonly VelocityQuantity _velocity = new VelocityQuantity();
-        private static readonly PressureQuantity _pressure = new PressureQuantity();
-        private static readonly PHQuantity _ph = new PHQuantity();
-        
+        private static readonly ScalarQuantity _scalar = new();
+        private static readonly ElectricConductivityQuantity _electricConductivity = new();
+        private static readonly EcVolumeQuantity _ecVolume = new();
+        private static readonly IrradianceQuantity _irradiance = new();
+        private static readonly PPFDQuantity _ppfd = new();
+        private static readonly VelocityQuantity _velocity = new();
+        private static readonly PressureQuantity _pressure = new();
+        private static readonly PHQuantity _ph = new();
+
         private static readonly IDictionary<QuantityType, IQuantity> _quantities = new Dictionary<QuantityType, IQuantity> {
             // Do NOT add named combined quantities to this list. See the Of(QuantityType type) method.
             { QuantityType.Angle, _angle },
@@ -65,11 +66,7 @@ namespace mvdmsoftware.UnitsOfMeasurement
             { QuantityType.PPFD, _ppfd }
         };
 
-        private static readonly IEnumerable<ICombinedQuantity> _allPossibleRatios = (from numeratorQuantity in _quantities.Values from denominatorQuantity in _quantities.Values select Rate(numeratorQuantity, denominatorQuantity)).ToList();
-        private static readonly IEnumerable<ICombinedQuantity> _allPossibleProducts = (from numeratorQuantity in _quantities.Values from denominatorQuantity in _quantities.Values select Product(numeratorQuantity, denominatorQuantity)).ToList();
-        private static readonly IEnumerable<IQuantity> _allKnownQuantities = Enumerable.Empty<IQuantity>().Concat(_quantities.Values).Concat(_allPossibleRatios).Concat(_allPossibleProducts).ToList();
-
-        public static AngleQuantity Angle => _angle; 
+        public static AngleQuantity Angle => _angle;
         public static AreaQuantity Area => _area;
         public static CurrencyQuantity Currency => _currency;
         public static DistanceQuantity Distance => _distance;
@@ -88,24 +85,22 @@ namespace mvdmsoftware.UnitsOfMeasurement
         public static TemperatureQuantity Temperature => _temperature;
         public static VelocityQuantity Velocity => _velocity;
         public static VolumeQuantity Volume => _volume;
-
         public static PressureQuantity Pressure => _pressure;
-
         public static PHQuantity PH => _ph;
-        
+
         public static IEnumerable<IQuantity> GetAll()
         {
-            return _allKnownQuantities;
+            return Enumerable.Empty<IQuantity>().Concat(GetBaseQuantities()).Concat(GetAllRates()).Concat(GetAllProducts());
         }
 
         public static IEnumerable<IQuantity> GetAllRates()
         {
-            return _allPossibleRatios;
+            return (from numeratorQuantity in _quantities.Values from denominatorQuantity in _quantities.Values select Rate(numeratorQuantity, denominatorQuantity));
         }
 
         public static IEnumerable<IQuantity> GetAllProducts()
         {
-            return _allPossibleProducts;
+            return (from numeratorQuantity in _quantities.Values from denominatorQuantity in _quantities.Values select Product(numeratorQuantity, denominatorQuantity));
         }
 
         public static IEnumerable<IQuantity> GetBaseQuantities()

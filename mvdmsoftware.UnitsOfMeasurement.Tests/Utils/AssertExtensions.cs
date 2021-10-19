@@ -13,7 +13,7 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests.Utils
             Assert.IsTrue(diff < tolerance, $"Expected {expected} to be within {tolerance} of {actual}, but was {diff}.");
         }
 
-        public static void AreWithinPercentTolerance(double expected, double actual, double toleranceFraction = 1E-10)
+        public static void AreWithinPercentTolerance(double expected, double actual, double toleranceFraction = 1E-5)
         {
             Guard.Against.Zero(expected, nameof(expected));
 
