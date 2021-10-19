@@ -229,9 +229,9 @@ namespace mvdmsoftware.UnitsOfMeasurement.Tests
         public void AllBaseQuantitiesShouldBeAvailableAsProperty()
         {
             var quantityInterfaceType = typeof(IQuantity);
-            var allBaseQuantities = quantityInterfaceType.Assembly.GetTypes().
-                Where(x => quantityInterfaceType.IsAssignableFrom(x) && x.IsAbstract == false && x.IsInterface == false).
-                Except(new List<Type> {
+            var allBaseQuantities = quantityInterfaceType.Assembly.GetTypes()
+                .Where(x => quantityInterfaceType.IsAssignableFrom(x) && x.IsAbstract == false && x.IsInterface == false)
+                .Except(new List<Type> {
                     typeof(ProductCombinedQuantity),
                     typeof(RateCombinedQuantity)
                 }
