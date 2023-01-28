@@ -9,6 +9,7 @@
 
         Angle,
         Area,
+        Currency,
         Distance,
         Duration,
         EcVolume,
