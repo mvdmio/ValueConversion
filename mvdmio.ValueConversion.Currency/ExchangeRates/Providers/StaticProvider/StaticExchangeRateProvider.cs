@@ -1,54 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
-using mvdmio.ValueConversion.UnitsOfMeasurement.Enums.Quantities;
 
-namespace mvdmio.ValueConversion.Currency.ExchangeRates.Providers.StaticProvider
+namespace mvdmio.ValueConversion.Currency.ExchangeRates.Providers.StaticProvider;
+
+public class StaticExchangeRateProvider : IExchangeRateProvider
 {
-    public class StaticExchangeRateProvider : IExchangeRateProvider
+    private readonly IDictionary<string, double> conversionDictionary = new Dictionary<string, double> {
+        { "UnitedStatesDollar", 1 },
+        { "Euro", 0.896688083 },
+        { "MexicanPeso", 19.0363785 },
+        { "CanadianDollar", 1.41 }
+    };
+
+    public CurrencyExchangeRateValue GetLatestExchangeRate(string fromIdentifier, string toIdentifier)
     {
-        private readonly IDictionary<CurrencyType, double> conversionDictionary = new Dictionary<CurrencyType, double> {
-            { CurrencyType.UnitedStatesDollar, 1 },
-            { CurrencyType.Euro, 0.896688083 },
-            { CurrencyType.MexicanPeso, 19.0363785 },
-            { CurrencyType.CanadianDollar, 1.41 }
-        };
+        return GetExchangeRate(fromIdentifier, toIdentifier, DateTime.Now);
+    }
 
-        public CurrencyExchangeRateValue GetLatestExchangeRate(CurrencyType from, CurrencyType to)
+    public CurrencyExchangeRateValue GetExchangeRate(string fromIdentifier, string toIdentifier, DateTime utcDate)
+    {
+        if(!conversionDictionary.TryGetValue(fromIdentifier, out var fromValue))
+            throw new InvalidOperationException($"No exchange rate could be found for {fromIdentifier}");
+
+        if(!conversionDictionary.TryGetValue(toIdentifier, out var toValue))
+            throw new InvalidOperationException($"No exchange rate could be found for {toIdentifier}");
+
+        var exchangeRate = toValue / fromValue;
+        var result = new CurrencyExchangeRateValue(fromIdentifier, toIdentifier, exchangeRate);
+
+        return result;
+    }
+
+    public IDictionary<DateTime, CurrencyExchangeRateValue> GetExchangeRates(string fromIdentifier, string toIdentifier, DateTime start)
+    {
+        return GetExchangeRates(fromIdentifier, toIdentifier, start, DateTime.Now);
+    }
+
+    public IDictionary<DateTime, CurrencyExchangeRateValue> GetExchangeRates(string fromIdentifier, string toIdentifier, DateTime start, DateTime end)
+    {
+        var totalDays = (start.Date - end.Date).TotalDays;
+        var exchangeRate = GetLatestExchangeRate(fromIdentifier, toIdentifier);
+
+        var result = new Dictionary<DateTime, CurrencyExchangeRateValue>();
+        for(var i = 0; i < totalDays; i++)
         {
-            return GetExchangeRate(from, to, DateTime.Now);
+            result.Add(start.Date.AddDays(i), exchangeRate);
         }
 
-        public CurrencyExchangeRateValue GetExchangeRate(CurrencyType from, CurrencyType to, DateTime utcDate)
-        {
-            if(!conversionDictionary.TryGetValue(from, out var fromValue))
-                throw new InvalidOperationException($"No exchange rate could be found for {from}");
-
-            if(!conversionDictionary.TryGetValue(to, out var toValue))
-                throw new InvalidOperationException($"No exchange rate could be found for {from}");
-
-            var exchangeRate = toValue / fromValue;
-            var result = new CurrencyExchangeRateValue(from, to, exchangeRate);
-
-            return result;
-        }
-
-        public IDictionary<DateTime, CurrencyExchangeRateValue> GetExchangeRates(CurrencyType from, CurrencyType to, DateTime start)
-        {
-            return GetExchangeRates(from, to, start, DateTime.Now);
-        }
-
-        public IDictionary<DateTime, CurrencyExchangeRateValue> GetExchangeRates(CurrencyType from, CurrencyType to, DateTime start, DateTime end)
-        {
-            var totalDays = (start.Date - end.Date).TotalDays;
-            var exchangeRate = GetLatestExchangeRate(from, to);
-
-            var result = new Dictionary<DateTime, CurrencyExchangeRateValue>();
-            for(var i = 0; i < totalDays; i++)
-            {
-                result.Add(start.Date.AddDays(i), exchangeRate);
-            }
-
-            return result;
-        }
+        return result;
     }
 }

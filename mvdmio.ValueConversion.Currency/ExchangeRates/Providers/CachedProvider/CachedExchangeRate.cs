@@ -1,18 +1,15 @@
-﻿using mvdmio.ValueConversion.UnitsOfMeasurement.Enums.Quantities;
+﻿namespace mvdmio.ValueConversion.Currency.ExchangeRates.Providers.CachedProvider;
 
-namespace mvdmio.ValueConversion.Currency.ExchangeRates.Providers.CachedProvider
+internal class CachedExchangeRate
 {
-    internal class CachedExchangeRate
-    {
-        public CurrencyType From { get; }
-        public CurrencyType To { get; }
-        public double Value { get; }
+    public string FromIdentifier { get; }
+    public string ToIdentifier { get; }
+    public double Value { get; }
 
-        public CachedExchangeRate(CurrencyType from, CurrencyType to, double value)
-        {
-            From = from;
-            To = to;
-            Value = value;
-        }
+    public CachedExchangeRate(string fromIdentifier, string toIdentifier, double value)
+    {
+        FromIdentifier = fromIdentifier;
+        ToIdentifier = toIdentifier;
+        Value = value;
     }
 }

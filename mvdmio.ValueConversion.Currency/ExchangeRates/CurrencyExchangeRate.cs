@@ -1,53 +1,42 @@
 ﻿using System;
 using System.Net.Http;
 using mvdmio.ValueConversion.Currency.ExchangeRates.Providers;
-using mvdmio.ValueConversion.Currency.ExchangeRates.Providers.CachedProvider;
 using mvdmio.ValueConversion.Currency.ExchangeRates.Providers.StaticProvider;
 using mvdmio.ValueConversion.Currency.ExchangeRates.Providers.WebProvider;
-using mvdmio.ValueConversion.UnitsOfMeasurement.Enums.Quantities;
 
-namespace mvdmio.ValueConversion.Currency.ExchangeRates
+namespace mvdmio.ValueConversion.Currency.ExchangeRates;
+
+public static class CurrencyExchangeRate
 {
-    public static class CurrencyExchangeRate
+    private static IExchangeRateProvider exchangeRateProvider = new WebExchangeRateProvider(new HttpClient());
+
+    public static void SetProvider(IExchangeRateProvider provider)
     {
-        private static IExchangeRateProvider exchangeRateProvider = new WebExchangeRateProvider(new HttpClient());
+        exchangeRateProvider = provider;
+    }
 
-        public static void SetProvider(IExchangeRateProvider provider)
-        {
-            exchangeRateProvider = provider;
-        }
+    public static void UseWebProvider()
+    {
+        if (exchangeRateProvider is WebExchangeRateProvider)
+            return;
 
-        public static void UseWebProvider()
-        {
-            if (exchangeRateProvider is WebExchangeRateProvider)
-                return;
+        exchangeRateProvider = new WebExchangeRateProvider(new HttpClient());
+    }
 
-            exchangeRateProvider = new WebExchangeRateProvider(new HttpClient());
-        }
+    public static void UseStaticProvider()
+    {
+        if (exchangeRateProvider is StaticExchangeRateProvider)
+            return;
 
-        public static void UseCachedProvider()
-        {
-            if (exchangeRateProvider is CachedExchangeRateProvider)
-                return;
+        exchangeRateProvider = new StaticExchangeRateProvider();
+    }
 
-            exchangeRateProvider = new CachedExchangeRateProvider(exchangeRateProvider);
-        }
+    public static double Get(string fromIdentifier, string toIdentifier, DateTime dateTime)
+    {
+        if (fromIdentifier == toIdentifier)
+            return 1;
 
-        public static void UseStaticProvider()
-        {
-            if (exchangeRateProvider is StaticExchangeRateProvider)
-                return;
-
-            exchangeRateProvider = new StaticExchangeRateProvider();
-        }
-
-        public static double Get(CurrencyType from, CurrencyType to, DateTime dateTime)
-        {
-            if (from == to)
-                return 1;
-
-            var exchangeRate = exchangeRateProvider.GetExchangeRate(from, to, dateTime);
-            return exchangeRate.Value;
-        }
+        var exchangeRate = exchangeRateProvider.GetExchangeRate(fromIdentifier, toIdentifier, dateTime);
+        return exchangeRate.Value;
     }
 }

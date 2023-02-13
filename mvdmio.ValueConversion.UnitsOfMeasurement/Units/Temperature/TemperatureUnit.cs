@@ -1,21 +1,19 @@
-﻿using mvdmio.ValueConversion.UnitsOfMeasurement.Bases;
-using mvdmio.ValueConversion.UnitsOfMeasurement.Enums.Quantities;
+﻿using mvdmio.ValueConversion.Base;
+using mvdmio.ValueConversion.Base.Bases;
 
-namespace mvdmio.ValueConversion.UnitsOfMeasurement.Units.Temperature
+namespace mvdmio.ValueConversion.UnitsOfMeasurement.Units.Temperature;
+
+/// <summary>
+/// Base class for temperature units.
+/// </summary>
+public abstract class TemperatureUnit : UnitBase
 {
     /// <summary>
-    /// Base class for temperature units.
+    /// Creates a new Temperature Unit.
     /// </summary>
-    public abstract class TemperatureUnit : UnitBase<TemperatureType>
+    /// <param name="identifier">The temperature unit identifier for this unit.</param>
+    protected TemperatureUnit(string identifier)
+        : base(Quantity.Known.Temperature(), identifier)
     {
-        /// <summary>
-        /// Creates a new Temperature Unit.
-        /// </summary>
-        /// <param name="type">The temperature unit type for this unit.</param>
-        /// 
-        protected TemperatureUnit(TemperatureType type)
-            : base(Quantity.Temperature, type)
-        {
-        }
     }
 }

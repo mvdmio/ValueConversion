@@ -1,14 +1,14 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using mvdmio.ValueConversion.Base;
 
-namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Quantities.Angle
+namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Quantities.Angle;
+
+[TestClass]
+public class AngleConversionImplementationCheck : ConversionImplementationCheckBase
 {
-    [TestClass]
-    public class AngleConversionImplementationCheck : ConversionImplementationCheckBase
+    [TestMethod]
+    public void ShouldConvertAllAreaCombinationsIntoAllOtherAreaCombinations()
     {
-        [TestMethod]
-        public void ShouldConvertAllAreaCombinationsIntoAllOtherAreaCombinations()
-        {
-            TestQuantityConversionImplementation(Quantity.Angle);
-        }
+        TestQuantityConversionImplementation(Quantity.Known.Angle());
     }
 }

@@ -1,25 +1,23 @@
 ﻿using System.Collections.Generic;
 using mvdmio.ValueConversion.UnitsOfMeasurement.Bases;
-using mvdmio.ValueConversion.UnitsOfMeasurement.Enums;
-using mvdmio.ValueConversion.UnitsOfMeasurement.Enums.Quantities;
 
-namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities
+namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
+
+public sealed class SubstanceQuantity : ConversionFactorQuantityBase
 {
-    public sealed class SubstanceQuantity : ConversionFactorQuantityBase<SubstanceType>
+    public SubstanceQuantity() 
+        : base("Substance", "Mole")
     {
-        public SubstanceQuantity() 
-            : base(QuantityType.Substance, SubstanceType.Mole)
-        {
-        }
+    }
 
-        protected override IEnumerable<(SubstanceType type, double conversionFactor)> GetConversionFactors()
-        {
-            return new[] {
-                //Standard Unit
-                (SubstanceType.Mole, 1),
-                (SubstanceType.Millimole, 0.001),
-                (SubstanceType.Micromole, 0.000001)
-            };
-        }
+    protected override IEnumerable<(string identifier, double conversionFactor)> GetConversionFactors()
+    {
+        return new[] {
+            //Standard Unit
+            ("Mole", 1),
+            
+            ("Millimole", 0.001),
+            ("Micromole", 0.000001)
+        };
     }
 }

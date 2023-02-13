@@ -1,18 +1,15 @@
-﻿using mvdmio.ValueConversion.UnitsOfMeasurement.Enums.Quantities;
+﻿namespace mvdmio.ValueConversion.Currency.ExchangeRates.Providers;
 
-namespace mvdmio.ValueConversion.Currency.ExchangeRates.Providers
+public class CurrencyExchangeRateValue
 {
-    public class CurrencyExchangeRateValue
-    {
-        public CurrencyType From { get; }
-        public CurrencyType To { get; }
-        public double Value { get; }
+    public string FromIdentifier { get; }
+    public string ToIdentifier { get; }
+    public double Value { get; }
 
-        public CurrencyExchangeRateValue(CurrencyType from, CurrencyType to, double value)
-        {
-            From = from;
-            To = to;
-            Value = value;
-        }
+    public CurrencyExchangeRateValue(string fromIdentifier, string toIdentifier, double value)
+    {
+        FromIdentifier = fromIdentifier;
+        ToIdentifier = toIdentifier;
+        Value = value;
     }
 }

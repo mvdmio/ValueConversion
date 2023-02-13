@@ -1,0 +1,453 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Acre" xml:space="preserve">
+    <value>ac</value>
+  </data>
+  <data name="Atmosphere" xml:space="preserve">
+    <value>Atm</value>
+  </data>
+  <data name="Bar" xml:space="preserve">
+    <value>bar</value>
+  </data>
+  <data name="Calorie" xml:space="preserve">
+    <value>cal</value>
+  </data>
+  <data name="CanadianDollar" xml:space="preserve">
+    <value>$</value>
+  </data>
+  <data name="Centibar" xml:space="preserve">
+    <value>cbar</value>
+  </data>
+  <data name="Centiliter" xml:space="preserve">
+    <value>cl</value>
+  </data>
+  <data name="Centimeter" xml:space="preserve">
+    <value>cm</value>
+  </data>
+  <data name="Century" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CubicCentimeter" xml:space="preserve">
+    <value>cm³</value>
+  </data>
+  <data name="CubicDecimeter" xml:space="preserve">
+    <value>dm³</value>
+  </data>
+  <data name="CubicFoot" xml:space="preserve">
+    <value>ft³</value>
+  </data>
+  <data name="CubicHectometer" xml:space="preserve">
+    <value>hm³</value>
+  </data>
+  <data name="CubicInch" xml:space="preserve">
+    <value>in³</value>
+  </data>
+  <data name="CubicKilometer" xml:space="preserve">
+    <value>km³</value>
+  </data>
+  <data name="CubicMeter" xml:space="preserve">
+    <value>m³</value>
+  </data>
+  <data name="CubicMile" xml:space="preserve">
+    <value>mi³</value>
+  </data>
+  <data name="CubicMillimeter" xml:space="preserve">
+    <value>mm³</value>
+  </data>
+  <data name="CubicYard" xml:space="preserve">
+    <value>yd³</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>d</value>
+  </data>
+  <data name="Decade" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Decapascal" xml:space="preserve">
+    <value>daPa</value>
+  </data>
+  <data name="Decibar" xml:space="preserve">
+    <value>dbar</value>
+  </data>
+  <data name="Deciliter" xml:space="preserve">
+    <value>dl</value>
+  </data>
+  <data name="Degree" xml:space="preserve">
+    <value>°</value>
+  </data>
+  <data name="DegreeCelsius" xml:space="preserve">
+    <value>°C</value>
+  </data>
+  <data name="DegreeFahrenheit" xml:space="preserve">
+    <value>°F</value>
+  </data>
+  <data name="ElectricalHorsepower" xml:space="preserve">
+    <value>hp(E)</value>
+  </data>
+  <data name="Euro" xml:space="preserve">
+    <value>€</value>
+  </data>
+  <data name="Feet" xml:space="preserve">
+    <value>ft</value>
+  </data>
+  <data name="FeetPerSecond" xml:space="preserve">
+    <value>f/s</value>
+  </data>
+  <data name="FluidCubicCentimeter" xml:space="preserve">
+    <value>cc</value>
+  </data>
+  <data name="Gigapascal" xml:space="preserve">
+    <value>GPa</value>
+  </data>
+  <data name="Gigawatt" xml:space="preserve">
+    <value>GW</value>
+  </data>
+  <data name="Gram" xml:space="preserve">
+    <value>g</value>
+  </data>
+  <data name="Hectare" xml:space="preserve">
+    <value>ha</value>
+  </data>
+  <data name="Hectoliter" xml:space="preserve">
+    <value>hl</value>
+  </data>
+  <data name="Hectometer" xml:space="preserve">
+    <value>hm</value>
+  </data>
+  <data name="Hectopascal" xml:space="preserve">
+    <value>hPa</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>h</value>
+  </data>
+  <data name="HydraulicHorsepower" xml:space="preserve">
+    <value>hp</value>
+  </data>
+  <data name="ImperialGallon" xml:space="preserve">
+    <value>gal</value>
+  </data>
+  <data name="Inch" xml:space="preserve">
+    <value>"</value>
+  </data>
+  <data name="Joule" xml:space="preserve">
+    <value>J</value>
+  </data>
+  <data name="Kelvin" xml:space="preserve">
+    <value>K</value>
+  </data>
+  <data name="Kilobar" xml:space="preserve">
+    <value>kbar</value>
+  </data>
+  <data name="Kilocalorie" xml:space="preserve">
+    <value>kcal</value>
+  </data>
+  <data name="Kilogram" xml:space="preserve">
+    <value>kg</value>
+  </data>
+  <data name="Kilojoule" xml:space="preserve">
+    <value>kJ</value>
+  </data>
+  <data name="Kilometer" xml:space="preserve">
+    <value>km</value>
+  </data>
+  <data name="Kilopascal" xml:space="preserve">
+    <value>kPa</value>
+  </data>
+  <data name="Kilopound" xml:space="preserve">
+    <value>klb</value>
+  </data>
+  <data name="Kilotonne" xml:space="preserve">
+    <value>kt</value>
+  </data>
+  <data name="Kilowatt" xml:space="preserve">
+    <value>kW</value>
+  </data>
+  <data name="KilowattHour" xml:space="preserve">
+    <value>kWh</value>
+  </data>
+  <data name="Liter" xml:space="preserve">
+    <value>l</value>
+  </data>
+  <data name="MechanicalHorsepower" xml:space="preserve">
+    <value>hp(I)</value>
+  </data>
+  <data name="Megabar" xml:space="preserve">
+    <value>Mbar</value>
+  </data>
+  <data name="MegaJoule" xml:space="preserve">
+    <value>MJ</value>
+  </data>
+  <data name="Megapascal" xml:space="preserve">
+    <value>Mpa</value>
+  </data>
+  <data name="Megawatt" xml:space="preserve">
+    <value>MW</value>
+  </data>
+  <data name="MegawattHour" xml:space="preserve">
+    <value>MWh</value>
+  </data>
+  <data name="Meter" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="MetricHorsepower" xml:space="preserve">
+    <value>hp()</value>
+  </data>
+  <data name="MexicanPeso" xml:space="preserve">
+    <value>$</value>
+  </data>
+  <data name="Microbar" xml:space="preserve">
+    <value>µbar</value>
+  </data>
+  <data name="Microgram" xml:space="preserve">
+    <value>μg</value>
+  </data>
+  <data name="Micromole" xml:space="preserve">
+    <value>μmol</value>
+  </data>
+  <data name="Microsiemens" xml:space="preserve">
+    <value>μS</value>
+  </data>
+  <data name="Mile" xml:space="preserve">
+    <value>mi</value>
+  </data>
+  <data name="Millibar" xml:space="preserve">
+    <value>mbar</value>
+  </data>
+  <data name="Milligram" xml:space="preserve">
+    <value>mg</value>
+  </data>
+  <data name="Milliliter" xml:space="preserve">
+    <value>ml</value>
+  </data>
+  <data name="Millimeter" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="Millimole" xml:space="preserve">
+    <value>mmol</value>
+  </data>
+  <data name="Millisecond" xml:space="preserve">
+    <value>ms</value>
+  </data>
+  <data name="Millisiemens" xml:space="preserve">
+    <value>mS</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>min</value>
+  </data>
+  <data name="Mole" xml:space="preserve">
+    <value>mol</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Nanosecond" xml:space="preserve">
+    <value>ns</value>
+  </data>
+  <data name="Ounce" xml:space="preserve">
+    <value>oz</value>
+  </data>
+  <data name="PartsPerBillion" xml:space="preserve">
+    <value>ppb</value>
+  </data>
+  <data name="PartsPerMillion" xml:space="preserve">
+    <value>ppm</value>
+  </data>
+  <data name="Pascal" xml:space="preserve">
+    <value>Pa</value>
+  </data>
+  <data name="Percent" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="Permille" xml:space="preserve">
+    <value>‰</value>
+  </data>
+  <data name="Pound" xml:space="preserve">
+    <value>lb</value>
+  </data>
+  <data name="PoundForcePerSquareFoot" xml:space="preserve">
+    <value>lbf</value>
+  </data>
+  <data name="PoundForcePerSquareInch" xml:space="preserve">
+    <value>psi</value>
+  </data>
+  <data name="Quarter" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Radian" xml:space="preserve">
+    <value>rad</value>
+  </data>
+  <data name="Second" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="Siemens" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="SquareCentimeter" xml:space="preserve">
+    <value>cm²</value>
+  </data>
+  <data name="SquareDecimeter" xml:space="preserve">
+    <value>dm²</value>
+  </data>
+  <data name="SquareFoot" xml:space="preserve">
+    <value>ft²</value>
+  </data>
+  <data name="SquareInch" xml:space="preserve">
+    <value>sq in</value>
+  </data>
+  <data name="SquareKilometer" xml:space="preserve">
+    <value>km²</value>
+  </data>
+  <data name="SquareMeter" xml:space="preserve">
+    <value>m²</value>
+  </data>
+  <data name="SquareMile" xml:space="preserve">
+    <value>mi²</value>
+  </data>
+  <data name="SquareYard" xml:space="preserve">
+    <value>sq yd</value>
+  </data>
+  <data name="Stone" xml:space="preserve">
+    <value>st</value>
+  </data>
+  <data name="Tonne" xml:space="preserve">
+    <value>t</value>
+  </data>
+  <data name="UnitedStatesDollar" xml:space="preserve">
+    <value>$</value>
+  </data>
+  <data name="UsGallon" xml:space="preserve">
+    <value>gal</value>
+  </data>
+  <data name="Watt" xml:space="preserve">
+    <value>W</value>
+  </data>
+  <data name="WattHour" xml:space="preserve">
+    <value>Wh</value>
+  </data>
+  <data name="Week" xml:space="preserve">
+    <value>week</value>
+  </data>
+  <data name="Yard" xml:space="preserve">
+    <value>yd</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value />
+  </data>
+</root>

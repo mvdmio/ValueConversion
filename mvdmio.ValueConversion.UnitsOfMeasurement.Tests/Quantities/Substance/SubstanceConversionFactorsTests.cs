@@ -1,49 +1,48 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using mvdmio.ValueConversion.UnitsOfMeasurement.Enums.Quantities;
+using mvdmio.ValueConversion.Base;
 using mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Utils;
 
-namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Quantities.Substance
+namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Quantities.Substance;
+
+[TestClass]
+public class SubstanceConversionFactorsTests
 {
-    [TestClass]
-    public class SubstanceConversionFactorsTests
+    [DataTestMethod]
+    [DataRow("Mole", 1)]
+    [DataRow("Micromole", 1000000)]
+    [DataRow("Millimole", 1000)]
+    public void MoleConversions(string type, double expected)
     {
-        [DataTestMethod]
-        [DataRow(SubstanceType.Mole, 1)]
-        [DataRow(SubstanceType.Micromole, 1000000)]
-        [DataRow(SubstanceType.Millimole, 1000)]
-        public void MoleConversions(SubstanceType type, double expected)
-        {
-            var conversionFactor = GetConversionFactor(SubstanceType.Mole, type);
-            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
-        }
+        var conversionFactor = GetConversionFactor("Mole", type);
+        AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
+    }
 
-        [DataTestMethod]
-        [DataRow(SubstanceType.Mole, 0.001)]
-        [DataRow(SubstanceType.Micromole, 1000)]
-        [DataRow(SubstanceType.Millimole, 1)]
-        public void MillimoleConversions(SubstanceType type, double expected)
-        {
-            var conversionFactor = GetConversionFactor(SubstanceType.Millimole, type);
-            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
-        }
+    [DataTestMethod]
+    [DataRow("Mole", 0.001)]
+    [DataRow("Micromole", 1000)]
+    [DataRow("Millimole", 1)]
+    public void MillimoleConversions(string type, double expected)
+    {
+        var conversionFactor = GetConversionFactor("Millimole", type);
+        AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
+    }
 
-        [DataTestMethod]
-        [DataRow(SubstanceType.Mole, 0.000001)]
-        [DataRow(SubstanceType.Micromole, 1)]
-        [DataRow(SubstanceType.Millimole, 0.001)]
-        public void MicromoleConversions(SubstanceType type, double expected)
-        {
-            var conversionFactor = GetConversionFactor(SubstanceType.Micromole, type);
-            AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
-        }
+    [DataTestMethod]
+    [DataRow("Mole", 0.000001)]
+    [DataRow("Micromole", 1)]
+    [DataRow("Millimole", 0.001)]
+    public void MicromoleConversions(string type, double expected)
+    {
+        var conversionFactor = GetConversionFactor("Micromole", type);
+        AssertExtensions.AreWithinPercentTolerance(expected, conversionFactor);
+    }
 
-        private static double GetConversionFactor(SubstanceType from, SubstanceType to)
-        {
-            var quantityValue = Quantity.Substance.CreateValue(value: 1, from);
-            var convertedValue = Quantity.Substance.Convert(quantityValue, to);
-            var conversionFactor = convertedValue.GetValue();
+    private static double GetConversionFactor(string from, string to)
+    {
+        var quantityValue = Quantity.Known.Substance().CreateValue(value: 1, from);
+        var convertedValue = Quantity.Known.Substance().Convert(quantityValue, to);
+        var conversionFactor = convertedValue.GetValue();
 
-            return conversionFactor;
-        }
+        return conversionFactor;
     }
 }

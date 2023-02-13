@@ -1,13 +1,12 @@
-﻿using mvdmio.ValueConversion.UnitsOfMeasurement.Bases;
-using mvdmio.ValueConversion.UnitsOfMeasurement.Enums;
+﻿using mvdmio.ValueConversion.Base;
+using mvdmio.ValueConversion.Base.Bases;
 
-namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities.Rates
+namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities.Rates;
+
+public class PPFDQuantity : RateCombinedQuantity
 {
-    public class PPFDQuantity : RateCombinedQuantity
+    public PPFDQuantity()
+        : base("PPFD", Quantity.Known.Substance(), Quantity.Product(Quantity.Known.Duration(), Quantity.Known.Area()))
     {
-        public PPFDQuantity()
-            : base(QuantityType.PPFD, Quantity.Substance, Quantity.Product( Quantity.Duration, Quantity.Area))
-        {
-        }
     }
 }

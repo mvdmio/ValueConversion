@@ -1,26 +1,23 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using mvdmio.ValueConversion.UnitsOfMeasurement.Enums.Quantities;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Quantities.Temperature
+namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Quantities.Temperature;
+
+[TestClass]
+public class TemperaturesConversionImplementationCheck
 {
-    [TestClass]
-    public class TemperaturesConversionImplementationCheck
+    [TestMethod]
+    public void ShouldConvertAllVolumeCombinationsIntoAllOtherVolumeCombinations()
     {
-        [TestMethod]
-        public void ShouldConvertAllVolumeCombinationsIntoAllOtherVolumeCombinations()
+        foreach (TemperatureType fromVolumeType in Enum.GetValues(typeof(TemperatureType)))
         {
-            foreach (TemperatureType fromVolumeType in Enum.GetValues(typeof(TemperatureType)))
+            var fromValue = "Temperature".CreateValue(DateTime.Now, value: 1, fromVolumeType);
+
+            foreach (TemperatureType toVolumeType in Enum.GetValues(typeof(TemperatureType)))
             {
-                var fromValue = Quantity.Temperature.CreateValue(DateTime.Now, value: 1, fromVolumeType);
+                var toUnit = "Temperature".GetUnit(toVolumeType);
+                var toValue = fromValue.As(toUnit);
 
-                foreach (TemperatureType toVolumeType in Enum.GetValues(typeof(TemperatureType)))
-                {
-                    var toUnit = Quantity.Temperature.GetUnit(toVolumeType);
-                    var toValue = fromValue.As(toUnit);
-
-                    Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromVolumeType} to {toVolumeType} did not result in equal quantities.");
-                }
+                Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromVolumeType} to {toVolumeType} did not result in equal quantities.");
             }
         }
     }

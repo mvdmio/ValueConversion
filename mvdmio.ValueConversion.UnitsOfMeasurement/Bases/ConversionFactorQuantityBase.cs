@@ -1,53 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using mvdmio.ValueConversion.UnitsOfMeasurement.Enums;
-using mvdmio.ValueConversion.UnitsOfMeasurement.Interfaces;
+﻿using System.Collections.Generic;
+using mvdmio.ValueConversion.Base.Bases;
+using mvdmio.ValueConversion.Base.Interfaces;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Bases
 {
     /// <summary>
     /// Base class for all quantities that use a conversion factor to convert from and to standard unit.
     /// </summary>
-    /// <typeparam name="TEnum">The unit enum type for this quantity.</typeparam>
-    public abstract class ConversionFactorQuantityBase<TEnum> : QuantityBase<TEnum>
-        where TEnum : Enum
+    public abstract class ConversionFactorQuantityBase : QuantityBase
     {
-        private readonly object _lockObject = new object();
-        private IDictionary<TEnum, IUnit<TEnum>> _units;
+        private readonly object _lockObject = new();
+        private IDictionary<string, IUnit> _units;
 
         /// <summary>
         /// Initializes a new object for this type.
         /// </summary>
-        /// <param name="type">The quantity enum value for this quantity.</param>
-        /// <param name="standardUnitType">The unit enum value for the standard unit of this quantity.</param>
-        protected ConversionFactorQuantityBase(QuantityType type, TEnum standardUnitType) 
-            : base(type, standardUnitType)
+        /// <param name="identifier">The identifier for this quantity.</param>
+        /// <param name="standardUnitIdentifier">The unit enum value for the standard unit of this quantity.</param>
+        protected ConversionFactorQuantityBase(string identifier, string standardUnitIdentifier) 
+            : base(identifier, standardUnitIdentifier)
         {
         }
 
         /// <inheritdoc/>
-        public sealed override IDictionary<TEnum, IUnit<TEnum>> GetUnits()
+        public sealed override IEnumerable<IUnit> GetUnits()
         {
             if (_units != null)
-                return _units;
+                return _units.Values;
 
             lock (_lockObject)
             {
                 if (_units != null)
-                    return _units;
+                    return _units.Values;
 
                 var conversionFactors = GetConversionFactors();
 
-                var units = new Dictionary<TEnum, IUnit<TEnum>>();
+                var units = new Dictionary<string, IUnit>();
                 foreach (var (type, conversionFactor) in conversionFactors)
                 {
-                    units.Add(type, new ConversionFactorUnit<TEnum>(this, type, conversionFactor));
+                    units.Add(type, new ConversionFactorUnit(this, type, conversionFactor));
                 }
 
                 _units = units;
             }
 
-            return _units;
+            return _units.Values;
         }
 
         /// <summary>
@@ -55,6 +52,6 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Bases
         /// This method is called once during the objects lifetime, when the units are requested for the first time.
         /// </summary>
         /// <returns>The conversion factors for this quantity.</returns>
-        protected abstract IEnumerable<(TEnum type, double conversionFactor)> GetConversionFactors();
+        protected abstract IEnumerable<(string identifier, double conversionFactor)> GetConversionFactors();
     }
 }

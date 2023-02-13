@@ -43,6 +43,14 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <EmbeddedResource Update="Resources\UnitsFormatting\UnitsFormatting.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UnitsFormatting.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\UnitSymbols\UnitSymbols.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UnitSymbols.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -55,6 +63,10 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\mvdmio.ValueConversion.Base\mvdmio.ValueConversion.Base.csproj" />
   </ItemGroup>
 
 </Project>

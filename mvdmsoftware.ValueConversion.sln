@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mvdmio.ValueConversion.Curr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{140ECF51-4C6E-4BF8-BB8E-A978FAF2A364}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mvdmio.ValueConversion.Base", "mvdmio.ValueConversion.Base\mvdmio.ValueConversion.Base.csproj", "{6F0432B8-A6C4-477E-B157-7C83287E0ED4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mvdmio.ValueConversion.Base.Tests", "mvdmio.ValueConversion.Base.Tests\mvdmio.ValueConversion.Base.Tests.csproj", "{E0BCBE9B-4566-4C2D-B90C-FDA5D09912D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,14 @@ Global
 		{B87A8564-3452-4A54-A330-0A49C44CE357}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B87A8564-3452-4A54-A330-0A49C44CE357}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B87A8564-3452-4A54-A330-0A49C44CE357}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F0432B8-A6C4-477E-B157-7C83287E0ED4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F0432B8-A6C4-477E-B157-7C83287E0ED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F0432B8-A6C4-477E-B157-7C83287E0ED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F0432B8-A6C4-477E-B157-7C83287E0ED4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0BCBE9B-4566-4C2D-B90C-FDA5D09912D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0BCBE9B-4566-4C2D-B90C-FDA5D09912D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0BCBE9B-4566-4C2D-B90C-FDA5D09912D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0BCBE9B-4566-4C2D-B90C-FDA5D09912D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,5 +63,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B87A8564-3452-4A54-A330-0A49C44CE357} = {140ECF51-4C6E-4BF8-BB8E-A978FAF2A364}
 		{8AC06FD7-5C30-44E2-A63E-BC8683C5F9DD} = {140ECF51-4C6E-4BF8-BB8E-A978FAF2A364}
+		{E0BCBE9B-4566-4C2D-B90C-FDA5D09912D6} = {140ECF51-4C6E-4BF8-BB8E-A978FAF2A364}
 	EndGlobalSection
 EndGlobal

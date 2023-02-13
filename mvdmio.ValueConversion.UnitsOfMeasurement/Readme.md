@@ -6,7 +6,7 @@ Based on examples of [UnitsNet](https://github.com/angularsen/UnitsNet).
 
 ``` csharp
 // Retrieve the 'Area' quantity
-var areaQuantity = Quantity.Area;
+var areaQuantity = "Area";
 
 // Retrieve a 'square meters' unit
 var squareMetersUnit = areaQuantity.GetUnit(AreaType.SquareMeters);

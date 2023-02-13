@@ -1,43 +1,42 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using mvdmio.ValueConversion.UnitsOfMeasurement.Enums.Quantities;
+using mvdmio.ValueConversion.Base;
 
-namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Quantities.Velocity
+namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Quantities.Velocity;
+
+[TestClass]
+public class VelocityConversionTests
 {
-    [TestClass]
-    public class VelocityConversionTests
+    [TestMethod]
+    public void ShouldConvertCentimeterPerWeekToStandardUnitCorrectly()
     {
-        [TestMethod]
-        public void ShouldConvertCentimeterPerWeekToStandardUnitCorrectly()
-        {
-            var centimeterPerWeek = Quantity.Velocity.GetUnit(Quantity.Distance.GetUnit(DistanceType.Centimeter), Quantity.Duration.GetUnit(DurationType.Week));
+        var centimeterPerWeek = Quantity.Known.Velocity().GetUnit(Quantity.Known.Distance().GetUnit("Centimeter"), Quantity.Known.Duration().GetUnit("Week"));
             
-            var value = Quantity.Velocity.CreateValue(12, centimeterPerWeek);
-            var standardUnitValue = value.GetStandardValue();
+        var value = Quantity.Known.Velocity().CreateValue(12, centimeterPerWeek);
+        var standardUnitValue = value.GetStandardValue();
 
-            Assert.AreEqual(1.9841269841269841E-07, standardUnitValue);
-        }
+        Assert.AreEqual(1.9841269841269841E-07, standardUnitValue);
+    }
 
-        [TestMethod]
-        public void ShouldConvertKilometerPerHourToStandardUnitCorrectly()
-        {
-            var kilometerPerHour = Quantity.Velocity.GetUnit(Quantity.Distance.GetUnit(DistanceType.Kilometer), Quantity.Duration.GetUnit(DurationType.Hour));
+    [TestMethod]
+    public void ShouldConvertKilometerPerHourToStandardUnitCorrectly()
+    {
+        var kilometerPerHour = Quantity.Known.Velocity().GetUnit(Quantity.Known.Distance().GetUnit("Kilometer"), Quantity.Known.Duration().GetUnit("Hour"));
             
-            var value = Quantity.Velocity.CreateValue(100, kilometerPerHour);
-            var standardUnitValue = value.GetStandardValue();
+        var value = Quantity.Known.Velocity().CreateValue(100, kilometerPerHour);
+        var standardUnitValue = value.GetStandardValue();
 
-            Assert.AreEqual(27.77777777777778, standardUnitValue);
-        }
+        Assert.AreEqual(27.77777777777778, standardUnitValue);
+    }
 
-        [TestMethod]
-        public void ShouldConvertStandardUnitToKilometerPerHourCorrectly()
-        {
-            var standardUnit = Quantity.Velocity.StandardUnit;
-            var kilometerPerHour = Quantity.Velocity.GetUnit(Quantity.Distance.GetUnit(DistanceType.Kilometer), Quantity.Duration.GetUnit(DurationType.Hour));
+    [TestMethod]
+    public void ShouldConvertStandardUnitToKilometerPerHourCorrectly()
+    {
+        var standardUnit = Quantity.Known.Velocity().StandardUnit;
+        var kilometerPerHour = Quantity.Known.Velocity().GetUnit(Quantity.Known.Distance().GetUnit("Kilometer"), Quantity.Known.Duration().GetUnit("Hour"));
             
-            var value = Quantity.Velocity.CreateValue(27.77777777777778, standardUnit);
-            var kilometerPerHourValue = value.As(kilometerPerHour);
+        var value = Quantity.Known.Velocity().CreateValue(27.77777777777778, standardUnit);
+        var kilometerPerHourValue = value.As(kilometerPerHour);
 
-            Assert.AreEqual(100, kilometerPerHourValue.GetValue());
-        }
+        Assert.AreEqual(100, kilometerPerHourValue.GetValue());
     }
 }

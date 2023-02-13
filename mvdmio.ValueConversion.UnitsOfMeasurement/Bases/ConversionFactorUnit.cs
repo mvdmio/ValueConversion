@@ -1,15 +1,15 @@
 ﻿using System;
-using mvdmio.ValueConversion.UnitsOfMeasurement.Interfaces;
+using mvdmio.ValueConversion.Base.Bases;
+using mvdmio.ValueConversion.Base.Interfaces;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Bases
 {
-    public class ConversionFactorUnit<TEnum> : UnitBase<TEnum>
-        where TEnum : Enum
+    public class ConversionFactorUnit : UnitBase
     {
         private readonly double _toStandardValueConversionFactor;
 
-        internal ConversionFactorUnit(IQuantity<TEnum> quantity, TEnum type, double toStandardValueConversionFactor)
-            : base(quantity, type)
+        internal ConversionFactorUnit(IQuantity quantity, string identifier, double toStandardValueConversionFactor)
+            : base(quantity, identifier)
         {
             _toStandardValueConversionFactor = toStandardValueConversionFactor;
         }

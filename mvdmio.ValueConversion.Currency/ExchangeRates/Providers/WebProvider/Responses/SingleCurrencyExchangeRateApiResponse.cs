@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace mvdmio.ValueConversion.Currency.ExchangeRates.Providers.WebProvider.Responses
+namespace mvdmio.ValueConversion.Currency.ExchangeRates.Providers.WebProvider.Responses;
+
+public class SingleCurrencyExchangeRateApiResponse
 {
-    public class SingleCurrencyExchangeRateApiResponse
-    {
-        [JsonProperty("base")]
-        public string Base { get; set; }
+    [JsonProperty("base")]
+    public string Base { get; set; }
 
-        [JsonProperty("date")]
-        public DateTime Date { get; set; }
+    [JsonProperty("date")]
+    public DateTime Date { get; set; }
 
-        [JsonProperty("rates")]
-        public IDictionary<string, double> Rates { get; set; }
-    }
+    [JsonProperty("rates")]
+    public IDictionary<string, double> Rates { get; set; }
 }
