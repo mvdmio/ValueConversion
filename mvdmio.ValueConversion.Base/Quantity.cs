@@ -11,135 +11,150 @@ namespace mvdmio.ValueConversion.Base;
 
 public static class Quantity
 {
-    private static readonly IDictionary<string, IQuantity> _quantities = new Dictionary<string, IQuantity>();
+   private static readonly IDictionary<string, IQuantity> _quantities = new Dictionary<string, IQuantity>();
 
-    public static IEnumerable<IQuantity> GetAll() => _quantities.Values;
+   public static IEnumerable<IQuantity> GetAll() => _quantities.Values;
 
-    public static KnownQuantities Known { get; } = new();
+   public static KnownQuantities Known { get; } = new();
 
-    public static void AddQuantity(IQuantity quantity) => _quantities.Add(quantity.Identifier, quantity);
-    
-    public static IQuantity Of(string identifier)
-    {
-        if (identifier == null)
-            throw new ArgumentNullException(nameof(identifier));
+   /// <summary>
+   /// Adds a quantity to the known quantities list.
+   /// Only quantities added through this method are returned by the <see cref="GetAll"/> method.
+   /// </summary>
+   /// <param name="quantity">The quantity to add.</param>
+   /// <typeparam name="T">The quantity type.</typeparam>
+   /// <returns>The quantity that was added, or the existing quantity if one was added already.</returns>
+   public static T Add<T>(T quantity)
+      where T : IQuantity
+   {
+      if (_quantities.TryGetValue(quantity.Identifier, out var existing))
+         return (T)existing;
 
-        var matches = Regex.Match(identifier, @"(.*)([\/*])(?![^(]*\))(.*)");
+      _quantities.Add(quantity.Identifier, quantity);
+      return quantity;
+   }
 
-        if (matches.Success)
-        {
-            var numeratorString = matches.Groups[1].Value.Trim('(', ')');
-            var operatorCharacter = matches.Groups[2].Value;
-            var denominatorString = matches.Groups[3].Value.Trim('(', ')');
+   public static IQuantity Of(string identifier)
+   {
+      if (identifier == null)
+         throw new ArgumentNullException(nameof(identifier));
 
-            if (operatorCharacter == "/")
-                return Rate(Of(numeratorString), Of(denominatorString));
-                    
-            if(operatorCharacter == "*")
-                return Product(Of(numeratorString), Of(denominatorString));
+      var matches = Regex.Match(identifier, @"(.*)([\/*])(?![^(]*\))(.*)");
 
-            throw new KeyNotFoundException($"Could not find quantity with identifier {identifier}.");
-        }
+      if (matches.Success)
+      {
+         var numeratorString = matches.Groups[1].Value.Trim('(', ')');
+         var operatorCharacter = matches.Groups[2].Value;
+         var denominatorString = matches.Groups[3].Value.Trim('(', ')');
 
-        // At this point, the identifier must be a base-quantity, so check the base quantities for a match
-        var quantity = _quantities.Values.SingleOrDefault(x => x.Identifier.Equals(identifier, StringComparison.InvariantCultureIgnoreCase));
+         if (operatorCharacter == "/")
+            return Rate(Of(numeratorString), Of(denominatorString));
 
-        if (quantity == null)
-            throw new KeyNotFoundException($"Could not find quantity with identifier {identifier}.");
+         if (operatorCharacter == "*")
+            return Product(Of(numeratorString), Of(denominatorString));
 
-        return quantity;
-    }
+         throw new KeyNotFoundException($"Could not find quantity with identifier {identifier}.");
+      }
 
-    public static RateCombinedQuantity Rate(string numeratorIdentifier, string denominatorIdentifier)
-    {
-        var numeratorQuantity = Of(numeratorIdentifier);
-        var denominatorQuantity = Of(denominatorIdentifier);
-        return Rate(numeratorQuantity, denominatorQuantity);
-    }
+      // At this point, the identifier must be a base-quantity, so check the base quantities for a match
+      var quantity = _quantities.Values.SingleOrDefault(x => x.Identifier.Equals(identifier, StringComparison.InvariantCultureIgnoreCase));
 
-    public static RateCombinedQuantity Rate(IQuantity numeratorQuantity, string denominatorIdentifier)
-    {
-        var denominatorQuantity = Of(denominatorIdentifier);
-        return Rate(numeratorQuantity, denominatorQuantity);
-    }
+      if (quantity == null)
+         throw new KeyNotFoundException($"Could not find quantity with identifier {identifier}.");
 
-    public static RateCombinedQuantity Rate(string numeratorIdentifier, IQuantity denominatorQuantity)
-    {
-        var numeratorQuantity = Of(numeratorIdentifier);
-        return Rate(numeratorQuantity, denominatorQuantity);
-    }
+      return quantity;
+   }
 
-    public static RateCombinedQuantity Rate(params string[] identifiers)
-    {
-        if (identifiers == null)
-            throw new ArgumentNullException(nameof(identifiers));
-        
-        var quantities = identifiers.Select(Of).ToArray();
-        return Rate(quantities);
-    }
+   public static RateCombinedQuantity Rate(string numeratorIdentifier, string denominatorIdentifier)
+   {
+      var numeratorQuantity = Of(numeratorIdentifier);
+      var denominatorQuantity = Of(denominatorIdentifier);
+      return Rate(numeratorQuantity, denominatorQuantity);
+   }
 
-    public static RateCombinedQuantity Rate(IQuantity numeratorQuantity, IQuantity denominatorQuantity)
-    {
-        if (numeratorQuantity == null)
-            throw new ArgumentNullException(nameof(numeratorQuantity));
-        
-        if (denominatorQuantity == null)
-            throw new ArgumentNullException(nameof(denominatorQuantity));
-        
-        return new RateCombinedQuantity(numeratorQuantity, denominatorQuantity);
-    }
+   public static RateCombinedQuantity Rate(IQuantity numeratorQuantity, string denominatorIdentifier)
+   {
+      var denominatorQuantity = Of(denominatorIdentifier);
+      return Rate(numeratorQuantity, denominatorQuantity);
+   }
 
-    public static RateCombinedQuantity Rate(params IQuantity[] quantities)
-    {
-        if (quantities == null)
-            throw new ArgumentNullException(nameof(quantities));
+   public static RateCombinedQuantity Rate(string numeratorIdentifier, IQuantity denominatorQuantity)
+   {
+      var numeratorQuantity = Of(numeratorIdentifier);
+      return Rate(numeratorQuantity, denominatorQuantity);
+   }
 
-        if(quantities.Length < 2)
-            throw new NotSupportedException("A rate must have at least two quantities");
+   public static RateCombinedQuantity Rate(params string[] identifiers)
+   {
+      if (identifiers == null)
+         throw new ArgumentNullException(nameof(identifiers));
 
-        if(quantities.Length == 2)
-            return Rate(quantities[0], quantities[1]);
-            
-        return Rate(quantities[0], Rate(quantities.Skip(1).ToArray()));
-    }
+      var quantities = identifiers.Select(Of).ToArray();
+      return Rate(quantities);
+   }
 
-    public static ProductCombinedQuantity Product(IQuantity numeratorQuantity, IQuantity denominatorQuantity)
-    {
-        if (numeratorQuantity == null)
-            throw new ArgumentNullException(nameof(numeratorQuantity));
-        
-        if (denominatorQuantity == null)
-            throw new ArgumentNullException(nameof(denominatorQuantity));
-        
-        return new ProductCombinedQuantity(numeratorQuantity, denominatorQuantity);
-    }
+   public static RateCombinedQuantity Rate(IQuantity numeratorQuantity, IQuantity denominatorQuantity)
+   {
+      if (numeratorQuantity == null)
+         throw new ArgumentNullException(nameof(numeratorQuantity));
 
-    public static ProductCombinedQuantity Product(IQuantity numeratorQuantity, string denominatorIdentifier)
-    {
-        return Product(numeratorQuantity, Of(denominatorIdentifier));
-    }
+      if (denominatorQuantity == null)
+         throw new ArgumentNullException(nameof(denominatorQuantity));
 
-    public static ProductCombinedQuantity Product(string numeratorIdentifier, IQuantity denominatorQuantity)
-    {
-        return Product(Of(numeratorIdentifier), denominatorQuantity);
-    }
+      return new RateCombinedQuantity(numeratorQuantity, denominatorQuantity);
+   }
 
-    public static ProductCombinedQuantity Product(params string[] quantityIdentifiers)
-    {
-        return Product(quantityIdentifiers.Select(Of).ToArray());
-    }
-    
-    public static ProductCombinedQuantity Product(params IQuantity[] quantities)
-    {
-        if (quantities == null)
-            throw new ArgumentNullException(nameof(quantities));
+   public static RateCombinedQuantity Rate(params IQuantity[] quantities)
+   {
+      if (quantities == null)
+         throw new ArgumentNullException(nameof(quantities));
 
-        if(quantities.Length < 2)
-            throw new NotSupportedException("A product must have at least two quantities");
+      if (quantities.Length < 2)
+         throw new NotSupportedException("A rate must have at least two quantities");
 
-        if(quantities.Length == 2)
-            return Product(quantities[0], quantities[1]);
-            
-        return Product(quantities[0], Product(quantities.Skip(1).ToArray()));
-    }
+      if (quantities.Length == 2)
+         return Rate(quantities[0], quantities[1]);
+
+      return Rate(quantities[0], Rate(quantities.Skip(1).ToArray()));
+   }
+
+   public static ProductCombinedQuantity Product(IQuantity numeratorQuantity, IQuantity denominatorQuantity)
+   {
+      if (numeratorQuantity == null)
+         throw new ArgumentNullException(nameof(numeratorQuantity));
+
+      if (denominatorQuantity == null)
+         throw new ArgumentNullException(nameof(denominatorQuantity));
+
+      return new ProductCombinedQuantity(numeratorQuantity, denominatorQuantity);
+   }
+
+   public static ProductCombinedQuantity Product(IQuantity numeratorQuantity, string denominatorIdentifier)
+   {
+      return Product(numeratorQuantity, Of(denominatorIdentifier));
+   }
+
+   public static ProductCombinedQuantity Product(string numeratorIdentifier, IQuantity denominatorQuantity)
+   {
+      return Product(Of(numeratorIdentifier), denominatorQuantity);
+   }
+
+   public static ProductCombinedQuantity Product(params string[] quantityIdentifiers)
+   {
+      return Product(quantityIdentifiers.Select(Of).ToArray());
+   }
+
+   public static ProductCombinedQuantity Product(params IQuantity[] quantities)
+   {
+      if (quantities == null)
+         throw new ArgumentNullException(nameof(quantities));
+
+      if (quantities.Length < 2)
+         throw new NotSupportedException("A product must have at least two quantities");
+
+      if (quantities.Length == 2)
+         return Product(quantities[0], quantities[1]);
+
+      return Product(quantities[0], Product(quantities.Skip(1).ToArray()));
+   }
 }

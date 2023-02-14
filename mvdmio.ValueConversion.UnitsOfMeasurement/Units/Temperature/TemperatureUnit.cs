@@ -13,7 +13,7 @@ public abstract class TemperatureUnit : UnitBase
     /// </summary>
     /// <param name="identifier">The temperature unit identifier for this unit.</param>
     protected TemperatureUnit(string identifier)
-        : base(Quantity.Known.Temperature(), identifier)
+        : base(identifier, Quantity.Known.Temperature())
     {
     }
 }

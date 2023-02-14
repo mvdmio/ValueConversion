@@ -8,14 +8,20 @@ namespace mvdmio.ValueConversion.Base.Bases;
 public abstract class CombinedQuantityBase : ICombinedQuantity
 {
     private readonly object _lockObject = new();
-    private IList<ICombinedUnit> _units;
+    private IList<ICombinedUnit>? _units;
 
     IUnit IQuantity.StandardUnit => StandardUnit;
-        
+
+    /// <inheritdoc />
     public abstract string Identifier { get; }
+
+    /// <inheritdoc />
     public IQuantity NumeratorQuantity { get; }
+
+    /// <inheritdoc />
     public IQuantity DenominatorQuantity { get; }
 
+    /// <inheritdoc />
     public ICombinedUnit StandardUnit
     {
         get
@@ -24,15 +30,21 @@ public abstract class CombinedQuantityBase : ICombinedQuantity
         }
     }
         
+    /// <summary>
+    /// Creates a new <see cref="CombinedQuantityBase"/> instance.
+    /// </summary>
+    /// <param name="numeratorQuantity">The numerator quantity.</param>
+    /// <param name="denominatorQuantity">The denominator quantity.</param>
     protected CombinedQuantityBase(IQuantity numeratorQuantity, IQuantity denominatorQuantity)
     {
         NumeratorQuantity = numeratorQuantity;
         DenominatorQuantity = denominatorQuantity;
     }
 
-    public ICombinedUnit GetUnit(IUnit numeratorUnit, IUnit denominatorUnit)
+    /// <inheritdoc />
+    public ICombinedUnit GetUnit(string numeratorUnitIdentifier, string denominatorUnitIdentifier)
     {
-        return GetUnits().First(x => x.NumeratorUnit.Identifier == numeratorUnit.Identifier && x.DenominatorUnit.Identifier == denominatorUnit.Identifier);
+        return GetUnits().First(x => x.NumeratorUnit.Identifier == numeratorUnitIdentifier && x.DenominatorUnit.Identifier == denominatorUnitIdentifier);
     }
 
     IEnumerable<IUnit> IQuantity.GetUnits()
@@ -40,6 +52,7 @@ public abstract class CombinedQuantityBase : ICombinedQuantity
         return GetUnits();
     }
 
+    /// <inheritdoc />
     public IUnit GetUnit(string unitIdentifier)
     {
         var unit = GetUnits().SingleOrDefault(x => x.Identifier == unitIdentifier);
@@ -50,11 +63,13 @@ public abstract class CombinedQuantityBase : ICombinedQuantity
         return unit;
     }
 
+    /// <inheritdoc />
     public IQuantityValue CreateValue(double value, IUnit unit)
     {
         return CreateValue(DateTime.UtcNow, value, unit);
     }
 
+    /// <inheritdoc />
     public IQuantityValue CreateValue(DateTime timestamp, double value, IUnit unit)
     {
         if (unit is not ICombinedUnit typedUnit || GetUnits().All(x => x.Identifier != unit.Identifier))
@@ -63,6 +78,7 @@ public abstract class CombinedQuantityBase : ICombinedQuantity
         return CreateValue(timestamp, value, typedUnit);
     }
 
+    /// <inheritdoc />
     public IEnumerable<ICombinedUnit> GetUnits()
     {
         if (_units != null)
@@ -78,7 +94,8 @@ public abstract class CombinedQuantityBase : ICombinedQuantity
 
         return _units;
     }
-        
+
+    /// <inheritdoc />
     public IQuantityValue Convert(IQuantityValue quantityValue, IUnit toUnit)
     {
         if (toUnit is not ICombinedUnit typedUnit)
@@ -87,6 +104,7 @@ public abstract class CombinedQuantityBase : ICombinedQuantity
         return Convert(quantityValue, typedUnit);
     }
 
+    /// <inheritdoc />
     public IQuantityValue Convert(IQuantityValue quantityValue, ICombinedUnit toUnit)
     {
         if (quantityValue.GetQuantity().Identifier != this.Identifier)
@@ -98,6 +116,7 @@ public abstract class CombinedQuantityBase : ICombinedQuantity
         return new CombinedQuantityValue(quantityValue.Timestamp, convertedValue, toUnit);
     }
 
+    /// <inheritdoc />
     public IQuantityValue CreateValue(DateTime timestamp, double value, ICombinedUnit unit)
     {
         return new CombinedQuantityValue(timestamp, value, unit);

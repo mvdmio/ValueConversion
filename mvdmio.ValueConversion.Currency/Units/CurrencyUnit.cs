@@ -11,7 +11,7 @@ namespace mvdmio.ValueConversion.Currency.Units;
 public class CurrencyUnit : UnitBase
 {
     internal CurrencyUnit(string identifier)
-        : base(new CurrencyQuantity(), identifier)
+        : base(identifier, new CurrencyQuantity())
     {
     }
 

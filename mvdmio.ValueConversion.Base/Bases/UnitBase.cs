@@ -6,14 +6,22 @@ using mvdmio.ValueConversion.Base.Resources.UnitSymbols;
 
 namespace mvdmio.ValueConversion.Base.Bases;
 
+/// <summary>
+/// Base class for units.
+/// </summary>
 public abstract class UnitBase : IUnit
 {
     private readonly IQuantity _quantity;
 
     /// <inheritdoc />
     public string Identifier { get; }
-    
-    protected UnitBase(IQuantity quantity, string identifier)
+
+    /// <summary>
+    /// Creates a new instance of <see cref="UnitBase"/>.
+    /// </summary>
+    /// <param name="identifier">The identifier of the unit.</param>
+    /// <param name="quantity">The quantity of the unit.</param>
+    protected UnitBase(string identifier, IQuantity quantity)
     {
         Identifier = identifier;
         
@@ -29,7 +37,7 @@ public abstract class UnitBase : IUnit
     /// <inheritdoc />
     public IQuantity GetQuantity()
     {
-        return GetQuantity();
+       return _quantity;
     }
 
     /// <inheritdoc />
@@ -43,6 +51,7 @@ public abstract class UnitBase : IUnit
         return symbol;
     }
 
+    /// <inheritdoc />
     public string GetFormattedValue(double value, CultureInfo cultureInfo)
     {
         var symbol = GetSymbol(cultureInfo);

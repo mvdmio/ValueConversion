@@ -9,7 +9,7 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Bases
         private readonly double _toStandardValueConversionFactor;
 
         internal ConversionFactorUnit(IQuantity quantity, string identifier, double toStandardValueConversionFactor)
-            : base(quantity, identifier)
+            : base(identifier, quantity)
         {
             _toStandardValueConversionFactor = toStandardValueConversionFactor;
         }
