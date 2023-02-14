@@ -9,16 +9,15 @@ public class PressureConversionImplementationCheck
     [TestMethod]
     public void ShouldConvertAllPressureCombinationsIntoAllOtherPressureCombinations()
     {
-        foreach (PressureType fromType in Enum.GetValues(typeof(PressureType)))
+        foreach (var fromUnit in Quantity.Known.Pressure().GetUnits())
         {
-            var fromValue = Quantity.Pressure.CreateValue(DateTime.Now, value: 1, fromType);
+            var fromValue = Quantity.Known.Pressure().CreateValue(DateTime.Now, value: 1, fromUnit);
 
-            foreach (PressureType toPressureType in Enum.GetValues(typeof(PressureType)))
+            foreach (var toUnit in Quantity.Known.Pressure().GetUnits())
             {
-                var toUnit = Quantity.Pressure.GetUnit(toPressureType);
                 var toValue = fromValue.As(toUnit);
 
-                Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromType} to {toPressureType} did not result in equal quantities.");
+                Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromUnit.Identifier} to {toUnit.Identifier} did not result in equal quantities.");
 
                 var conversionFactor = toValue.GetValue();
                 var expected = fromValue.GetValue() * conversionFactor;

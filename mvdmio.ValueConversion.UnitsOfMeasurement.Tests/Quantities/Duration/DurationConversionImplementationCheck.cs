@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using mvdmio.ValueConversion.Base;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Quantities.Duration;
 
@@ -8,16 +9,15 @@ public class DurationConversionImplementationCheck
     [TestMethod]
     public void ShouldConvertAllAreaCombinationsIntoAllOtherAreaCombinations()
     {
-        foreach (AreaType fromAreaType in Enum.GetValues(typeof(AreaType)))
+        foreach (var fromUnit in Quantity.Known.Area().GetUnits())
         {
-            var fromValue = "Area".CreateValue(DateTime.Now, 1, fromAreaType);
+            var fromValue = Quantity.Known.Area().CreateValue(DateTime.Now, 1, fromUnit);
 
-            foreach (AreaType toAreaType in Enum.GetValues(typeof(AreaType)))
+            foreach (var toUnit in Quantity.Known.Area().GetUnits())
             {
-                var toUnit = "Area".GetUnit(toAreaType);
                 var toValue = fromValue.As(toUnit);
 
-                Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromAreaType} to {toAreaType} did not result in equal quantities.");
+                Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromUnit.Identifier} to {toUnit.Identifier} did not result in equal quantities.");
 
                 var conversionFactor = toValue.GetValue();
                 var expected = fromValue.GetValue() * conversionFactor;

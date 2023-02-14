@@ -4,19 +4,19 @@ namespace mvdmio.ValueConversion.Currency.Tests.Mocks;
 
 public class MockExchangeRateProvider : IExchangeRateProvider
 {
-    private readonly IDictionary<CurrencyType, double> _conversionDictionary = new Dictionary<CurrencyType, double> {
-        { CurrencyType.UnitedStatesDollar, 1 },
-        { CurrencyType.Euro, 0.896688083 },
-        { CurrencyType.MexicanPeso, 19.0363785 },
-        { CurrencyType.CanadianDollar, 1.41 },
+    private readonly IDictionary<string, double> _conversionDictionary = new Dictionary<string, double> {
+        { "UnitedStatesDollar", 1 },
+        { "Euro", 0.896688083 },
+        { "MexicanPeso", 19.0363785 },
+        { "CanadianDollar", 1.41 },
     };
 
-    public CurrencyExchangeRateValue GetLatestExchangeRate(CurrencyType from, CurrencyType to)
+    public CurrencyExchangeRateValue GetLatestExchangeRate(string from, string to)
     {
         return GetExchangeRate(from, to, DateTime.Now);
     }
 
-    public CurrencyExchangeRateValue GetExchangeRate(CurrencyType from, CurrencyType to, DateTime date)
+    public CurrencyExchangeRateValue GetExchangeRate(string from, string to, DateTime date)
     {
         if (!_conversionDictionary.TryGetValue(from, out var fromValue))
             throw new InvalidOperationException($"No mocked exchange rate could be found for {from}");
@@ -30,12 +30,12 @@ public class MockExchangeRateProvider : IExchangeRateProvider
         return result;
     }
 
-    public IDictionary<DateTime, CurrencyExchangeRateValue> GetExchangeRates(CurrencyType from, CurrencyType to, DateTime start)
+    public IDictionary<DateTime, CurrencyExchangeRateValue> GetExchangeRates(string from, string to, DateTime start)
     {
         return GetExchangeRates(from, to, start, DateTime.Now);
     }
 
-    public IDictionary<DateTime, CurrencyExchangeRateValue> GetExchangeRates(CurrencyType from, CurrencyType to, DateTime start, DateTime end)
+    public IDictionary<DateTime, CurrencyExchangeRateValue> GetExchangeRates(string from, string to, DateTime start, DateTime end)
     {
         var totalDays = (start.Date - end.Date).TotalDays;
         var exchangeRate = GetLatestExchangeRate(from, to);

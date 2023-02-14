@@ -9,20 +9,20 @@ public class ElectricConductivityConversionTests
     [TestMethod]
     public void ShouldConvertToStandardUnitCorrectly()
     {
-        var milliSiemensPerCentimeter = Quantity.ElectricConductivity.GetUnit(Quantity.ElectricConductance.GetUnit(ElectricConductanceType.Millisiemens), Quantity.Known.Distance().GetUnit(DistanceType.Centimeter));
+        var milliSiemensPerCentimeter = Quantity.Known.ElectricConductivity().GetUnit(Quantity.Known.ElectricConductance().GetUnit("Millisiemens"), Quantity.Known.Distance().GetUnit("Centimeter"));
             
-        var value = Quantity.ElectricConductivity.CreateValue(5, milliSiemensPerCentimeter);
+        var value = Quantity.Known.ElectricConductivity().CreateValue(5, milliSiemensPerCentimeter);
         var standardUnitValue = value.GetStandardValue();
 
-        Assert.AreEqual(0.5, standardUnitValue);
+        Assert.AreEqual(0.5d, standardUnitValue);
     }
 
     [TestMethod]
     public void ShouldConvertFromStandardUnitCorrectly()
     {
-        var milliSiemensPerCentimeter = Quantity.ElectricConductivity.GetUnit(Quantity.ElectricConductance.GetUnit(ElectricConductanceType.Millisiemens), Quantity.Known.Distance().GetUnit(DistanceType.Centimeter));
+        var milliSiemensPerCentimeter = Quantity.Known.ElectricConductivity().GetUnit(Quantity.Known.ElectricConductance().GetUnit("Millisiemens"), Quantity.Known.Distance().GetUnit("Centimeter"));
             
-        var value = Quantity.ElectricConductivity.CreateValue(0.5, Quantity.ElectricConductivity.StandardUnit);
+        var value = Quantity.Known.ElectricConductivity().CreateValue(0.5, Quantity.Known.ElectricConductivity().StandardUnit);
         var milliSiemensPerCentimeterValue = value.As(milliSiemensPerCentimeter);
 
         Assert.AreEqual(5, milliSiemensPerCentimeterValue.GetValue());

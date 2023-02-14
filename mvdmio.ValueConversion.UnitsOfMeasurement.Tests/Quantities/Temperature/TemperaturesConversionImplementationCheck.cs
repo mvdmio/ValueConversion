@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using mvdmio.ValueConversion.Base;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Quantities.Temperature;
 
@@ -8,16 +9,15 @@ public class TemperaturesConversionImplementationCheck
     [TestMethod]
     public void ShouldConvertAllVolumeCombinationsIntoAllOtherVolumeCombinations()
     {
-        foreach (TemperatureType fromVolumeType in Enum.GetValues(typeof(TemperatureType)))
+        foreach (var fromUnit in Quantity.Known.Temperature().GetUnits())
         {
-            var fromValue = "Temperature".CreateValue(DateTime.Now, value: 1, fromVolumeType);
+            var fromValue = Quantity.Known.Temperature().CreateValue(DateTime.Now, value: 1, fromUnit);
 
-            foreach (TemperatureType toVolumeType in Enum.GetValues(typeof(TemperatureType)))
+            foreach (var toUnit in Quantity.Known.Temperature().GetUnits())
             {
-                var toUnit = "Temperature".GetUnit(toVolumeType);
                 var toValue = fromValue.As(toUnit);
 
-                Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromVolumeType} to {toVolumeType} did not result in equal quantities.");
+                Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromUnit} to {toUnit} did not result in equal quantities.");
             }
         }
     }

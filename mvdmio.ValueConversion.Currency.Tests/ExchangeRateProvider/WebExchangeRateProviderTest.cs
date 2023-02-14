@@ -29,7 +29,7 @@ public class WebExchangeRateProviderTest
     [TestMethod]
     public void ShouldRetrieveExchangeRateOfToday()
     {
-        var exchangeRate = _provider.GetExchangeRate(CurrencyType.UnitedStatesDollar, CurrencyType.Euro, DateTime.Now);
+        var exchangeRate = _provider.GetExchangeRate("UnitedStatesDollar", "Euro", DateTime.Now);
 
         Assert.IsTrue(exchangeRate.Value > 0);
     }
@@ -47,9 +47,9 @@ public class WebExchangeRateProviderTest
         var previousFriday = saturdayTwoWeeksAgo.Subtract(TimeSpan.FromDays(1));
         var nextMonday = saturdayTwoWeeksAgo.Add(TimeSpan.FromDays(2));
 
-        var exchangeRate = _provider.GetExchangeRate(CurrencyType.UnitedStatesDollar, CurrencyType.Euro, saturdayTwoWeeksAgo);
-        var previousFridayExchangeRate = _provider.GetExchangeRate(CurrencyType.UnitedStatesDollar, CurrencyType.Euro, previousFriday);
-        var nextMondayExchangeRate = _provider.GetExchangeRate(CurrencyType.UnitedStatesDollar, CurrencyType.Euro, nextMonday);
+        var exchangeRate = _provider.GetExchangeRate("UnitedStatesDollar", "Euro", saturdayTwoWeeksAgo);
+        var previousFridayExchangeRate = _provider.GetExchangeRate("UnitedStatesDollar", "Euro", previousFriday);
+        var nextMondayExchangeRate = _provider.GetExchangeRate("UnitedStatesDollar", "Euro", nextMonday);
 
         if (!ExchangeRateEquals(previousFridayExchangeRate, nextMondayExchangeRate))
         {
@@ -72,9 +72,9 @@ public class WebExchangeRateProviderTest
         var previousFriday = sundayTwoWeeksAgo.Subtract(TimeSpan.FromDays(2));
         var nextMonday = sundayTwoWeeksAgo.Add(TimeSpan.FromDays(1));
 
-        var exchangeRate = _provider.GetExchangeRate(CurrencyType.UnitedStatesDollar, CurrencyType.Euro, sundayTwoWeeksAgo);
-        var previousFridayExchangeRate = _provider.GetExchangeRate(CurrencyType.UnitedStatesDollar, CurrencyType.Euro, previousFriday);
-        var nextMondayExchangeRate = _provider.GetExchangeRate(CurrencyType.UnitedStatesDollar, CurrencyType.Euro, nextMonday);
+        var exchangeRate = _provider.GetExchangeRate("UnitedStatesDollar", "Euro", sundayTwoWeeksAgo);
+        var previousFridayExchangeRate = _provider.GetExchangeRate("UnitedStatesDollar", "Euro", previousFriday);
+        var nextMondayExchangeRate = _provider.GetExchangeRate("UnitedStatesDollar", "Euro", nextMonday);
 
         if (!ExchangeRateEquals(previousFridayExchangeRate, nextMondayExchangeRate))
         {
@@ -89,7 +89,7 @@ public class WebExchangeRateProviderTest
     {
         var mondayTwoWeeksAgo = GetDayInPast(DayOfWeek.Monday, TimeSpan.FromDays(14));
         var fridayTwoWeeksAgo = GetDayInPast(DayOfWeek.Friday, TimeSpan.FromDays(14));
-        var exchangeRate = _provider.GetExchangeRates(CurrencyType.UnitedStatesDollar, CurrencyType.Euro, mondayTwoWeeksAgo, fridayTwoWeeksAgo);
+        var exchangeRate = _provider.GetExchangeRates("UnitedStatesDollar", "Euro", mondayTwoWeeksAgo, fridayTwoWeeksAgo);
 
         Assert.AreEqual(5, exchangeRate.Count);
         Assert.AreEqual(mondayTwoWeeksAgo, Enumerable.First<DateTime>(exchangeRate.Keys));
@@ -102,7 +102,7 @@ public class WebExchangeRateProviderTest
     {
         var today = DateTime.Now.Date;
         var todayOneWeekAgo = today.Subtract(TimeSpan.FromDays(7));
-        var exchangeRate = _provider.GetExchangeRates(CurrencyType.UnitedStatesDollar, CurrencyType.Euro, todayOneWeekAgo, today);
+        var exchangeRate = _provider.GetExchangeRates("UnitedStatesDollar", "Euro", todayOneWeekAgo, today);
 
         Assert.AreEqual(8, exchangeRate.Count);
         Assert.AreEqual(todayOneWeekAgo, Enumerable.First<DateTime>(exchangeRate.Keys), "Invalid first day");
@@ -116,7 +116,7 @@ public class WebExchangeRateProviderTest
     {
         var todayOneWeekAgo = DateTime.Now.Subtract(TimeSpan.FromDays(7)).Date;
         var todayTwoWeeksAgo = todayOneWeekAgo.Subtract(TimeSpan.FromDays(7)).Date;
-        var exchangeRate = _provider.GetExchangeRates(CurrencyType.UnitedStatesDollar, CurrencyType.Euro, todayTwoWeeksAgo, todayOneWeekAgo);
+        var exchangeRate = _provider.GetExchangeRates("UnitedStatesDollar", "Euro", todayTwoWeeksAgo, todayOneWeekAgo);
 
         Assert.AreEqual(8, exchangeRate.Count);
         Assert.AreEqual(todayTwoWeeksAgo, Enumerable.First<DateTime>(exchangeRate.Keys), "Invalid first day");

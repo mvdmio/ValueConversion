@@ -27,6 +27,6 @@ var usdPerSquareMeterUnit = currencyPerAreaQuantity.GetUnit(usdUnit, squareMeter
 var usdPerSquareMeterValue = currencyPerAreaQuantity.CreateValue(DateTime.Now, 10, usdPerSquareMeterUnit);
 
 // Convert to Euros per square meter
-var euroPerSquareMeterUnit = currencyPerArea.GetUnit(Unit.OfCurrency(CurrencyType.Euro), squareMetersUnit);
+var euroPerSquareMeterUnit = currencyPerArea.GetUnit(Unit.OfCurrency("Euro)", squareMetersUnit);
 var euroPerSquareMeterValue = usdPerSquareMeterValue.As(euroPerSquareMeterUnit);
 ```

@@ -9,16 +9,15 @@ public class VolumeConversionImplementationCheck
     [TestMethod]
     public void ShouldConvertAllVolumeCombinationsIntoAllOtherVolumeCombinations()
     {
-        foreach (VolumeType fromVolumeType in Enum.GetValues(typeof(VolumeType)))
+        foreach (var fromUnit in Quantity.Known.Volume().GetUnits())
         {
-            var fromValue = Quantity.Volume.CreateValue(DateTime.Now, value: 1, fromVolumeType);
+            var fromValue = Quantity.Known.Volume().CreateValue(DateTime.Now, value: 1, fromUnit);
 
-            foreach (VolumeType toVolumeType in Enum.GetValues(typeof(VolumeType)))
+            foreach (var toUnit in Quantity.Known.Volume().GetUnits())
             {
-                var toUnit = Quantity.Volume.GetUnit(toVolumeType);
                 var toValue = fromValue.As(toUnit);
 
-                Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromVolumeType} to {toVolumeType} did not result in equal quantities.");
+                Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromUnit.Identifier} to {toUnit.Identifier} did not result in equal quantities.");
 
                 var conversionFactor = toValue.GetValue();
                 var expected = fromValue.GetValue() * conversionFactor;

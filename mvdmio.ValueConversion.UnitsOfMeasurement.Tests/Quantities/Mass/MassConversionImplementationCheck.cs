@@ -9,16 +9,15 @@ public class MassConversionImplementationCheck
     [TestMethod]
     public void ShouldConvertAllAreaCombinationsIntoAllOtherAreaCombinations()
     {
-        foreach (MassType fromType in Enum.GetValues(typeof(MassType)))
+        foreach (var fromUnit in Quantity.Known.Mass().GetUnits())
         {
-            var fromValue = Quantity.Mass.CreateValue(DateTime.Now, value: 1, fromType);
+            var fromValue = Quantity.Known.Mass().CreateValue(DateTime.Now, value: 1, fromUnit);
 
-            foreach (MassType toAreaType in Enum.GetValues(typeof(MassType)))
+            foreach (var toUnit in Quantity.Known.Mass().GetUnits())
             {
-                var toUnit = Quantity.Mass.GetUnit(toAreaType);
                 var toValue = fromValue.As(toUnit);
 
-                Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromType} to {toAreaType} did not result in equal quantities.");
+                Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromUnit.Identifier} to {toUnit.Identifier} did not result in equal quantities.");
 
                 var conversionFactor = toValue.GetValue();
                 var expected = fromValue.GetValue() * conversionFactor;
