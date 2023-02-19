@@ -7,7 +7,7 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement;
 /// <summary>
 /// Extension class for providing easy access to Known Quantities on <see cref="KnownQuantities" />.
 /// </summary>
-public static class UnitsOfMeasurementKnownQuantities
+public static class SatelliteExtensions
 {
    private static readonly AngleQuantity _angle;
    private static readonly AreaQuantity _area;
@@ -25,7 +25,7 @@ public static class UnitsOfMeasurementKnownQuantities
    private static readonly IrradianceQuantity _irradiance;
    private static readonly VelocityQuantity _velocity;
 
-   static UnitsOfMeasurementKnownQuantities()
+   static SatelliteExtensions()
    {
       _angle = Quantity.Add(new AngleQuantity());
       _area = Quantity.Add(new AreaQuantity());
@@ -42,6 +42,15 @@ public static class UnitsOfMeasurementKnownQuantities
       _substance = Quantity.Add(new SubstanceQuantity());
       _irradiance = Quantity.Add(new IrradianceQuantity());
       _velocity = Quantity.Add(new VelocityQuantity());
+   }
+
+   /// <summary>
+   /// Sets up the quantity library with Units of Measurement quantities.
+   /// </summary>
+   /// <param name="_">The extension class</param>
+   public static void WithUnitsOfMeasurement(this QuantitySetup _)
+   {
+      // Calling this method will run the static constructor, setting up the quantities.
    }
 
    /// <inheritdoc cref="AngleQuantity" />

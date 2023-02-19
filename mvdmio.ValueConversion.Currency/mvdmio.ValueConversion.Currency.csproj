@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
@@ -21,6 +21,30 @@
     <ItemGroup>
       <ProjectReference Include="..\mvdmio.ValueConversion.Base\mvdmio.ValueConversion.Base.csproj" />
       <ProjectReference Include="..\mvdmio.ValueConversion.UnitsOfMeasurement\mvdmio.ValueConversion.UnitsOfMeasurement.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Resources\UnitsFormatting\UnitsFormatting.Designer.cs">
+        <DependentUpon>UnitsFormatting.resx</DependentUpon>
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+      </Compile>
+      <Compile Update="Resources\UnitSymbols\UnitSymbols.Designer.cs">
+        <DependentUpon>UnitSymbols.resx</DependentUpon>
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Resources\UnitsFormatting\UnitsFormatting.resx">
+        <LastGenOutput>UnitsFormatting.Designer.cs</LastGenOutput>
+        <Generator>ResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\UnitSymbols\UnitSymbols.resx">
+        <LastGenOutput>UnitSymbols.Designer.cs</LastGenOutput>
+        <Generator>ResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
     </ItemGroup>
     
 </Project>

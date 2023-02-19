@@ -1,10 +1,9 @@
 ﻿using System;
-using mvdmio.ValueConversion.Base.Bases;
 using mvdmio.ValueConversion.Base.Interfaces;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Bases
 {
-    public class ConversionFactorUnit : UnitBase
+   public class ConversionFactorUnit : UnitOfMeasurementUnitBase
     {
         private readonly double _toStandardValueConversionFactor;
 
@@ -14,11 +13,13 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Bases
             _toStandardValueConversionFactor = toStandardValueConversionFactor;
         }
 
+        /// <inheritdoc />
         public sealed override double FromStandardUnit(double value, DateTimeOffset timestamp)
         {
             return value / _toStandardValueConversionFactor;
         }
 
+        /// <inheritdoc />
         public sealed override double ToStandardUnit(double value, DateTimeOffset timestamp)
         {
             return value * _toStandardValueConversionFactor;

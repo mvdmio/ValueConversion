@@ -117,13 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="_Default" xml:space="preserve">
-    <value>{v} {sym}</value>
+  <data name="CanadianDollar" xml:space="preserve">
+    <value>$</value>
   </data>
-  <data name="_ProductUnitCominationDefault" xml:space="preserve">
-    <value>{numSym}*{denSym}</value>
+  <data name="Euro" xml:space="preserve">
+    <value>€</value>
   </data>
-  <data name="_RateUnitCombinationDefault" xml:space="preserve">
-    <value>{numSym}/{denSym}</value>
+  <data name="MexicanPeso" xml:space="preserve">
+    <value>$</value>
+  </data>
+  <data name="UnitedStatesDollar" xml:space="preserve">
+    <value>$</value>
   </data>
 </root>

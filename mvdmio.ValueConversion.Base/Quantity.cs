@@ -17,6 +17,8 @@ public static class Quantity
 
    public static KnownQuantities Known { get; } = new();
 
+   public static QuantitySetup Setup { get; } = new();
+
    /// <summary>
    /// Adds a quantity to the known quantities list.
    /// Only quantities added through this method are returned by the <see cref="GetAll"/> method.

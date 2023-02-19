@@ -4,29 +4,26 @@ namespace mvdmio.ValueConversion.Base.Bases;
 
 public class RateCombinedQuantity : CombinedQuantityBase
 {
-    private const string CombinerCharacter = "/";
+   private const string _combinerCharacter = "/";
 
-    /// <inheritdoc />
-    public override string Identifier { get; }
-        
-    public RateCombinedQuantity(IQuantity numeratorQuantity, IQuantity denominatorQuantity) 
-        : this(GetCombinedQuantityIdentifier(numeratorQuantity, denominatorQuantity), numeratorQuantity, denominatorQuantity)
-    {
-    }
-    
-    public RateCombinedQuantity(string identifier, IQuantity numeratorQuantity, IQuantity denominatorQuantity)
-        : base(numeratorQuantity, denominatorQuantity)
-    {
-        Identifier = identifier;
-    }
+   /// <inheritdoc />
+   protected override string CombinerCharacter => _combinerCharacter;
 
-    protected override ICombinedUnit GetCombinedUnit(IUnit numeratorUnit, IUnit denominatorUnit)
-    {
-        return new RateCombinedUnit(numeratorUnit, denominatorUnit, this);
-    }
+   /// <inheritdoc />
+   public RateCombinedQuantity(IQuantity numeratorQuantity, IQuantity denominatorQuantity)
+       : base(numeratorQuantity, denominatorQuantity)
+   {
+   }
 
-    private static string GetCombinedQuantityIdentifier(IQuantity numerator, IQuantity denominator)
-    {
-        return $"{numerator.Identifier}{CombinerCharacter}{denominator.Identifier}";
-    }
+   /// <inheritdoc />
+   public RateCombinedQuantity(string identifier, IQuantity numeratorQuantity, IQuantity denominatorQuantity)
+       : base(identifier, numeratorQuantity, denominatorQuantity)
+   {
+   }
+
+   /// <inheritdoc />
+   protected override ICombinedUnit GetCombinedUnit(IUnit numeratorUnit, IUnit denominatorUnit)
+   {
+      return new RateCombinedUnit(numeratorUnit, denominatorUnit, this);
+   }
 }

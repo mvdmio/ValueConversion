@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using mvdmio.ValueConversion.Base.Interfaces;
-using mvdmio.ValueConversion.Base.Resources.UnitSymbols;
+using mvdmio.ValueConversion.Base.Resources.UnitsFormatting;
 
 namespace mvdmio.ValueConversion.Base.Bases;
 
@@ -11,50 +11,59 @@ namespace mvdmio.ValueConversion.Base.Bases;
 /// </summary>
 public abstract class UnitBase : IUnit
 {
-    private readonly IQuantity _quantity;
+   private readonly IQuantity _quantity;
 
-    /// <inheritdoc />
-    public string Identifier { get; }
+   /// <inheritdoc />
+   public string Identifier { get; }
 
-    /// <summary>
-    /// Creates a new instance of <see cref="UnitBase"/>.
-    /// </summary>
-    /// <param name="identifier">The identifier of the unit.</param>
-    /// <param name="quantity">The quantity of the unit.</param>
-    protected UnitBase(string identifier, IQuantity quantity)
-    {
-        Identifier = identifier;
-        
-        _quantity = quantity;
-    }
+   /// <summary>
+   /// Constructor.
+   /// </summary>
+   /// <param name="identifier">The identifier of the unit.</param>
+   /// <param name="quantity">The quantity of the unit.</param>
+   protected UnitBase(string identifier, IQuantity quantity)
+   {
+      Identifier = identifier;
 
-    /// <inheritdoc />
-    public abstract double FromStandardUnit(double value, DateTimeOffset timestamp);
+      _quantity = quantity;
+   }
 
-    /// <inheritdoc />
-    public abstract double ToStandardUnit(double value, DateTimeOffset timestamp);
+   /// <inheritdoc />
+   public abstract double FromStandardUnit(double value, DateTimeOffset timestamp);
 
-    /// <inheritdoc />
-    public IQuantity GetQuantity()
-    {
-       return _quantity;
-    }
+   /// <inheritdoc />
+   public abstract double ToStandardUnit(double value, DateTimeOffset timestamp);
 
-    /// <inheritdoc />
-    public string GetSymbol(CultureInfo cultureInfo)
-    {
-        var symbol = UnitSymbols.ResourceManager.GetString(Identifier, cultureInfo);
+   /// <inheritdoc />
+   public IQuantity GetQuantity()
+   {
+      return _quantity;
+   }
 
-        if (symbol == null)
-            throw new KeyNotFoundException($"No symbol found for unit {Identifier}");
+   /// <inheritdoc />
+   public string GetSymbol(CultureInfo cultureInfo)
+   {
+      var symbol = GetSymbolInternal(cultureInfo);
 
-        return symbol;
-    }
+      if (symbol is null)
+         throw new KeyNotFoundException($"No symbol found for Unit {Identifier}");
 
-    /// <inheritdoc />
-    public string GetFormattedValue(double value, CultureInfo cultureInfo)
-    {
-        var symbol = GetSymbol(cultureInfo);
-        return $"{value} {symbol}";
-    }
+      return symbol;
+   }
+
+   /// <inheritdoc />
+   public string GetFormattedValue(double value, CultureInfo cultureInfo)
+   {
+      var format = GetFormatInternal(cultureInfo) ?? UnitsFormatting._Default;
+      var result = format;
+
+      var symbol = GetSymbol(cultureInfo);
+      result = result.Replace("{v}", value.ToString(cultureInfo));
+      result = result.Replace("{sym}", symbol);
+
+      return result;
+   }
+
+   protected abstract string? GetSymbolInternal(CultureInfo cultureInfo);
+   protected abstract string? GetFormatInternal(CultureInfo cultureInfo);
 }

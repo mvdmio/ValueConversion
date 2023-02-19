@@ -9,6 +9,9 @@
 //------------------------------------------------------------------------------
 
 namespace mvdmio.ValueConversion.Base.Resources.UnitsFormatting {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -16,7 +19,7 @@ namespace mvdmio.ValueConversion.Base.Resources.UnitsFormatting {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class UnitsFormatting {
@@ -36,7 +39,7 @@ namespace mvdmio.ValueConversion.Base.Resources.UnitsFormatting {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("mvdmio.ValueConversion.UnitsOfMeasurement.Resources.UnitsFormatting.UnitsFormatting", typeof(UnitsFormatting).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("mvdmio.ValueConversion.Base.Resources.UnitsFormatting.UnitsFormatting", typeof(UnitsFormatting).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -81,15 +84,6 @@ namespace mvdmio.ValueConversion.Base.Resources.UnitsFormatting {
         internal static string _RateUnitCombinationDefault {
             get {
                 return ResourceManager.GetString("_RateUnitCombinationDefault", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {v}{sym}.
-        /// </summary>
-        internal static string Degree {
-            get {
-                return ResourceManager.GetString("Degree", resourceCulture);
             }
         }
     }

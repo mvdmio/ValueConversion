@@ -7,101 +7,107 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests;
 [TestClass]
 public class QuantityTest
 {
-    [TestMethod]
-    public void OfIdentifier_ShouldSupportAllQuantityIdentifiers()
-    {
-        var allQuantities = Quantity.GetAll();
+   [AssemblyInitialize]
+   public static void SetupAssembly(TestContext _)
+   {
+      Quantity.Setup.WithUnitsOfMeasurement();
+   }
 
-        foreach (var quantity in allQuantities)
-        {
+   [TestMethod]
+   public void OfIdentifier_ShouldSupportAllQuantityIdentifiers()
+   {
+      var allQuantities = Quantity.GetAll();
+
+      foreach (var quantity in allQuantities)
+      {
+         try
+         {
+            var retrievedQuantity = Quantity.Of(quantity.Identifier);
+            Assert.AreEqual(quantity.Identifier, retrievedQuantity.Identifier);
+         }
+         catch (KeyNotFoundException)
+         {
+            Assert.Fail($"No quantity found for identifier {quantity.Identifier}");
+         }
+      }
+   }
+
+   [TestMethod]
+   public void Rate_ShouldSupportAllPossibleRatios()
+   {
+      foreach (var numeratorType in Quantity.GetAll())
+      {
+         foreach (var denominatorType in Quantity.GetAll())
+         {
+            IQuantity typedQuantity;
+
             try
             {
-                var retrievedQuantity = Quantity.Of(quantity.Identifier);
-                Assert.AreEqual(quantity.Identifier, retrievedQuantity.Identifier);
+               typedQuantity = Quantity.Rate(numeratorType, denominatorType);
+
+               Assert.IsNotNull(typedQuantity, $"No ratio quantity returned for type {numeratorType.Identifier}/{denominatorType.Identifier}");
+               Assert.AreEqual($"{numeratorType.Identifier}/{denominatorType.Identifier}", typedQuantity.Identifier, $"Returned quantity type {typedQuantity.Identifier} does not mach requested quantity type {numeratorType.Identifier}/{denominatorType.Identifier}");
             }
             catch (KeyNotFoundException)
             {
-                Assert.Fail($"No quantity found for identifier {quantity.Identifier}");
+               Assert.Fail($"No quantity found for type {numeratorType.Identifier}/{denominatorType.Identifier}");
+               return;
             }
-        }
-    }
 
-    [TestMethod]
-    public void Rate_ShouldSupportAllPossibleRatios()
-    {
-        foreach (var numeratorType in Quantity.GetAll())
-        {
-            foreach (var denominatorType in Quantity.GetAll())
+            try
             {
-                IQuantity typedQuantity;
-
-                try
-                {
-                    typedQuantity = Quantity.Rate(numeratorType, denominatorType);
-                        
-                    Assert.IsNotNull(typedQuantity, $"No ratio quantity returned for type {numeratorType.Identifier}/{denominatorType.Identifier}");
-                    Assert.AreEqual($"{numeratorType.Identifier}/{denominatorType.Identifier}", typedQuantity.Identifier, $"Returned quantity type {typedQuantity.Identifier} does not mach requested quantity type {numeratorType.Identifier}/{denominatorType.Identifier}");
-                }
-                catch (KeyNotFoundException)
-                {
-                    Assert.Fail($"No quantity found for type {numeratorType.Identifier}/{denominatorType.Identifier}");
-                    return;
-                }
-
-                try
-                {
-                    var identifiedQuantity = Quantity.Of(typedQuantity.Identifier);
-                    Assert.IsNotNull(identifiedQuantity, $"No ratio quantity returned for identifier {typedQuantity.Identifier}");
-                    Assert.AreEqual($"{numeratorType.Identifier}/{denominatorType.Identifier}", typedQuantity.Identifier, $"Returned quantity type {typedQuantity.Identifier} does not mach requested quantity type {numeratorType.Identifier}/{denominatorType.Identifier}");
-                }
-                catch (KeyNotFoundException)
-                {
-                    Assert.Fail($"No quantity found for identifier {typedQuantity.Identifier}");
-                }
+               var identifiedQuantity = Quantity.Of(typedQuantity.Identifier);
+               Assert.IsNotNull(identifiedQuantity, $"No ratio quantity returned for identifier {typedQuantity.Identifier}");
+               Assert.AreEqual($"{numeratorType.Identifier}/{denominatorType.Identifier}", typedQuantity.Identifier, $"Returned quantity type {typedQuantity.Identifier} does not mach requested quantity type {numeratorType.Identifier}/{denominatorType.Identifier}");
             }
-        }
-    }
-
-    [TestMethod]
-    public void Product_ShouldSupportAllPossibleProducts()
-    {
-        foreach (var numeratorType in Quantity.GetAll())
-        {
-            foreach (var denominatorType in Quantity.GetAll())
+            catch (KeyNotFoundException)
             {
-                IQuantity typedQuantity;
-
-                try
-                {
-                    typedQuantity = Quantity.Product(numeratorType, denominatorType);
-                        
-                    Assert.IsNotNull(typedQuantity, $"No ratio quantity returned for type {numeratorType.Identifier}*{denominatorType.Identifier}");
-                    Assert.AreEqual($"{numeratorType.Identifier}*{denominatorType.Identifier}", typedQuantity.Identifier, $"Returned quantity type {typedQuantity.Identifier} does not mach requested quantity type {numeratorType.Identifier}*{denominatorType.Identifier}");
-                }
-                catch (KeyNotFoundException)
-                {
-                    Assert.Fail($"No quantity found for type {numeratorType.Identifier}*{denominatorType.Identifier}");
-                    return;
-                }
-
-                try
-                {
-                    var identifiedQuantity = Quantity.Of(typedQuantity.Identifier);
-                    Assert.IsNotNull(identifiedQuantity, $"No ratio quantity returned for identifier {typedQuantity.Identifier}");
-                    Assert.AreEqual($"{numeratorType.Identifier}*{denominatorType.Identifier}", typedQuantity.Identifier, $"Returned quantity type {typedQuantity.Identifier} does not mach requested quantity type {numeratorType.Identifier}*{denominatorType.Identifier}");
-                }
-                catch (KeyNotFoundException)
-                {
-                    Assert.Fail($"No quantity found for identifier {typedQuantity.Identifier}");
-                }
+               Assert.Fail($"No quantity found for identifier {typedQuantity.Identifier}");
             }
-        }
-    }
+         }
+      }
+   }
 
-    [TestMethod]
-    public void Of_ShouldSupportCombinedQuantities()
-    {
-        var quantitiesToTest = new List<(string identifier, IQuantity quantity)> {
+   [TestMethod]
+   public void Product_ShouldSupportAllPossibleProducts()
+   {
+      foreach (var numeratorType in Quantity.GetAll())
+      {
+         foreach (var denominatorType in Quantity.GetAll())
+         {
+            IQuantity typedQuantity;
+
+            try
+            {
+               typedQuantity = Quantity.Product(numeratorType, denominatorType);
+
+               Assert.IsNotNull(typedQuantity, $"No ratio quantity returned for type {numeratorType.Identifier}*{denominatorType.Identifier}");
+               Assert.AreEqual($"{numeratorType.Identifier}*{denominatorType.Identifier}", typedQuantity.Identifier, $"Returned quantity type {typedQuantity.Identifier} does not mach requested quantity type {numeratorType.Identifier}*{denominatorType.Identifier}");
+            }
+            catch (KeyNotFoundException)
+            {
+               Assert.Fail($"No quantity found for type {numeratorType.Identifier}*{denominatorType.Identifier}");
+               return;
+            }
+
+            try
+            {
+               var identifiedQuantity = Quantity.Of(typedQuantity.Identifier);
+               Assert.IsNotNull(identifiedQuantity, $"No ratio quantity returned for identifier {typedQuantity.Identifier}");
+               Assert.AreEqual($"{numeratorType.Identifier}*{denominatorType.Identifier}", typedQuantity.Identifier, $"Returned quantity type {typedQuantity.Identifier} does not mach requested quantity type {numeratorType.Identifier}*{denominatorType.Identifier}");
+            }
+            catch (KeyNotFoundException)
+            {
+               Assert.Fail($"No quantity found for identifier {typedQuantity.Identifier}");
+            }
+         }
+      }
+   }
+
+   [TestMethod]
+   public void Of_ShouldSupportCombinedQuantities()
+   {
+      var quantitiesToTest = new List<(string identifier, IQuantity quantity)> {
             ("(Energy/Area)/Temperature", Quantity.Rate(Quantity.Rate("Energy", "Area"), "Temperature")),
             ("Energy/(Area/Temperature)", Quantity.Rate("Energy", Quantity.Rate("Area", "Temperature"))),
             ("(Energy/Area)/(Area/Temperature)", Quantity.Rate(Quantity.Rate("Energy", "Area"), Quantity.Rate("Area", "Temperature"))),
@@ -112,44 +118,44 @@ public class QuantityTest
             ("((Energy*Area)/Temperature)/Area", Quantity.Rate(Quantity.Rate(Quantity.Product("Energy", "Area"), "Temperature"), "Area"))
         };
 
-        foreach (var (identifier, quantity) in quantitiesToTest)
-        {
-            var result = Quantity.Of(identifier);
-            AssertEqualQuantity(quantity, result);
-        }
+      foreach (var (identifier, quantity) in quantitiesToTest)
+      {
+         var result = Quantity.Of(identifier);
+         AssertEqualQuantity(quantity, result);
+      }
 
-        static void AssertEqualQuantity(IQuantity expected, IQuantity actual)
-        {
-            Assert.AreEqual(expected.Identifier, actual.Identifier);
+      static void AssertEqualQuantity(IQuantity expected, IQuantity actual)
+      {
+         Assert.AreEqual(expected.Identifier, actual.Identifier);
 
-            if (expected is ICombinedQuantity expectedCombinedQuantity)
-            {
-                var actualCombinedQuantity = actual as ICombinedQuantity;
+         if (expected is ICombinedQuantity expectedCombinedQuantity)
+         {
+            var actualCombinedQuantity = actual as ICombinedQuantity;
 
-                if (actualCombinedQuantity == null)
-                    Assert.Fail($"Expected combined quantity, was {actual.GetType().Name}");
+            if (actualCombinedQuantity == null)
+               Assert.Fail($"Expected combined quantity, was {actual.GetType().Name}");
 
-                AssertEqualQuantity(expectedCombinedQuantity.NumeratorQuantity, actualCombinedQuantity.NumeratorQuantity);
-                AssertEqualQuantity(expectedCombinedQuantity.DenominatorQuantity, actualCombinedQuantity.DenominatorQuantity);
-            }
-        }
-    }
+            AssertEqualQuantity(expectedCombinedQuantity.NumeratorQuantity, actualCombinedQuantity.NumeratorQuantity);
+            AssertEqualQuantity(expectedCombinedQuantity.DenominatorQuantity, actualCombinedQuantity.DenominatorQuantity);
+         }
+      }
+   }
 
-    [DataTestMethod]
-    [DataRow("Energy/(Area/Temperature)", "Energy", "Area", "Temperature", DisplayName = "Radiation Temperature Ratio")]
-    [DataRow("Volume/(Energy/Area)", "Volume", "Energy", "Area", DisplayName = "Irrigation Volume Radiation Sum Ratio")]
-    public void Rate_ShouldSupportMultipleCombinedQuantities(string expectedIdentifier, params string[] quantityTypes)
-    {
-        var result = Quantity.Rate(quantityTypes);
-        Assert.AreEqual(expectedIdentifier, result.Identifier);
-    }
-        
-    [DataTestMethod]
-    [DataRow("Energy*(Area*Temperature)", "Energy", "Area", "Temperature", DisplayName = "Random combination 1")]
-    [DataRow("Volume*(Energy*Area)", "Volume", "Energy", "Area", DisplayName = "Random combination 2")]
-    public void Product_ShouldSupportMultipleCombinedQuantities(string expectedIdentifier, params string[] quantityTypes)
-    {
-        var result = Quantity.Product(quantityTypes);
-        Assert.AreEqual(expectedIdentifier, result.Identifier);
-    }
+   [DataTestMethod]
+   [DataRow("Energy/(Area/Temperature)", "Energy", "Area", "Temperature", DisplayName = "Radiation Temperature Ratio")]
+   [DataRow("Volume/(Energy/Area)", "Volume", "Energy", "Area", DisplayName = "Irrigation Volume Radiation Sum Ratio")]
+   public void Rate_ShouldSupportMultipleCombinedQuantities(string expectedIdentifier, params string[] quantityTypes)
+   {
+      var result = Quantity.Rate(quantityTypes);
+      Assert.AreEqual(expectedIdentifier, result.Identifier);
+   }
+
+   [DataTestMethod]
+   [DataRow("Energy*(Area*Temperature)", "Energy", "Area", "Temperature", DisplayName = "Random combination 1")]
+   [DataRow("Volume*(Energy*Area)", "Volume", "Energy", "Area", DisplayName = "Random combination 2")]
+   public void Product_ShouldSupportMultipleCombinedQuantities(string expectedIdentifier, params string[] quantityTypes)
+   {
+      var result = Quantity.Product(quantityTypes);
+      Assert.AreEqual(expectedIdentifier, result.Identifier);
+   }
 }

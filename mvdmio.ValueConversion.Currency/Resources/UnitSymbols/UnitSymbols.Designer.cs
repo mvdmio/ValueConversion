@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace mvdmio.ValueConversion.Base.Resources.UnitSymbols {
+namespace mvdmio.ValueConversion.Currency.Resources.UnitSymbols {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace mvdmio.ValueConversion.Base.Resources.UnitSymbols {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("mvdmio.ValueConversion.Base.Resources.UnitSymbols.UnitSymbols", typeof(UnitSymbols).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("mvdmio.ValueConversion.Currency.Resources.UnitSymbols.UnitSymbols", typeof(UnitSymbols).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,42 @@ namespace mvdmio.ValueConversion.Base.Resources.UnitSymbols {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to $.
+        /// </summary>
+        internal static string CanadianDollar {
+            get {
+                return ResourceManager.GetString("CanadianDollar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to €.
+        /// </summary>
+        internal static string Euro {
+            get {
+                return ResourceManager.GetString("Euro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to $.
+        /// </summary>
+        internal static string MexicanPeso {
+            get {
+                return ResourceManager.GetString("MexicanPeso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to $.
+        /// </summary>
+        internal static string UnitedStatesDollar {
+            get {
+                return ResourceManager.GetString("UnitedStatesDollar", resourceCulture);
             }
         }
     }
