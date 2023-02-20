@@ -1,20 +1,18 @@
 using System;
 using System.Globalization;
 using mvdmio.ValueConversion.Base.Interfaces;
-using mvdmio.ValueConversion.Base.Quantities;
-using mvdmio.ValueConversion.Base.Units;
+using mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Units;
 
 /// <summary>
-/// This unit is used for values that do not have a quantity.
-/// We've created a <see cref="ScalarQuantity"/> and <see cref="ScalarUnit"/> for these cases.
+/// Unit for <see cref="PHQuantity"/>.
 /// </summary>
-public class PHUnit : IUnit
+public class PhUnit : IUnit
 {
     private readonly IQuantity _quantity;
 
-    internal PHUnit(IQuantity quantity)
+    internal PhUnit(IQuantity quantity)
     {
         _quantity = quantity;
     }

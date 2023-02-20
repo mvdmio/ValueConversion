@@ -12,8 +12,7 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
 /// </summary>
 public class PHQuantity : IQuantity
 {
-    private readonly object _lockObject = new();
-    private IList<IUnit> _units;
+    private readonly IList<IUnit> _units;
 
     /// <inheritdoc/>
     public IUnit StandardUnit => GetUnits().First();
@@ -23,6 +22,9 @@ public class PHQuantity : IQuantity
 
     internal PHQuantity()
     {
+       _units = new List<IUnit> {
+          new PhUnit(this)
+       };
     }
 
     /// <inheritdoc/>
@@ -40,10 +42,24 @@ public class PHQuantity : IQuantity
         return unit;
     }
 
+    /// <inheritdoc />
+    public IQuantityValue Convert(IQuantityValue quantityValue, string toUnitIdentifier)
+    {
+       var unit = GetUnit(toUnitIdentifier);
+       return Convert(quantityValue, unit);
+    }
+
     /// <inheritdoc/>
     public IQuantityValue Convert(IQuantityValue quantityValue, IUnit toUnit)
     {
         return quantityValue; // pH values don't support conversions, just return the original.
+    }
+
+    /// <inheritdoc />
+    public IQuantityValue CreateValue(double value, string unitIdentifier)
+    {
+       var unit = GetUnit(unitIdentifier);
+       return CreateValue(value, unit);
     }
 
     /// <inheritdoc/>
@@ -66,19 +82,6 @@ public class PHQuantity : IQuantity
     /// <inheritdoc/>
     public IEnumerable<IUnit> GetUnits()
     {
-        if (_units != null)
-            return _units;
-
-        lock (_lockObject)
-        {
-            if (_units != null)
-                return _units;
-
-            _units = new List<IUnit> {
-                new PHUnit(this)
-            };
-        }
-
         return _units;
     }
 }

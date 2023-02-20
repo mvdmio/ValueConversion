@@ -12,8 +12,7 @@ namespace mvdmio.ValueConversion.Base.Quantities;
 /// </summary>
 public class ScalarQuantity : IQuantity
 {
-    private readonly object _lockObject = new();
-    private IList<IUnit> _units;
+    private readonly IList<IUnit> _units;
 
     /// <inheritdoc/>
     public IUnit StandardUnit => GetUnits().First();
@@ -23,6 +22,9 @@ public class ScalarQuantity : IQuantity
 
     internal ScalarQuantity()
     {
+       _units = new List<IUnit> {
+          new ScalarUnit(this)
+       };
     }
 
     /// <inheritdoc/>
@@ -36,10 +38,24 @@ public class ScalarQuantity : IQuantity
         return unit;
     }
 
+    /// <inheritdoc />
+    public IQuantityValue Convert(IQuantityValue quantityValue, string toUnitIdentifier)
+    {
+       var unit = GetUnit(toUnitIdentifier);
+       return Convert(quantityValue, unit);
+    }
+
     /// <inheritdoc/>
     public IQuantityValue Convert(IQuantityValue quantityValue, IUnit toUnit)
     {
         return quantityValue; // Scalar values don't support conversions, just return the original.
+    }
+
+    /// <inheritdoc />
+    public IQuantityValue CreateValue(double value, string unitIdentifier)
+    {
+       var unit = GetUnit(unitIdentifier);
+       return CreateValue(value, unit);
     }
 
     /// <inheritdoc/>
@@ -62,20 +78,6 @@ public class ScalarQuantity : IQuantity
     /// <inheritdoc/>
     public IEnumerable<IUnit> GetUnits()
     {
-        if (_units == null)
-        {
-            lock (_lockObject)
-            {
-                if (_units == null)
-                {
-                    var units = new List<IUnit> {
-                        new ScalarUnit(this)
-                    };
-                    _units = units;
-                }
-            }
-        }
-
-        return _units;
+       return _units;
     }
 }

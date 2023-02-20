@@ -1,4 +1,7 @@
-﻿using System;
+﻿// ReSharper disable UnusedMemberInSuper.Global | Public Interface type. Members are used by users of this library.
+// ReSharper disable UnusedMember.Global | Public Interface type. Members are used by users of this library.
+
+using System;
 using System.Collections.Generic;
 
 namespace mvdmio.ValueConversion.Base.Interfaces;
@@ -39,9 +42,25 @@ public interface IQuantity
    /// Convert the given quantity value to the given unit.
    /// </summary>
    /// <param name="quantityValue">The value to convert.</param>
+   /// <param name="toUnitIdentifier">The unit to convert the value into.</param>
+   /// <returns>A new <see cref="IQuantityValue"/> object who's value has been converted into the given unit.</returns>
+   IQuantityValue Convert(IQuantityValue quantityValue, string toUnitIdentifier);
+   
+   /// <summary>
+   /// Convert the given quantity value to the given unit.
+   /// </summary>
+   /// <param name="quantityValue">The value to convert.</param>
    /// <param name="toUnit">The unit to convert the value into.</param>
    /// <returns>A new <see cref="IQuantityValue"/> object who's value has been converted into the given unit.</returns>
    IQuantityValue Convert(IQuantityValue quantityValue, IUnit toUnit);
+
+   /// <summary>
+   /// Create a new <see cref="IQuantityValue"/> with the given unit.
+   /// </summary>
+   /// <param name="value">The value to use.</param>
+   /// <param name="unitIdentifier">The unit identifier of the given value.</param>
+   /// <returns>A new <see cref="IQuantityValue"/> with the given unit.</returns>
+   IQuantityValue CreateValue(double value, string unitIdentifier);
 
    /// <summary>
    /// Create a new <see cref="IQuantityValue"/> with the given unit.

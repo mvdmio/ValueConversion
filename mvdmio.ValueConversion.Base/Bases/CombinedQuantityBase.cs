@@ -5,6 +5,9 @@ using mvdmio.ValueConversion.Base.Interfaces;
 
 namespace mvdmio.ValueConversion.Base.Bases;
 
+/// <summary>
+/// Base class for Combined Quantities.
+/// </summary>
 public abstract class CombinedQuantityBase : ICombinedQuantity
 {
    private readonly object _lockObject = new();
@@ -91,6 +94,13 @@ public abstract class CombinedQuantityBase : ICombinedQuantity
    }
 
    /// <inheritdoc />
+   public IQuantityValue CreateValue(double value, string unitIdentifier)
+   {
+      var unit = GetUnit(unitIdentifier);
+      return CreateValue(value, unit);
+   }
+
+   /// <inheritdoc />
    public IQuantityValue CreateValue(double value, IUnit unit)
    {
       return CreateValue(DateTime.UtcNow, value, unit);
@@ -121,6 +131,14 @@ public abstract class CombinedQuantityBase : ICombinedQuantity
 
       return _units;
    }
+
+   /// <inheritdoc />
+   public IQuantityValue Convert(IQuantityValue quantityValue, string toUnitIdentifier)
+   {
+      var unit = GetUnit(toUnitIdentifier);
+      return Convert(quantityValue, unit);
+   }
+
 
    /// <inheritdoc />
    public IQuantityValue Convert(IQuantityValue quantityValue, IUnit toUnit)
