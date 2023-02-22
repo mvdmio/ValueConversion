@@ -6,7 +6,7 @@ Based on examples of [UnitsNet](https://github.com/angularsen/UnitsNet).
 
 ``` csharp
 // Retrieve the 'Area' quantity
-var areaQuantity = "Area";
+var areaQuantity = Quantity.Known.Area;
 
 // Retrieve a 'square meters' unit
 var squareMetersUnit = areaQuantity.GetUnit(AreaType.SquareMeters);
@@ -27,6 +27,6 @@ var usdPerSquareMeterUnit = currencyPerAreaQuantity.GetUnit(usdUnit, squareMeter
 var usdPerSquareMeterValue = currencyPerAreaQuantity.CreateValue(DateTime.Now, 10, usdPerSquareMeterUnit);
 
 // Convert to Euros per square meter
-var euroPerSquareMeterUnit = currencyPerArea.GetUnit(Unit.OfCurrency("Euro)", squareMetersUnit);
+var euroPerSquareMeterUnit = currencyPerArea.GetUnit(Unit.OfCurrency("Euro"), squareMetersUnit);
 var euroPerSquareMeterValue = usdPerSquareMeterValue.As(euroPerSquareMeterUnit);
 ```
