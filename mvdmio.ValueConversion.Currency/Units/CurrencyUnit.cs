@@ -12,22 +12,25 @@ namespace mvdmio.ValueConversion.Currency.Units;
 /// </summary>
 public class CurrencyUnit : UnitBase
 {
-    internal CurrencyUnit(string identifier)
-        : base(identifier, new CurrencyQuantity())
-    {
-    }
+   private readonly CurrencyQuantity _quantity;
+
+   internal CurrencyUnit(string identifier, CurrencyQuantity quantity)
+        : base(identifier, quantity)
+   {
+      _quantity = quantity;
+   }
 
     /// <inheritdoc />
     public override double FromStandardUnit(double value, DateTimeOffset timestamp)
     {
-        var exchangeRate = CurrencyExchangeRate.Get(new CurrencyQuantity().StandardUnit.Identifier, Identifier, timestamp.DateTime);
+        var exchangeRate = CurrencyExchangeRate.Get(_quantity.StandardUnit.Identifier, Identifier, timestamp.DateTime);
         return value * exchangeRate;
     }
 
     /// <inheritdoc />
     public override double ToStandardUnit(double value, DateTimeOffset timestamp)
     {
-        var exchangeRate = CurrencyExchangeRate.Get(new CurrencyQuantity().StandardUnit.Identifier, Identifier, timestamp.DateTime);
+        var exchangeRate = CurrencyExchangeRate.Get(_quantity.StandardUnit.Identifier, Identifier, timestamp.DateTime);
         return value / exchangeRate;
     }
 

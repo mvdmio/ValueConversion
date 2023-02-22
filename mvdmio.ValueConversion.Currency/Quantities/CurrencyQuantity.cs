@@ -20,10 +20,10 @@ public sealed class CurrencyQuantity : QuantityBase
         : base("Currency", "UnitedStatesDollar")
     {
        _units = new IUnit[] {
-          new CurrencyUnit("UnitedStatesDollar"),
-          new CurrencyUnit("Euro"),
-          new CurrencyUnit("MexicanPeso"),
-          new CurrencyUnit("CanadianDollar")
+          new CurrencyUnit("UnitedStatesDollar", this),
+          new CurrencyUnit("Euro", this),
+          new CurrencyUnit("MexicanPeso", this),
+          new CurrencyUnit("CanadianDollar", this)
        };
     }
 
