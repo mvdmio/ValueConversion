@@ -7,6 +7,9 @@ using mvdmio.ValueConversion.Base.Interfaces;
 
 namespace mvdmio.ValueConversion.Base;
 
+/// <summary>
+/// Starting point for working with units.
+/// </summary>
 public static class Unit
 {
     /// <summary>

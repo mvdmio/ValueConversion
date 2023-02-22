@@ -10,7 +10,7 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
 /// <summary>
 /// Defines the pH quantity
 /// </summary>
-public class PHQuantity : IQuantity
+public class PhQuantity : IQuantity
 {
     private readonly IList<IUnit> _units;
 
@@ -20,7 +20,7 @@ public class PHQuantity : IQuantity
     /// <inheritdoc/>
     public virtual string Identifier { get; } = "pH";
 
-    internal PHQuantity()
+    internal PhQuantity()
     {
        _units = new List<IUnit> {
           new PhUnit(this)

@@ -26,7 +26,7 @@ public static class SatelliteExtensions
    private static readonly SubstanceQuantity _substance;
    private static readonly IrradianceQuantity _irradiance;
    private static readonly VelocityQuantity _velocity;
-   private static readonly PHQuantity _phQuantity;
+   private static readonly PhQuantity _phQuantity;
 
    static SatelliteExtensions()
    {
@@ -45,7 +45,7 @@ public static class SatelliteExtensions
       _substance = Quantity.Add(new SubstanceQuantity());
       _irradiance = Quantity.Add(new IrradianceQuantity());
       _velocity = Quantity.Add(new VelocityQuantity());
-      _phQuantity = Quantity.Add(new PHQuantity());
+      _phQuantity = Quantity.Add(new PhQuantity());
    }
 
    /// <summary>
@@ -102,6 +102,6 @@ public static class SatelliteExtensions
    /// <inheritdoc cref="VelocityQuantity" />
    public static VelocityQuantity Velocity(this KnownQuantities _) => _velocity;
 
-   /// <inheritdoc cref="PHQuantity" />
-   public static PHQuantity Ph(this KnownQuantities _) => _phQuantity;
+   /// <inheritdoc cref="PhQuantity" />
+   public static PhQuantity Ph(this KnownQuantities _) => _phQuantity;
 }

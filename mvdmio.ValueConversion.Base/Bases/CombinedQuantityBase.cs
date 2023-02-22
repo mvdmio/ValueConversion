@@ -10,8 +10,7 @@ namespace mvdmio.ValueConversion.Base.Bases;
 /// </summary>
 public abstract class CombinedQuantityBase : ICombinedQuantity
 {
-   private readonly object _lockObject = new();
-   private IList<ICombinedUnit>? _units;
+   private IList<ICombinedUnit> _units;
 
    /// <inheritdoc />
    public bool IsNamed { get; }
@@ -53,11 +52,14 @@ public abstract class CombinedQuantityBase : ICombinedQuantity
 
       NumeratorQuantity = numeratorQuantity;
       DenominatorQuantity = denominatorQuantity;
+
+      _units = CalculateUnits(NumeratorQuantity, DenominatorQuantity);
    }
 
    /// <summary>
    /// Creates a new named <see cref="CombinedQuantityBase"/> instance.
    /// </summary>
+   /// <param name="identifier">The identifier of this quantity.</param>
    /// <param name="numeratorQuantity">The numerator quantity.</param>
    /// <param name="denominatorQuantity">The denominator quantity.</param>
    protected CombinedQuantityBase(string identifier, IQuantity numeratorQuantity, IQuantity denominatorQuantity)
@@ -68,7 +70,7 @@ public abstract class CombinedQuantityBase : ICombinedQuantity
       NumeratorQuantity = numeratorQuantity;
       DenominatorQuantity = denominatorQuantity;
 
-      
+      _units = CalculateUnits(NumeratorQuantity, DenominatorQuantity);
    }
 
    /// <inheritdoc />
@@ -118,17 +120,6 @@ public abstract class CombinedQuantityBase : ICombinedQuantity
    /// <inheritdoc />
    public IEnumerable<ICombinedUnit> GetUnits()
    {
-      if (_units != null)
-         return _units;
-
-      lock (_lockObject)
-      {
-         if (_units != null)
-            return _units;
-
-         _units = CalculateUnits(NumeratorQuantity, DenominatorQuantity);
-      }
-
       return _units;
    }
 
@@ -167,6 +158,12 @@ public abstract class CombinedQuantityBase : ICombinedQuantity
       return new CombinedQuantityValue(timestamp, value, unit);
    }
 
+   /// <summary>
+   /// Retrieves the combined unit for this quantity based on the given numerator and denominator units.
+   /// </summary>
+   /// <param name="numeratorUnit">The numerator unit.</param>
+   /// <param name="denominatorUnit">The denominator unit.</param>
+   /// <returns>The combined unit for this quantity based on the given numerator and denominator units.</returns>
    protected abstract ICombinedUnit GetCombinedUnit(IUnit numeratorUnit, IUnit denominatorUnit);
 
    private IList<ICombinedUnit> CalculateUnits(IQuantity numeratorQuantity, IQuantity denominatorQuantity)

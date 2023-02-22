@@ -2,6 +2,9 @@
 
 namespace mvdmio.ValueConversion.Base.Bases;
 
+/// <summary>
+/// The base class for product combined quantities.
+/// </summary>
 public class ProductCombinedQuantity : CombinedQuantityBase
 {
    private const string _combinerCharacter = "*";

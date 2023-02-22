@@ -108,14 +108,14 @@ public class QuantityTest
    public void Of_ShouldSupportCombinedQuantities()
    {
       var quantitiesToTest = new List<(string identifier, IQuantity quantity)> {
-            ("(Energy/Area)/Temperature", Quantity.Rate(Quantity.Rate("Energy", "Area"), "Temperature")),
-            ("Energy/(Area/Temperature)", Quantity.Rate("Energy", Quantity.Rate("Area", "Temperature"))),
+            ("(Energy/Area)/Temperature", Quantity.Rate(Quantity.Rate("Energy", "Area").Identifier, "Temperature")),
+            ("Energy/(Area/Temperature)", Quantity.Rate("Energy", Quantity.Rate("Area", "Temperature").Identifier)),
             ("(Energy/Area)/(Area/Temperature)", Quantity.Rate(Quantity.Rate("Energy", "Area"), Quantity.Rate("Area", "Temperature"))),
-            ("(Energy*Area)*Temperature", Quantity.Product(Quantity.Product("Energy", "Area"), "Temperature")),
-            ("Energy*(Area*Temperature)", Quantity.Product("Energy", Quantity.Product("Area", "Temperature"))),
+            ("(Energy*Area)*Temperature", Quantity.Product(Quantity.Product("Energy", "Area").Identifier, "Temperature")),
+            ("Energy*(Area*Temperature)", Quantity.Product("Energy", Quantity.Product("Area", "Temperature").Identifier)),
             ("(Energy*Area)*(Area*Temperature)", Quantity.Product(Quantity.Product("Energy", "Area"), Quantity.Product("Area", "Temperature"))),
             ("(Energy*Area)/(Area*Temperature)", Quantity.Rate(Quantity.Product("Energy", "Area"), Quantity.Product("Area", "Temperature"))),
-            ("((Energy*Area)/Temperature)/Area", Quantity.Rate(Quantity.Rate(Quantity.Product("Energy", "Area"), "Temperature"), "Area"))
+            ("((Energy*Area)/Temperature)/Area", Quantity.Rate(Quantity.Rate(Quantity.Product("Energy", "Area").Identifier, "Temperature").Identifier, "Area"))
         };
 
       foreach (var (identifier, quantity) in quantitiesToTest)
@@ -139,23 +139,5 @@ public class QuantityTest
             AssertEqualQuantity(expectedCombinedQuantity.DenominatorQuantity, actualCombinedQuantity.DenominatorQuantity);
          }
       }
-   }
-
-   [DataTestMethod]
-   [DataRow("Energy/(Area/Temperature)", "Energy", "Area", "Temperature", DisplayName = "Radiation Temperature Ratio")]
-   [DataRow("Volume/(Energy/Area)", "Volume", "Energy", "Area", DisplayName = "Irrigation Volume Radiation Sum Ratio")]
-   public void Rate_ShouldSupportMultipleCombinedQuantities(string expectedIdentifier, params string[] quantityTypes)
-   {
-      var result = Quantity.Rate(quantityTypes);
-      Assert.AreEqual(expectedIdentifier, result.Identifier);
-   }
-
-   [DataTestMethod]
-   [DataRow("Energy*(Area*Temperature)", "Energy", "Area", "Temperature", DisplayName = "Random combination 1")]
-   [DataRow("Volume*(Energy*Area)", "Volume", "Energy", "Area", DisplayName = "Random combination 2")]
-   public void Product_ShouldSupportMultipleCombinedQuantities(string expectedIdentifier, params string[] quantityTypes)
-   {
-      var result = Quantity.Product(quantityTypes);
-      Assert.AreEqual(expectedIdentifier, result.Identifier);
    }
 }

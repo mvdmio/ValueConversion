@@ -2,6 +2,9 @@
 
 namespace mvdmio.ValueConversion.Base.Bases;
 
+/// <summary>
+/// Base class for rate combined quantities.
+/// </summary>
 public class RateCombinedQuantity : CombinedQuantityBase
 {
    private const string _combinerCharacter = "/";

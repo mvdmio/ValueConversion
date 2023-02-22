@@ -11,7 +11,7 @@ public class RadiationTemperatureRatioTests
     public void ShouldProduceTheCorrectQuantityWhenDeserlializingTheQuantityIdentifier()
     {
         var radiation = Quantity.Rate("Energy", "Area");
-        var radiationTemperatureRatio = Quantity.Rate(radiation, "Temperature");
+        var radiationTemperatureRatio = Quantity.Rate(radiation.Identifier, "Temperature");
 
         var deserializedRadiationTemperatureRatio = Quantity.Of(radiationTemperatureRatio.Identifier) as RateCombinedQuantity;
 

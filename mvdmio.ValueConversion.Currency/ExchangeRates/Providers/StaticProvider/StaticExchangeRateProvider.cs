@@ -5,7 +5,7 @@ namespace mvdmio.ValueConversion.Currency.ExchangeRates.Providers.StaticProvider
 
 public class StaticExchangeRateProvider : IExchangeRateProvider
 {
-    private readonly IDictionary<string, double> conversionDictionary = new Dictionary<string, double> {
+    private readonly IDictionary<string, double> _conversionDictionary = new Dictionary<string, double> {
         { "UnitedStatesDollar", 1 },
         { "Euro", 0.896688083 },
         { "MexicanPeso", 19.0363785 },
@@ -19,10 +19,10 @@ public class StaticExchangeRateProvider : IExchangeRateProvider
 
     public CurrencyExchangeRateValue GetExchangeRate(string fromIdentifier, string toIdentifier, DateTime utcDate)
     {
-        if(!conversionDictionary.TryGetValue(fromIdentifier, out var fromValue))
+        if(!_conversionDictionary.TryGetValue(fromIdentifier, out var fromValue))
             throw new InvalidOperationException($"No exchange rate could be found for {fromIdentifier}");
 
-        if(!conversionDictionary.TryGetValue(toIdentifier, out var toValue))
+        if(!_conversionDictionary.TryGetValue(toIdentifier, out var toValue))
             throw new InvalidOperationException($"No exchange rate could be found for {toIdentifier}");
 
         var exchangeRate = toValue / fromValue;

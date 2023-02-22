@@ -64,6 +64,17 @@ public abstract class UnitBase : IUnit
       return result;
    }
 
+   /// <summary>
+   /// Retrieve the symbol for this unit.
+   /// </summary>
+   /// <param name="cultureInfo">The culture info to use.</param>
+   /// <returns>The symbol for this unit.</returns>
    protected abstract string? GetSymbolInternal(CultureInfo cultureInfo);
+
+   /// <summary>
+   /// Retrieve the value format for this unit..
+   /// </summary>
+   /// <param name="cultureInfo">The culture info to use.</param>
+   /// <returns>The value format for this unit, or null when the default format should be used.</returns>
    protected abstract string? GetFormatInternal(CultureInfo cultureInfo);
 }

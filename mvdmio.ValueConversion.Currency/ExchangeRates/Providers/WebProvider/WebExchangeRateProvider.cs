@@ -9,7 +9,7 @@ namespace mvdmio.ValueConversion.Currency.ExchangeRates.Providers.WebProvider;
 
 public class WebExchangeRateProvider : IExchangeRateProvider
 {
-    private readonly IDictionary<string, string> currencyTypeDictionary = new Dictionary<string, string> {
+    private readonly IDictionary<string, string> _currencyTypeDictionary = new Dictionary<string, string> {
         { "Euro", "EUR" },
         { "MexicanPeso", "MXN" },
         { "UnitedStatesDollar", "USD" },
@@ -167,11 +167,11 @@ public class WebExchangeRateProvider : IExchangeRateProvider
 
     private string GetApiCurrencySymbol(string identifier)
     {
-        if (!currencyTypeDictionary.ContainsKey(identifier))
+        if (!_currencyTypeDictionary.ContainsKey(identifier))
         {
-            throw new InvalidOperationException($"{nameof(currencyTypeDictionary)} does not contain a translation for type '{identifier}'");
+            throw new InvalidOperationException($"{nameof(_currencyTypeDictionary)} does not contain a translation for type '{identifier}'");
         }
 
-        return currencyTypeDictionary[identifier];
+        return _currencyTypeDictionary[identifier];
     }
 }

@@ -11,34 +11,25 @@ namespace mvdmio.ValueConversion.Currency.Quantities;
 /// </summary>
 public sealed class CurrencyQuantity : QuantityBase
 {
-    private readonly object _lockObject = new();
-    private IUnit[] _units;
+    private readonly IUnit[] _units;
 
+    /// <summary>
+    /// Constructor.
+    /// </summary>
     public CurrencyQuantity()
         : base("Currency", "UnitedStatesDollar")
     {
+       _units = new IUnit[] {
+          new CurrencyUnit("UnitedStatesDollar"),
+          new CurrencyUnit("Euro"),
+          new CurrencyUnit("MexicanPeso"),
+          new CurrencyUnit("CanadianDollar")
+       };
     }
 
     /// <inheritdoc/>     
     public override IEnumerable<IUnit> GetUnits()
     {
-        if (_units == null)
-        {
-            lock (_lockObject)
-            {
-                if (_units == null)
-                {
-                    var units =  new IUnit[] {
-                        new CurrencyUnit("UnitedStatesDollar"),
-                        new CurrencyUnit("Euro"),
-                        new CurrencyUnit("MexicanPeso"),
-                        new CurrencyUnit("CanadianDollar")
-                    };
-                    _units = units;
-                }
-            }
-        }
-
         return _units;
     }
 }

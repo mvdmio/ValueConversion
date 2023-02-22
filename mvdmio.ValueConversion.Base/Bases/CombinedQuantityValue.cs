@@ -37,6 +37,7 @@ public class CombinedQuantityValue : IQuantityValue
         return GetQuantity();
     }
 
+    /// <inheritdoc cref="IQuantityValue.GetQuantity"/>
     public ICombinedQuantity GetQuantity()
     {
         return _quantity;
@@ -47,6 +48,7 @@ public class CombinedQuantityValue : IQuantityValue
         return GetUnit();
     }
 
+    /// <inheritdoc cref="IQuantityValue.GetUnit"/>
     public ICombinedUnit GetUnit()
     {
         return _unit;
@@ -75,6 +77,7 @@ public class CombinedQuantityValue : IQuantityValue
         throw new InvalidCastException($"Cannot use {unit.GetType().FullName} as {typeof(ICombinedUnit).FullName}");
     }
 
+    /// <inheritdoc cref="As(IUnit)"/>
     public IQuantityValue As(ICombinedUnit toUnit)
     {
         return _quantity.Convert(this, toUnit);
