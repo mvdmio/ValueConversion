@@ -45,6 +45,10 @@ As well as a couple of pre-defined (named) combined quantities:
 # Usage Examples
 
 ``` csharp
+// Setup quantities from child packages
+Quantity.Setup.WithUnitsOfMeasurement();
+Quantity.Setup.WithCurrencies();
+
 // Retrieve the 'Area' quantity
 var areaQuantity = Quantity.Known.Area;
 

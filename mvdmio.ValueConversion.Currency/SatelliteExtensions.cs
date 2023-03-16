@@ -8,9 +8,22 @@ namespace mvdmio.ValueConversion.Currency;
 /// </summary>
 public static class SatelliteExtensions
 {
-   /// <inheritdoc cref="CurrencyQuantity"/>
-   public static CurrencyQuantity Currency(this KnownQuantities _)
+   private static readonly CurrencyQuantity _currency;
+
+   static SatelliteExtensions()
    {
-      return new CurrencyQuantity();
+      _currency = new CurrencyQuantity();
    }
+
+   /// <summary>
+   /// Sets up the quantity library with Units of Measurement quantities.
+   /// </summary>
+   /// <param name="_">The extension class</param>
+   public static void WithCurrencies(this QuantitySetup _)
+   {
+      // Calling this method will run the static constructor, setting up the quantities.
+   }
+
+   /// <inheritdoc cref="CurrencyQuantity"/>
+   public static CurrencyQuantity Currency(this KnownQuantities _) => _currency;
 }
