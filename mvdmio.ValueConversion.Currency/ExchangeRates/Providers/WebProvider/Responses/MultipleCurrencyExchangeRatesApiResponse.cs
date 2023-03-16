@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace mvdmio.ValueConversion.Currency.ExchangeRates.Providers.WebProvider.Responses;
 
-public class MultipleCurrencyExchangeRatesApiResponse
+internal class MultipleCurrencyExchangeRatesApiResponse
 {
-    [JsonProperty("base")]
+    [JsonPropertyName("base")]
     public string Base { get; set; }
 
-    [JsonProperty("start_at")]
+    [JsonPropertyName("start_at")]
     public DateTime StartAt { get; set; }
 
-    [JsonProperty("end_at")]
+    [JsonPropertyName("end_at")]
     public DateTime EndAt { get; set; }
 
-    [JsonProperty("rates")]
-    public SortedDictionary<DateTime, IDictionary<string, double>> Rates;
+    [JsonPropertyName("rates")]
+    public SortedDictionary<DateTime, IDictionary<string, double>> Rates { get; set; } = new SortedDictionary<DateTime, IDictionary<string, double>>();
 }

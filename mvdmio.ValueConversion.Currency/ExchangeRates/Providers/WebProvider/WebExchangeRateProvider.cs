@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using mvdmio.ValueConversion.Currency.ExchangeRates.Providers.WebProvider.Responses;
-using Newtonsoft.Json;
 
 namespace mvdmio.ValueConversion.Currency.ExchangeRates.Providers.WebProvider;
 
@@ -34,7 +34,7 @@ public class WebExchangeRateProvider : IExchangeRateProvider
 
             var asyncResponseContent = response.Content.ReadAsStringAsync();
             var responseString = asyncResponseContent.Result; // TODO: This is async over sync, bad practice!
-            var exchangeRateResponse = JsonConvert.DeserializeObject<SingleCurrencyExchangeRateApiResponse>(responseString);
+            var exchangeRateResponse = JsonSerializer.Deserialize<SingleCurrencyExchangeRateApiResponse>(responseString);
             var apiCurrencySymbol = GetApiCurrencySymbol(toIdentifier);
 
             if(!exchangeRateResponse.Rates.ContainsKey(apiCurrencySymbol))
@@ -65,7 +65,7 @@ public class WebExchangeRateProvider : IExchangeRateProvider
 
             var asyncResponseContent = response.Content.ReadAsStringAsync(); // TODO: This is async over sync, bad practice!
             var responseString = asyncResponseContent.Result;
-            var exchangeRateResponse = JsonConvert.DeserializeObject<MultipleCurrencyExchangeRatesApiResponse>(responseString);
+            var exchangeRateResponse = JsonSerializer.Deserialize<MultipleCurrencyExchangeRatesApiResponse>(responseString);
 
             if(!exchangeRateResponse.Rates.Any())
             {
@@ -103,7 +103,7 @@ public class WebExchangeRateProvider : IExchangeRateProvider
 
             var asyncResponseContent = response.Content.ReadAsStringAsync();
             var responseString = asyncResponseContent.Result; // TODO: This is async over sync, bad practice!
-            var exchangeRateResponse = JsonConvert.DeserializeObject<MultipleCurrencyExchangeRatesApiResponse>(responseString);
+            var exchangeRateResponse = JsonSerializer.Deserialize<MultipleCurrencyExchangeRatesApiResponse>(responseString);
 
             if(!exchangeRateResponse.Rates.Values.Any(x => x.ContainsKey(GetApiCurrencySymbol(toIdentifier))))
                 throw new InvalidOperationException($"Exchange rate {toIdentifier} not found.");
