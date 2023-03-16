@@ -18,10 +18,6 @@
     <Authors>Michiel van der Meer</Authors>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platfor)'=='Debug|AnyCPU'">
-    <DocumentationFile>.\mvdmsoftware.UnitsOfMeasurement.xml</DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
     <EmbeddedResource Update="Resources\UnitsFormatting\UnitsFormatting.resx">
       <Generator>ResXFileCodeGenerator</Generator>
