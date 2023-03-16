@@ -11,16 +11,18 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Version>1.0.2</Version>
+        <Version>1.0.3</Version>
         <Title>Package for working value conversions.</Title>
         <Description>Package for working value conversions.</Description>
         <Company>mvdmio</Company>
         <Authors>Michiel van der Meer</Authors>
 	    <PackageReadmeFile>Readme.md</PackageReadmeFile>
+	    <PackageLicenseFile>License.txt</PackageLicenseFile>
     </PropertyGroup>
 
 	<ItemGroup>
 		<None Include="Readme.md" Pack="true" PackagePath="\"/>
+		<None Include="License.txt" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 
     <ItemGroup>
