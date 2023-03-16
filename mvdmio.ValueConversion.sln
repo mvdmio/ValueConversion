@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31515.178
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mvdmio.ValueConversion.UnitsOfMeasurement", "mvdmio.ValueConversion.UnitsOfMeasurement\mvdmio.ValueConversion.UnitsOfMeasurement.csproj", "{25412465-7B69-4077-A346-4049531F4207}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mvdmio.ValueConversion.UnitsOfMeasurement.Tests", "mvdmio.ValueConversion.UnitsOfMeasurement.Tests\mvdmio.ValueConversion.UnitsOfMeasurement.Tests.csproj", "{8AC06FD7-5C30-44E2-A63E-BC8683C5F9DD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DFAB5F60-305C-482F-B453-18C576E3120A}"
 	ProjectSection(SolutionItems) = preProject
@@ -13,15 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mvdmio.ValueConversion.Currency", "mvdmio.ValueConversion.Currency\mvdmio.ValueConversion.Currency.csproj", "{1EC46956-D942-498B-A4FB-91319C751662}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mvdmio.ValueConversion.Currency.Tests", "mvdmio.ValueConversion.Currency.Tests\mvdmio.ValueConversion.Currency.Tests.csproj", "{B87A8564-3452-4A54-A330-0A49C44CE357}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mvdmio.ValueConversion.Currency", "mvdmio.ValueConversion.Currency\mvdmio.ValueConversion.Currency.csproj", "{1EC46956-D942-498B-A4FB-91319C751662}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{140ECF51-4C6E-4BF8-BB8E-A978FAF2A364}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mvdmio.ValueConversion.Base", "mvdmio.ValueConversion.Base\mvdmio.ValueConversion.Base.csproj", "{6F0432B8-A6C4-477E-B157-7C83287E0ED4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mvdmio.ValueConversion.Base", "mvdmio.ValueConversion.Base\mvdmio.ValueConversion.Base.csproj", "{6F0432B8-A6C4-477E-B157-7C83287E0ED4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mvdmio.ValueConversion.Base.Tests", "mvdmio.ValueConversion.Base.Tests\mvdmio.ValueConversion.Base.Tests.csproj", "{E0BCBE9B-4566-4C2D-B90C-FDA5D09912D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mvdmio.ValueConversion.Base.Tests", "Tests\mvdmio.ValueConversion.Base.Tests\mvdmio.ValueConversion.Base.Tests.csproj", "{6FC71C2B-1B2F-4ED8-ADE3-8021D62F8ABD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mvdmio.ValueConversion.Currency.Tests", "Tests\mvdmio.ValueConversion.Currency.Tests\mvdmio.ValueConversion.Currency.Tests.csproj", "{EF2FFD99-85E9-4C6E-9A0A-674A38BBCEB5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mvdmio.ValueConversion.UnitsOfMeasurement.Tests", "Tests\mvdmio.ValueConversion.UnitsOfMeasurement.Tests\mvdmio.ValueConversion.UnitsOfMeasurement.Tests.csproj", "{6BBE623A-F1A4-42F3-9ED7-040A22BFE2B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,36 +33,36 @@ Global
 		{25412465-7B69-4077-A346-4049531F4207}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25412465-7B69-4077-A346-4049531F4207}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25412465-7B69-4077-A346-4049531F4207}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8AC06FD7-5C30-44E2-A63E-BC8683C5F9DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8AC06FD7-5C30-44E2-A63E-BC8683C5F9DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8AC06FD7-5C30-44E2-A63E-BC8683C5F9DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8AC06FD7-5C30-44E2-A63E-BC8683C5F9DD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1EC46956-D942-498B-A4FB-91319C751662}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1EC46956-D942-498B-A4FB-91319C751662}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EC46956-D942-498B-A4FB-91319C751662}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EC46956-D942-498B-A4FB-91319C751662}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B87A8564-3452-4A54-A330-0A49C44CE357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B87A8564-3452-4A54-A330-0A49C44CE357}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B87A8564-3452-4A54-A330-0A49C44CE357}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B87A8564-3452-4A54-A330-0A49C44CE357}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6F0432B8-A6C4-477E-B157-7C83287E0ED4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6F0432B8-A6C4-477E-B157-7C83287E0ED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F0432B8-A6C4-477E-B157-7C83287E0ED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F0432B8-A6C4-477E-B157-7C83287E0ED4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E0BCBE9B-4566-4C2D-B90C-FDA5D09912D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0BCBE9B-4566-4C2D-B90C-FDA5D09912D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E0BCBE9B-4566-4C2D-B90C-FDA5D09912D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E0BCBE9B-4566-4C2D-B90C-FDA5D09912D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FC71C2B-1B2F-4ED8-ADE3-8021D62F8ABD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FC71C2B-1B2F-4ED8-ADE3-8021D62F8ABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FC71C2B-1B2F-4ED8-ADE3-8021D62F8ABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FC71C2B-1B2F-4ED8-ADE3-8021D62F8ABD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF2FFD99-85E9-4C6E-9A0A-674A38BBCEB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF2FFD99-85E9-4C6E-9A0A-674A38BBCEB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF2FFD99-85E9-4C6E-9A0A-674A38BBCEB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF2FFD99-85E9-4C6E-9A0A-674A38BBCEB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BBE623A-F1A4-42F3-9ED7-040A22BFE2B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BBE623A-F1A4-42F3-9ED7-040A22BFE2B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BBE623A-F1A4-42F3-9ED7-040A22BFE2B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BBE623A-F1A4-42F3-9ED7-040A22BFE2B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6FC71C2B-1B2F-4ED8-ADE3-8021D62F8ABD} = {140ECF51-4C6E-4BF8-BB8E-A978FAF2A364}
+		{EF2FFD99-85E9-4C6E-9A0A-674A38BBCEB5} = {140ECF51-4C6E-4BF8-BB8E-A978FAF2A364}
+		{6BBE623A-F1A4-42F3-9ED7-040A22BFE2B0} = {140ECF51-4C6E-4BF8-BB8E-A978FAF2A364}
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7C3A87BF-85AF-4080-890C-8FCC55904B76}
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{B87A8564-3452-4A54-A330-0A49C44CE357} = {140ECF51-4C6E-4BF8-BB8E-A978FAF2A364}
-		{8AC06FD7-5C30-44E2-A63E-BC8683C5F9DD} = {140ECF51-4C6E-4BF8-BB8E-A978FAF2A364}
-		{E0BCBE9B-4566-4C2D-B90C-FDA5D09912D6} = {140ECF51-4C6E-4BF8-BB8E-A978FAF2A364}
 	EndGlobalSection
 EndGlobal
