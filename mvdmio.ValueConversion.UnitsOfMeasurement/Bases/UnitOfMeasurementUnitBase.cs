@@ -1,5 +1,4 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using mvdmio.ValueConversion.Base.Bases;
 using mvdmio.ValueConversion.Base.Interfaces;
 using mvdmio.ValueConversion.UnitsOfMeasurement.Resources.UnitsFormatting;

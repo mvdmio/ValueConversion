@@ -1,13 +1,12 @@
 ﻿using System.Globalization;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using mvdmio.ValueConversion.Base;
+using Xunit;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Formatting;
 
-[TestClass]
 public class UnitFormattingTest
 {
-    [TestMethod]
+    [Fact]
     public void AllUnitsShouldHaveSymbols()
     {
         var allQuantities = Quantity.GetAll();
@@ -41,8 +40,8 @@ public class UnitFormattingTest
             Assert.Fail($"Missing {missingFormats.Count} formats");
     }
 
-    [TestMethod]
-    public void AllUnitsShouldBeFormattable()
+    [Fact]
+    public void AllUnitsShouldBeFormatable()
     {
         var allQuantities = Quantity.GetAll();
 

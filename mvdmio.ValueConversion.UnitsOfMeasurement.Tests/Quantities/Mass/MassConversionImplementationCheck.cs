@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using mvdmio.ValueConversion.Base;
+﻿using mvdmio.ValueConversion.Base;
+using Xunit;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Quantities.Mass;
 
-[TestClass]
+
 public class MassConversionImplementationCheck
 {
-    [TestMethod]
+    [Fact]
     public void ShouldConvertAllAreaCombinationsIntoAllOtherAreaCombinations()
     {
         foreach (var fromUnit in Quantity.Known.Mass().GetUnits())
@@ -17,13 +17,13 @@ public class MassConversionImplementationCheck
             {
                 var toValue = fromValue.As(toUnit);
 
-                Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromUnit.Identifier} to {toUnit.Identifier} did not result in equal quantities.");
+                Assert.True(fromValue.IsEqualTo(toValue), $"Conversion from {fromUnit.Identifier} to {toUnit.Identifier} did not result in equal quantities.");
 
                 var conversionFactor = toValue.GetValue();
                 var expected = fromValue.GetValue() * conversionFactor;
                 var actual = toValue.GetValue();
 
-                Assert.AreEqual(expected, actual);
+                Assert.Equal(expected, actual);
             }
         }
     }

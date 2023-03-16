@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using mvdmio.ValueConversion.Base;
+﻿using mvdmio.ValueConversion.Base;
+using Xunit;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Quantities.ElectricConductivity;
 
-[TestClass]
+
 public class ElectricConductivityConversionTests
 {
-    [TestMethod]
+    [Fact]
     public void ShouldConvertToStandardUnitCorrectly()
     {
         var milliSiemensPerCentimeter = Quantity.Known.ElectricConductivity().GetUnit(Quantity.Known.ElectricConductance().GetUnit("Millisiemens").Identifier, Quantity.Known.Distance().GetUnit("Centimeter").Identifier);
@@ -14,10 +14,10 @@ public class ElectricConductivityConversionTests
         var value = Quantity.Known.ElectricConductivity().CreateValue(5, milliSiemensPerCentimeter);
         var standardUnitValue = value.GetStandardValue();
 
-        Assert.AreEqual(0.5d, standardUnitValue);
+        Assert.Equal(0.5d, standardUnitValue);
     }
 
-    [TestMethod]
+    [Fact]
     public void ShouldConvertFromStandardUnitCorrectly()
     {
         var milliSiemensPerCentimeter = Quantity.Known.ElectricConductivity().GetUnit(Quantity.Known.ElectricConductance().GetUnit("Millisiemens").Identifier, Quantity.Known.Distance().GetUnit("Centimeter").Identifier);
@@ -25,6 +25,6 @@ public class ElectricConductivityConversionTests
         var value = Quantity.Known.ElectricConductivity().CreateValue(0.5, Quantity.Known.ElectricConductivity().StandardUnit);
         var milliSiemensPerCentimeterValue = value.As(milliSiemensPerCentimeter);
 
-        Assert.AreEqual(5, milliSiemensPerCentimeterValue.GetValue());
+        Assert.Equal(5, milliSiemensPerCentimeterValue.GetValue());
     }
 }

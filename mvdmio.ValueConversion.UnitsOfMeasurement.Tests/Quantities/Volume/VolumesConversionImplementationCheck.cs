@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using mvdmio.ValueConversion.Base;
+﻿using mvdmio.ValueConversion.Base;
+using Xunit;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Quantities.Volume;
 
-[TestClass]
+
 public class VolumeConversionImplementationCheck
 {
-    [TestMethod]
+    [Fact]
     public void ShouldConvertAllVolumeCombinationsIntoAllOtherVolumeCombinations()
     {
         foreach (var fromUnit in Quantity.Known.Volume().GetUnits())
@@ -17,13 +17,13 @@ public class VolumeConversionImplementationCheck
             {
                 var toValue = fromValue.As(toUnit);
 
-                Assert.IsTrue(fromValue.IsEqualTo(toValue), $"Conversion from {fromUnit.Identifier} to {toUnit.Identifier} did not result in equal quantities.");
+                Assert.True(fromValue.IsEqualTo(toValue), $"Conversion from {fromUnit.Identifier} to {toUnit.Identifier} did not result in equal quantities.");
 
                 var conversionFactor = toValue.GetValue();
                 var expected = fromValue.GetValue() * conversionFactor;
                 var actual = toValue.GetValue();
 
-                Assert.AreEqual(expected, actual);
+                Assert.Equal(expected, actual);
             }
         }
     }

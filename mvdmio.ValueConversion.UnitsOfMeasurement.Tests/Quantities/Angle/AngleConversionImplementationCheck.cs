@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using mvdmio.ValueConversion.Base;
+﻿using mvdmio.ValueConversion.Base;
+using Xunit;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Quantities.Angle;
 
-[TestClass]
+
 public class AngleConversionImplementationCheck : ConversionImplementationCheckBase
 {
-    [TestMethod]
+    [Fact]
     public void ShouldConvertAllAreaCombinationsIntoAllOtherAreaCombinations()
     {
         TestQuantityConversionImplementation(Quantity.Known.Angle());

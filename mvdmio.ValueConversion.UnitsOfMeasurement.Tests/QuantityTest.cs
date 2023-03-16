@@ -1,19 +1,17 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using mvdmio.ValueConversion.Base;
+﻿using mvdmio.ValueConversion.Base;
 using mvdmio.ValueConversion.Base.Interfaces;
+using Xunit;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests;
 
-[TestClass]
 public class QuantityTest
 {
-   [AssemblyInitialize]
-   public static void SetupAssembly(TestContext _)
+   public QuantityTest()
    {
       Quantity.Setup.WithUnitsOfMeasurement();
    }
 
-   [TestMethod]
+   [Fact]
    public void OfIdentifier_ShouldSupportAllQuantityIdentifiers()
    {
       var allQuantities = Quantity.GetAll();
@@ -23,7 +21,8 @@ public class QuantityTest
          try
          {
             var retrievedQuantity = Quantity.Of(quantity.Identifier);
-            Assert.AreEqual(quantity.Identifier, retrievedQuantity.Identifier);
+            Assert.Equal(quantity.Identifier, retrievedQuantity.Identifier);
+            
          }
          catch (KeyNotFoundException)
          {
@@ -32,7 +31,7 @@ public class QuantityTest
       }
    }
 
-   [TestMethod]
+   [Fact]
    public void Rate_ShouldSupportAllPossibleRatios()
    {
       foreach (var numeratorType in Quantity.GetAll())
@@ -45,8 +44,8 @@ public class QuantityTest
             {
                typedQuantity = Quantity.Rate(numeratorType, denominatorType);
 
-               Assert.IsNotNull(typedQuantity, $"No ratio quantity returned for type {numeratorType.Identifier}/{denominatorType.Identifier}");
-               Assert.AreEqual($"{numeratorType.Identifier}/{denominatorType.Identifier}", typedQuantity.Identifier, $"Returned quantity type {typedQuantity.Identifier} does not mach requested quantity type {numeratorType.Identifier}/{denominatorType.Identifier}");
+               Assert.NotNull(typedQuantity);
+               Assert.Equal($"{numeratorType.Identifier}/{denominatorType.Identifier}", typedQuantity.Identifier);
             }
             catch (KeyNotFoundException)
             {
@@ -57,8 +56,8 @@ public class QuantityTest
             try
             {
                var identifiedQuantity = Quantity.Of(typedQuantity.Identifier);
-               Assert.IsNotNull(identifiedQuantity, $"No ratio quantity returned for identifier {typedQuantity.Identifier}");
-               Assert.AreEqual($"{numeratorType.Identifier}/{denominatorType.Identifier}", typedQuantity.Identifier, $"Returned quantity type {typedQuantity.Identifier} does not mach requested quantity type {numeratorType.Identifier}/{denominatorType.Identifier}");
+               Assert.NotNull(identifiedQuantity);
+               Assert.Equal($"{numeratorType.Identifier}/{denominatorType.Identifier}", typedQuantity.Identifier);
             }
             catch (KeyNotFoundException)
             {
@@ -68,7 +67,7 @@ public class QuantityTest
       }
    }
 
-   [TestMethod]
+   [Fact]
    public void Product_ShouldSupportAllPossibleProducts()
    {
       foreach (var numeratorType in Quantity.GetAll())
@@ -81,8 +80,8 @@ public class QuantityTest
             {
                typedQuantity = Quantity.Product(numeratorType, denominatorType);
 
-               Assert.IsNotNull(typedQuantity, $"No ratio quantity returned for type {numeratorType.Identifier}*{denominatorType.Identifier}");
-               Assert.AreEqual($"{numeratorType.Identifier}*{denominatorType.Identifier}", typedQuantity.Identifier, $"Returned quantity type {typedQuantity.Identifier} does not mach requested quantity type {numeratorType.Identifier}*{denominatorType.Identifier}");
+               Assert.NotNull(typedQuantity);
+               Assert.Equal($"{numeratorType.Identifier}*{denominatorType.Identifier}", typedQuantity.Identifier);
             }
             catch (KeyNotFoundException)
             {
@@ -93,8 +92,8 @@ public class QuantityTest
             try
             {
                var identifiedQuantity = Quantity.Of(typedQuantity.Identifier);
-               Assert.IsNotNull(identifiedQuantity, $"No ratio quantity returned for identifier {typedQuantity.Identifier}");
-               Assert.AreEqual($"{numeratorType.Identifier}*{denominatorType.Identifier}", typedQuantity.Identifier, $"Returned quantity type {typedQuantity.Identifier} does not mach requested quantity type {numeratorType.Identifier}*{denominatorType.Identifier}");
+               Assert.NotNull(identifiedQuantity);
+               Assert.Equal($"{numeratorType.Identifier}*{denominatorType.Identifier}", typedQuantity.Identifier);
             }
             catch (KeyNotFoundException)
             {
@@ -104,7 +103,7 @@ public class QuantityTest
       }
    }
 
-   [TestMethod]
+   [Fact]
    public void Of_ShouldSupportCombinedQuantities()
    {
       var quantitiesToTest = new List<(string identifier, IQuantity quantity)> {
@@ -126,7 +125,7 @@ public class QuantityTest
 
       static void AssertEqualQuantity(IQuantity expected, IQuantity actual)
       {
-         Assert.AreEqual(expected.Identifier, actual.Identifier);
+         Assert.Equal(expected.Identifier, actual.Identifier);
 
          if (expected is ICombinedQuantity expectedCombinedQuantity)
          {

@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using mvdmio.ValueConversion.Base;
+﻿using mvdmio.ValueConversion.Base;
+using Xunit;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Quantities.Velocity;
 
-[TestClass]
+
 public class VelocityConversionTests
 {
-    [TestMethod]
+    [Fact]
     public void ShouldConvertCentimeterPerWeekToStandardUnitCorrectly()
     {
         var centimeterPerWeek = Quantity.Known.Velocity().GetUnit(Quantity.Known.Distance().GetUnit("Centimeter").Identifier, Quantity.Known.Duration().GetUnit("Week").Identifier);
@@ -14,10 +14,10 @@ public class VelocityConversionTests
         var value = Quantity.Known.Velocity().CreateValue(12, centimeterPerWeek);
         var standardUnitValue = value.GetStandardValue();
 
-        Assert.AreEqual(1.9841269841269841E-07, standardUnitValue);
+        Assert.Equal(1.9841269841269841E-07, standardUnitValue);
     }
 
-    [TestMethod]
+    [Fact]
     public void ShouldConvertKilometerPerHourToStandardUnitCorrectly()
     {
         var kilometerPerHour = Quantity.Known.Velocity().GetUnit(Quantity.Known.Distance().GetUnit("Kilometer").Identifier, Quantity.Known.Duration().GetUnit("Hour").Identifier);
@@ -25,10 +25,10 @@ public class VelocityConversionTests
         var value = Quantity.Known.Velocity().CreateValue(100, kilometerPerHour);
         var standardUnitValue = value.GetStandardValue();
 
-        Assert.AreEqual(27.77777777777778, standardUnitValue);
+        Assert.Equal(27.77777777777778, standardUnitValue);
     }
 
-    [TestMethod]
+    [Fact]
     public void ShouldConvertStandardUnitToKilometerPerHourCorrectly()
     {
         var standardUnit = Quantity.Known.Velocity().StandardUnit;
@@ -37,6 +37,6 @@ public class VelocityConversionTests
         var value = Quantity.Known.Velocity().CreateValue(27.77777777777778, standardUnit);
         var kilometerPerHourValue = value.As(kilometerPerHour);
 
-        Assert.AreEqual(100, kilometerPerHourValue.GetValue());
+        Assert.Equal(100, kilometerPerHourValue.GetValue());
     }
 }
