@@ -23,7 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\mvdmio.ValueConversion.UnitsOfMeasurement\mvdmio.ValueConversion.UnitsOfMeasurement.csproj" />
+    <ProjectReference Include="..\..\mvdmio.ValueConversion.Base\mvdmio.ValueConversion.Base.csproj" />
+    <ProjectReference Include="..\..\mvdmio.ValueConversion.UnitsOfMeasurement\mvdmio.ValueConversion.UnitsOfMeasurement.csproj" />
   </ItemGroup>
 
 </Project>

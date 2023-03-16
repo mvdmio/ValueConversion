@@ -3,7 +3,6 @@ using Xunit;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Quantities.Angle;
 
-
 public class AngleConversionImplementationCheck : ConversionImplementationCheckBase
 {
     [Fact]

@@ -28,7 +28,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\mvdmio.ValueConversion.Currency\mvdmio.ValueConversion.Currency.csproj" />
+      <ProjectReference Include="..\..\mvdmio.ValueConversion.Currency\mvdmio.ValueConversion.Currency.csproj" />
+      <ProjectReference Include="..\mvdmio.ValueConversion.Base.Tests\mvdmio.ValueConversion.Base.Tests.csproj" />
       <ProjectReference Include="..\mvdmio.ValueConversion.UnitsOfMeasurement.Tests\mvdmio.ValueConversion.UnitsOfMeasurement.Tests.csproj" />
     </ItemGroup>
 
