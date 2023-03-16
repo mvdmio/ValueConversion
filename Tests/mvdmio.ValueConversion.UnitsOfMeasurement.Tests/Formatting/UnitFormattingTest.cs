@@ -43,7 +43,7 @@ public class UnitFormattingTest
     [Fact]
     public void AllUnitsShouldBeFormatable()
     {
-        var allQuantities = Quantity.GetAll();
+        var allQuantities = Quantity.GetAll().ToArray();
 
         var missingFormats = new List<string>();
         foreach (var quantity in allQuantities)
