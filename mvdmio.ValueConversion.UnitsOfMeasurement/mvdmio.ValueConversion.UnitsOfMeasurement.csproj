@@ -11,7 +11,7 @@
   </PropertyGroup>
     
   <PropertyGroup>
-    <Version>3.2.2</Version>
+    <Version>1.0.0</Version>
     <Title>Package for working with units of measurement.</Title>
     <Description>Package for working with units of measurement.</Description>
     <Company>mvdmio</Company>

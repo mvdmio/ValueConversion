@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DFAB5F60-305C-482F-B453-18C576E3120A}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		.github\workflows\publish-nuget.yml = .github\workflows\publish-nuget.yml
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject
