@@ -1,62 +1,67 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-    <LangVersion>latest</LangVersion>
-    <ImplicitUsings>disable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <DebugType>embedded</DebugType>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
-  </PropertyGroup>
-    
-  <PropertyGroup>
-    <Version>1.0.0</Version>
-    <Title>Package for working with units of measurement.</Title>
-    <Description>Package for working with units of measurement.</Description>
-    <Company>mvdmio</Company>
-    <Authors>Michiel van der Meer</Authors>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<DebugType>embedded</DebugType>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Resources\UnitsFormatting\UnitsFormatting.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>UnitsFormatting.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <Compile Update="Resources\UnitsFormatting\UnitsFormatting.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>UnitsFormatting.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\UnitSymbols\UnitsFormatting.Designer.cs">
-      <DependentUpon>UnitsFormatting.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <EmbeddedResource Update="Resources\UnitsFormatting\UnitsFormatting.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>UnitsFormatting.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\UnitSymbols\UnitSymbols.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>UnitSymbols.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+	<PropertyGroup>
+		<Version>1.0.1</Version>
+		<Title>Package for working with units of measurement.</Title>
+		<Description>Package for working with units of measurement.</Description>
+		<Company>mvdmio</Company>
+		<Authors>Michiel van der Meer</Authors>
+		<PackageReadmeFile>Readme.md</PackageReadmeFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Resources\UnitSymbols\UnitSymbols.resx">
-      <LastGenOutput>UnitSymbols.Designer.cs</LastGenOutput>
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <Compile Update="Resources\UnitSymbols\UnitSymbols.Designer.cs">
-      <DependentUpon>UnitSymbols.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="Readme.md" Pack="true" PackagePath="\"/>
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\mvdmio.ValueConversion.Base\mvdmio.ValueConversion.Base.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\UnitsFormatting\UnitsFormatting.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>UnitsFormatting.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<Compile Update="Resources\UnitsFormatting\UnitsFormatting.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>UnitsFormatting.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\UnitSymbols\UnitsFormatting.Designer.cs">
+			<DependentUpon>UnitsFormatting.resx</DependentUpon>
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<EmbeddedResource Update="Resources\UnitsFormatting\UnitsFormatting.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>UnitsFormatting.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\UnitSymbols\UnitSymbols.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>UnitSymbols.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\UnitSymbols\UnitSymbols.resx">
+			<LastGenOutput>UnitSymbols.Designer.cs</LastGenOutput>
+			<Generator>ResXFileCodeGenerator</Generator>
+		</EmbeddedResource>
+		<Compile Update="Resources\UnitSymbols\UnitSymbols.Designer.cs">
+			<DependentUpon>UnitSymbols.resx</DependentUpon>
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\mvdmio.ValueConversion.Base\mvdmio.ValueConversion.Base.csproj" />
+	</ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
@@ -11,12 +11,17 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Version>1.0.0</Version>
+        <Version>1.0.1</Version>
         <Title>Package for working value conversions.</Title>
         <Description>Package for working value conversions.</Description>
         <Company>mvdmio</Company>
         <Authors>Michiel van der Meer</Authors>
+	    <PackageReadmeFile>Readme.md</PackageReadmeFile>
     </PropertyGroup>
+
+	<ItemGroup>
+		<None Include="Readme.md" Pack="true" PackagePath="\"/>
+	</ItemGroup>
 
     <ItemGroup>
       <Compile Update="Resources\UnitsFormatting\UnitsFormatting.Designer.cs">

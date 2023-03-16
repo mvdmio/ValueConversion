@@ -11,12 +11,17 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Version>1.0.0</Version>
+        <Version>1.0.1</Version>
         <Title>Package for working with currency.</Title>
         <Description>Package for working with currency.</Description>
         <Company>mvdmio</Company>
         <Authors>Michiel van der Meer</Authors>
+	    <PackageReadmeFile>Readme.md</PackageReadmeFile>
     </PropertyGroup>
+
+	<ItemGroup>
+		<None Include="Readme.md" Pack="true" PackagePath="\"/>
+	</ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="System.Text.Json" Version="7.0.2" />
