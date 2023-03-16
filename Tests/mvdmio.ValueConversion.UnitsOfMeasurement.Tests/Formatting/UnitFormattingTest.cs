@@ -1,12 +1,20 @@
 ﻿using System.Globalization;
 using mvdmio.ValueConversion.Base;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Formatting;
 
 public class UnitFormattingTest
 {
-    [Fact]
+   private readonly ITestOutputHelper _testOutput;
+
+   public UnitFormattingTest(ITestOutputHelper testOutput)
+   {
+      _testOutput = testOutput;
+   }
+
+   [Fact]
     public void AllUnitsShouldHaveSymbols()
     {
         var allQuantities = Quantity.GetAll();
@@ -20,17 +28,11 @@ public class UnitFormattingTest
             {
                 try
                 {
-                    var symbol = unit.GetSymbol(CultureInfo.InvariantCulture);
-
-                    if (symbol == null)
-                    {
-                        Console.WriteLine($"Symbol for unit {unit.Identifier} is not explicitly defined");
-                        missingFormats.Add(unit.Identifier);
-                    }
+                    _ = unit.GetSymbol(CultureInfo.InvariantCulture);
                 }
                 catch (KeyNotFoundException)
                 {
-                    Console.WriteLine($"No format was defined for {unit.Identifier}");
+                    _testOutput.WriteLine($"No format was defined for {unit.Identifier}");
                     missingFormats.Add(unit.Identifier);
                 }
             }
@@ -41,7 +43,7 @@ public class UnitFormattingTest
     }
 
     [Fact]
-    public void AllUnitsShouldBeFormatable()
+    public void AllUnitsShouldHaveDefinedFormat()
     {
         var allQuantities = Quantity.GetAll().ToArray();
 
@@ -56,15 +58,15 @@ public class UnitFormattingTest
                 {
                     var formattedValue = unit.GetFormattedValue(value: 1, CultureInfo.InvariantCulture);
 
-                    if (string.IsNullOrWhiteSpace(formattedValue))
-                    {
-                        Console.WriteLine($"Formatted Value for unit {unit.Identifier} is empty");
-                        missingFormats.Add(unit.Identifier);
-                    }
+                    if (!string.IsNullOrWhiteSpace(formattedValue))
+                       continue;
+
+                    _testOutput.WriteLine($"Formatted Value for unit {unit.Identifier} is empty");
+                    missingFormats.Add(unit.Identifier);
                 }
                 catch (KeyNotFoundException)
                 {
-                    Console.WriteLine($"No format was defined for {unit.Identifier}");
+                    _testOutput.WriteLine($"No format was defined for {unit.Identifier}");
                     missingFormats.Add(unit.Identifier);
                 }
             }
