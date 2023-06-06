@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Acre" xml:space="preserve">
-    <value>ac</value>
+	  <value>acre</value>
   </data>
   <data name="Atmosphere" xml:space="preserve">
     <value>Atm</value>
@@ -449,5 +449,8 @@
   </data>
   <data name="Year" xml:space="preserve">
     <value />
+  </data>
+  <data name="Are" xml:space="preserve">
+	  <value>are</value>
   </data>
 </root>

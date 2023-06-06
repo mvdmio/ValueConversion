@@ -26,6 +26,7 @@ public sealed class AreaQuantity : ConversionFactorQuantityBase
             //Metric
             ("SquareCentimeter", 0.0001),
             ("SquareDecimeter", 0.01),
+            ("Are", 100),
             ("Hectare", 10000),
             ("SquareKilometer", 1000000),
                 

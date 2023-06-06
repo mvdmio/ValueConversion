@@ -19,7 +19,7 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Resources.UnitSymbols {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class UnitSymbols {
@@ -61,11 +61,20 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Resources.UnitSymbols {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ac.
+        ///   Looks up a localized string similar to acre.
         /// </summary>
         internal static string Acre {
             get {
                 return ResourceManager.GetString("Acre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to are.
+        /// </summary>
+        internal static string Are {
+            get {
+                return ResourceManager.GetString("Are", resourceCulture);
             }
         }
         
