@@ -76,7 +76,10 @@ public class QuantityValue : IQuantityValue
     {
         return _unit.GetFormattedValue(_value, cultureInfo);
     }
-    public string GetFormattedValue(CultureInfo cultureInfo, int decimalPoints) {
+
+    /// <inheritdoc />
+    public string GetFormattedValue(CultureInfo cultureInfo, int decimalPoints) 
+    {
        return _unit.GetFormattedValue(_value, cultureInfo, decimalPoints);
     }
 }

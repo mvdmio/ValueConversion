@@ -1,4 +1,5 @@
-﻿using mvdmio.ValueConversion.Base;
+﻿using System.Reflection;
+using mvdmio.ValueConversion.Base;
 using mvdmio.ValueConversion.Base.Interfaces;
 using Xunit;
 
@@ -138,5 +139,42 @@ public class QuantityTest
             AssertEqualQuantity(expectedCombinedQuantity.DenominatorQuantity, actualCombinedQuantity.DenominatorQuantity);
          }
       }
+   }
+
+   [Fact]
+   public void AllQuantitiesShouldHaveTheirKnownUnitsDefinedAsProperties()
+   {
+      var baseQuantities = Quantity.GetAll().Where(x => !x.GetType().IsAssignableTo(typeof(ICombinedQuantity)));
+      var missingProperties = new List<string>();
+      var misconfiguredProperties = new List<string>();
+
+      foreach (var quantity in baseQuantities)
+      {
+         var quantityType = quantity.GetType();
+         var knownUnits = quantity.GetUnits();
+         foreach (var unit in knownUnits)
+         {
+            var unitPropertyInfo = quantityType.GetProperty(unit.Identifier, BindingFlags.Instance | BindingFlags.Public | BindingFlags.GetProperty);
+            if (unitPropertyInfo is null)
+            {
+               missingProperties.Add($"Missing: unit {unit.Identifier} on quantity {quantity.Identifier}");
+            }
+            else
+            {
+               var returnedUnit = (IUnit)unitPropertyInfo.GetGetMethod()!.Invoke(quantity, null);
+               if (returnedUnit == null)
+                  misconfiguredProperties.Add($"Misconfigured: Property {unit.Identifier} on quantity {quantity.Identifier} returned null");
+               else if (returnedUnit.Identifier != unit.Identifier)
+                  misconfiguredProperties.Add($"Misconfigured: Property {unit.Identifier} on quantity {quantity.Identifier} returned unit {returnedUnit.Identifier}");
+            }
+         }
+      }
+      
+      if (missingProperties.Count > 0)
+         Assert.Fail($"Missing {missingProperties.Count} unit properties:\n\t{string.Join("\n\t", missingProperties)}");
+
+      if(misconfiguredProperties.Count > 0)
+         Assert.Fail($"Misconfigured {misconfiguredProperties.Count} unit properties:\n\t{string.Join("\n\t", misconfiguredProperties)}");
+
    }
 }

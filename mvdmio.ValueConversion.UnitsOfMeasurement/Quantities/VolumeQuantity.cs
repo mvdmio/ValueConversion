@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using mvdmio.ValueConversion.Base.Interfaces;
 using mvdmio.ValueConversion.UnitsOfMeasurement.Bases;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
@@ -9,15 +10,105 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
 /// </summary>
 public sealed class VolumeQuantity : ConversionFactorQuantityBase
 {
-    internal VolumeQuantity()
-        : base("Volume", "CubicMeter")
-    {
-    }
+   /// <summary>
+   /// The CubicMeter unit of <see cref="VolumeQuantity"/>. This is the standard unit of <see cref="VolumeQuantity"/>.
+   /// </summary>
+   public IUnit CubicMeter => GetUnit("CubicMeter");
 
-    /// <inheritdoc/>     
-    protected override IEnumerable<(string identifier, double conversionFactor)> GetConversionFactors()
-    {
-        return new[] {
+   /// <summary>
+   /// The CubicMillimeter unit of <see cref="VolumeQuantity"/>.
+   /// </summary>
+   public IUnit CubicMillimeter => GetUnit("CubicMillimeter");
+
+   /// <summary>
+   /// The CubicCentimeter unit of <see cref="VolumeQuantity"/>.
+   /// </summary>
+   public IUnit CubicCentimeter => GetUnit("CubicCentimeter");
+
+   /// <summary>
+   /// The FluidCubicCentimeter unit of <see cref="VolumeQuantity"/>.
+   /// </summary>
+   public IUnit FluidCubicCentimeter => GetUnit("FluidCubicCentimeter");
+
+   /// <summary>
+   /// The Milliliter unit of <see cref="VolumeQuantity"/>.
+   /// </summary>
+   public IUnit Milliliter => GetUnit("Milliliter");
+
+   /// <summary>
+   /// The Centiliter unit of <see cref="VolumeQuantity"/>.
+   /// </summary>
+   public IUnit Centiliter => GetUnit("Centiliter");
+
+   /// <summary>
+   /// The Deciliter unit of <see cref="VolumeQuantity"/>.
+   /// </summary>
+   public IUnit Deciliter => GetUnit("Deciliter");
+
+   /// <summary>
+   /// The CubicDecimeter unit of <see cref="VolumeQuantity"/>.
+   /// </summary>
+   public IUnit CubicDecimeter => GetUnit("CubicDecimeter");
+
+   /// <summary>
+   /// The Liter unit of <see cref="VolumeQuantity"/>.
+   /// </summary>
+   public IUnit Liter => GetUnit("Liter");
+
+   /// <summary>
+   /// The Hectoliter unit of <see cref="VolumeQuantity"/>.
+   /// </summary>
+   public IUnit Hectoliter => GetUnit("Hectoliter");
+
+   /// <summary>
+   /// The CubicHectometer unit of <see cref="VolumeQuantity"/>.
+   /// </summary>
+   public IUnit CubicHectometer => GetUnit("CubicHectometer");
+
+   /// <summary>
+   /// The CubicKilometer unit of <see cref="VolumeQuantity"/>.
+   /// </summary>
+   public IUnit CubicKilometer => GetUnit("CubicKilometer");
+
+   /// <summary>
+   /// The CubicInch unit of <see cref="VolumeQuantity"/>.
+   /// </summary>
+   public IUnit CubicInch => GetUnit("CubicInch");
+
+   /// <summary>
+   /// The CubicFoot unit of <see cref="VolumeQuantity"/>.
+   /// </summary>
+   public IUnit CubicFoot => GetUnit("CubicFoot");
+
+   /// <summary>
+   /// The UsGallon unit of <see cref="VolumeQuantity"/>.
+   /// </summary>
+   public IUnit UsGallon => GetUnit("UsGallon");
+
+   /// <summary>
+   /// The ImperialGallon unit of <see cref="VolumeQuantity"/>.
+   /// </summary>
+   public IUnit ImperialGallon => GetUnit("ImperialGallon");
+
+   /// <summary>
+   /// The CubicYard unit of <see cref="VolumeQuantity"/>.
+   /// </summary>
+   public IUnit CubicYard => GetUnit("CubicYard");
+
+   /// <summary>
+   /// The CubicMile unit of <see cref="VolumeQuantity"/>.
+   /// </summary>
+   public IUnit CubicMile => GetUnit("CubicMile");
+   
+   internal VolumeQuantity()
+       : base("Volume", "CubicMeter")
+   {
+   }
+
+   /// <inheritdoc/>     
+   protected override IEnumerable<(string identifier, double conversionFactor)> GetConversionFactors()
+   {
+      return new[] {
             //Standard Unit
             ("CubicMeter", 1),
                 
@@ -42,5 +133,5 @@ public sealed class VolumeQuantity : ConversionFactorQuantityBase
             ("CubicYard", 0.764554858),
             ("CubicMile", 4.16818183e9)
         };
-    }
+   }
 }

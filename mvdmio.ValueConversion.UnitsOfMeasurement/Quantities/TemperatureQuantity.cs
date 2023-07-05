@@ -11,33 +11,48 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
 /// </summary>
 public sealed class TemperatureQuantity : QuantityBase
 {
-    private readonly object _lockObject = new();
-    private IUnit[]? _units;
+   private readonly object _lockObject = new();
+   private IUnit[]? _units;
 
-    internal TemperatureQuantity() 
-        : base("Temperature", "DegreeCelsius")
-    {
-    }
+   /// <summary>
+   /// The DegreeCelsius unit of <see cref="TemperatureQuantity"/>. This is the standard unit of <see cref="TemperatureQuantity"/>.
+   /// </summary>
+   public IUnit DegreeCelsius => GetUnit("DegreeCelsius");
 
-    /// <inheritdoc/>
-    public override IEnumerable<IUnit> GetUnits()
-    {
-        if (_units == null)
-        {
-            lock (_lockObject)
+   /// <summary>
+   /// The DegreeFahrenheit unit of <see cref="TemperatureQuantity"/>.
+   /// </summary>
+   public IUnit DegreeFahrenheit => GetUnit("DegreeFahrenheit");
+
+   /// <summary>
+   /// The Kelvin unit of <see cref="TemperatureQuantity"/>.
+   /// </summary>
+   public IUnit Kelvin => GetUnit("Kelvin");
+
+   internal TemperatureQuantity()
+       : base("Temperature", "DegreeCelsius")
+   {
+   }
+
+   /// <inheritdoc/>
+   public override IEnumerable<IUnit> GetUnits()
+   {
+      if (_units == null)
+      {
+         lock (_lockObject)
+         {
+            if (_units == null)
             {
-                if (_units == null)
-                {
-                    var units = new IUnit[] {
+               var units = new IUnit[] {
                         new DegreeCelsiusUnit(),
                         new DegreeFahrenheitUnit(),
                         new KelvinUnit()
                     };
-                    _units = units;
-                }
+               _units = units;
             }
-        }
+         }
+      }
 
-        return _units;
-    }
+      return _units;
+   }
 }

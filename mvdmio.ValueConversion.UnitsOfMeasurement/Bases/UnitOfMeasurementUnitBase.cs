@@ -6,6 +6,9 @@ using mvdmio.ValueConversion.UnitsOfMeasurement.Resources.UnitSymbols;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Bases;
 
+/// <summary>
+/// Base class for units in the UnitsOfMeasurement package.
+/// </summary>
 public abstract class UnitOfMeasurementUnitBase : UnitBase
 {
    /// <inheritdoc />

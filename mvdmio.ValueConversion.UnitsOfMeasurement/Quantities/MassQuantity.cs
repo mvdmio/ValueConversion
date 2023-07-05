@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using mvdmio.ValueConversion.Base.Interfaces;
 using mvdmio.ValueConversion.UnitsOfMeasurement.Bases;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
@@ -14,15 +15,65 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
 /// </summary>
 public class MassQuantity : ConversionFactorQuantityBase
 {
-    internal MassQuantity() 
-        : base("Mass", "Kilogram")
-    {
-    }
+   /// <summary>
+   /// The Kilogram unit of <see cref="MassQuantity"/>. This is the standard unit of <see cref="MassQuantity"/>.
+   /// </summary>
+   public IUnit Kilogram => GetUnit("Kilogram");
 
-    /// <inheritdoc/>     
-    protected sealed override IEnumerable<(string identifier, double conversionFactor)> GetConversionFactors()
-    {
-        return new[] {
+   /// <summary>
+   /// The Microgram unit of <see cref="MassQuantity"/>.
+   /// </summary>
+   public IUnit Microgram => GetUnit("Microgram");
+
+   /// <summary>
+   /// The Milligram unit of <see cref="MassQuantity"/>.
+   /// </summary>
+   public IUnit Milligram => GetUnit("Milligram");
+
+   /// <summary>
+   /// The Gram unit of <see cref="MassQuantity"/>.
+   /// </summary>
+   public IUnit Gram => GetUnit("Gram");
+
+   /// <summary>
+   /// The Tonne unit of <see cref="MassQuantity"/>.
+   /// </summary>
+   public IUnit Tonne => GetUnit("Tonne");
+
+   /// <summary>
+   /// The Kilotonne unit of <see cref="MassQuantity"/>.
+   /// </summary>
+   public IUnit Kilotonne => GetUnit("Kilotonne");
+
+   /// <summary>
+   /// The Ounce unit of <see cref="MassQuantity"/>.
+   /// </summary>
+   public IUnit Ounce => GetUnit("Ounce");
+
+   /// <summary>
+   /// The Pound unit of <see cref="MassQuantity"/>.
+   /// </summary>
+   public IUnit Pound => GetUnit("Pound");
+
+   /// <summary>
+   /// The Stone unit of <see cref="MassQuantity"/>.
+   /// </summary>
+   public IUnit Stone => GetUnit("Stone");
+
+   /// <summary>
+   /// The Kilopound unit of <see cref="MassQuantity"/>.
+   /// </summary>
+   public IUnit Kilopound => GetUnit("Kilopound");
+
+   internal MassQuantity()
+       : base("Mass", "Kilogram")
+   {
+   }
+
+   /// <inheritdoc/>     
+   protected sealed override IEnumerable<(string identifier, double conversionFactor)> GetConversionFactors()
+   {
+      return new[] {
             //Standard Unit
             ("Kilogram", 1),
                 
@@ -39,5 +90,5 @@ public class MassQuantity : ConversionFactorQuantityBase
             ("Stone", 6.35029318),
             ("Kilopound", 453.59237),
         };
-    }
+   }
 }

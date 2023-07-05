@@ -53,6 +53,14 @@ public interface IUnit
     /// <returns>The value formatted with the correct symbol and correct symbol placement for the given Culture Info</returns>
     string GetFormattedValue(double value, CultureInfo cultureInfo);
 
+    /// <summary>
+    /// Formats the given value into a string with the correct symbol and given amount of decimal points.
+    /// Can be used to display the value as a string with the correct symbol and correct symbol placement.
+    /// </summary>
+    /// <param name="value">The value that should be formatted</param>
+    /// <param name="cultureInfo">The CultureInfo that should be used to determine the correct formatting.</param>
+    /// <param name="decimalPoints">The amount of decimals to print in the formatted value.</param>
+    /// <returns>The value formatted with the correct symbol and correct symbol placement for the given Culture Info</returns>
     string GetFormattedValue(double value, CultureInfo cultureInfo,int decimalPoints);
 
 }

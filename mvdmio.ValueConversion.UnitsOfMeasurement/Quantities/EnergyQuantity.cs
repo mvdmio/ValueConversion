@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using mvdmio.ValueConversion.Base.Interfaces;
 using mvdmio.ValueConversion.UnitsOfMeasurement.Bases;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
@@ -10,15 +11,55 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
 /// </summary>
 public sealed class EnergyQuantity : ConversionFactorQuantityBase
 {
-    internal EnergyQuantity() 
-        : base("Energy", "Joule")
-    {
-    }
+   /// <summary>
+   /// The Joule unit of <see cref="EnergyQuantity"/>. This is the standard unit of <see cref="EnergyQuantity"/>.
+   /// </summary>
+   public IUnit Joule => GetUnit("Joule");
 
-    /// <inheritdoc/>     
-    protected override IEnumerable<(string identifier, double conversionFactor)> GetConversionFactors()
-    {
-        return new[] {
+   /// <summary>
+   /// The Calorie unit of <see cref="EnergyQuantity"/>.
+   /// </summary>
+   public IUnit Calorie => GetUnit("Calorie");
+
+   /// <summary>
+   /// The Kilocalorie unit of <see cref="EnergyQuantity"/>.
+   /// </summary>
+   public IUnit Kilocalorie => GetUnit("Kilocalorie");
+
+   /// <summary>
+   /// The Kilojoule unit of <see cref="EnergyQuantity"/>.
+   /// </summary>
+   public IUnit Kilojoule => GetUnit("Kilojoule");
+
+   /// <summary>
+   /// The KilowattHour unit of <see cref="EnergyQuantity"/>.
+   /// </summary>
+   public IUnit KilowattHour => GetUnit("KilowattHour");
+
+   /// <summary>
+   /// The MegaJoule unit of <see cref="EnergyQuantity"/>.
+   /// </summary>
+   public IUnit MegaJoule => GetUnit("MegaJoule");
+
+   /// <summary>
+   /// The MegawattHour unit of <see cref="EnergyQuantity"/>.
+   /// </summary>
+   public IUnit MegawattHour => GetUnit("MegawattHour");
+
+   /// <summary>
+   /// The WattHour unit of <see cref="EnergyQuantity"/>.
+   /// </summary>
+   public IUnit WattHour => GetUnit("WattHour");
+
+   internal EnergyQuantity()
+       : base("Energy", "Joule")
+   {
+   }
+
+   /// <inheritdoc/>     
+   protected override IEnumerable<(string identifier, double conversionFactor)> GetConversionFactors()
+   {
+      return new[] {
             //Standard Unit
             ("Joule", 1),
                 
@@ -31,5 +72,5 @@ public sealed class EnergyQuantity : ConversionFactorQuantityBase
             ("MegawattHour", 3600000000),
             ("WattHour", 3600)
         };
-    }
+   }
 }

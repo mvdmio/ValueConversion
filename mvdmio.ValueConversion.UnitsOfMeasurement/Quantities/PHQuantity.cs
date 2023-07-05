@@ -16,7 +16,12 @@ public class PhQuantity : IQuantity
 
     /// <inheritdoc/>
     public IUnit StandardUnit => GetUnits().First();
-        
+
+    /// <summary>
+    /// The pH unit of <see cref="PhQuantity"/>. This is the standard unit of <see cref="PhQuantity"/>.
+    /// </summary>
+    public IUnit pH => StandardUnit;
+    
     /// <inheritdoc/>
     public virtual string Identifier { get; } = "pH";
 

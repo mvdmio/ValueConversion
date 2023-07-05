@@ -10,7 +10,7 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Bases
     public abstract class ConversionFactorQuantityBase : QuantityBase
     {
         private readonly object _lockObject = new();
-        private IDictionary<string, IUnit> _units;
+        private IDictionary<string, IUnit>? _units;
 
         /// <summary>
         /// Initializes a new object for this type.

@@ -10,48 +10,49 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Units;
 /// </summary>
 public class PhUnit : IUnit
 {
-    private readonly IQuantity _quantity;
+   private readonly IQuantity _quantity;
 
-    internal PhUnit(IQuantity quantity)
-    {
-        _quantity = quantity;
-    }
+   internal PhUnit(IQuantity quantity)
+   {
+      _quantity = quantity;
+   }
 
-    /// <inheritdoc/>
-    public string Identifier { get; } = "pH";
+   /// <inheritdoc/>
+   public string Identifier { get; } = "pH";
 
-    /// <inheritdoc/>
-    public IQuantity GetQuantity()
-    {
-        return _quantity;
-    }
+   /// <inheritdoc/>
+   public IQuantity GetQuantity()
+   {
+      return _quantity;
+   }
 
-    /// <inheritdoc/>
-    public double FromStandardUnit(double value, DateTimeOffset timestamp)
-    {
-        return value;
-    }
+   /// <inheritdoc/>
+   public double FromStandardUnit(double value, DateTimeOffset timestamp)
+   {
+      return value;
+   }
 
-    /// <inheritdoc/>
-    public double ToStandardUnit(double value, DateTimeOffset timestamp)
-    {
-        return value;
-    }
+   /// <inheritdoc/>
+   public double ToStandardUnit(double value, DateTimeOffset timestamp)
+   {
+      return value;
+   }
 
-    /// <inheritdoc/>
-    public string GetSymbol(CultureInfo cultureInfo)
-    {
-        return string.Empty;
-    }
+   /// <inheritdoc/>
+   public string GetSymbol(CultureInfo cultureInfo)
+   {
+      return string.Empty;
+   }
 
-    /// <inheritdoc/>
-    public string GetFormattedValue(double value, CultureInfo cultureInfo)
-    {
-        return value.ToString(cultureInfo);
-    }
-    public string GetFormattedValue(double value, CultureInfo cultureInfo, int decimalPoints) {
-       if (decimalPoints > -1 && decimalPoints < 16)
-          value = Math.Round(value, decimalPoints);
-       return value.ToString(cultureInfo);
-    }
+   /// <inheritdoc/>
+   public string GetFormattedValue(double value, CultureInfo cultureInfo)
+   {
+      return value.ToString(cultureInfo);
+   }
+
+   /// <inheritdoc />
+   public string GetFormattedValue(double value, CultureInfo cultureInfo, int decimalPoints)
+   {
+      return Math.Round(value,decimalPoints).ToString(cultureInfo);
+   }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using mvdmio.ValueConversion.Base.Interfaces;
 using mvdmio.ValueConversion.UnitsOfMeasurement.Bases;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
@@ -9,15 +10,55 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
 /// </summary>
 public sealed class PowerQuantity : ConversionFactorQuantityBase
 {
-    internal PowerQuantity() 
-        : base("Power", "Watt")
-    {
-    }
+   /// <summary>
+   /// The Watt unit of <see cref="PowerQuantity"/>. This is the standard unit of <see cref="PowerQuantity"/>.
+   /// </summary>
+   public IUnit Watt => GetUnit("Watt");
 
-    /// <inheritdoc/>     
-    protected override IEnumerable<(string identifier, double conversionFactor)> GetConversionFactors()
-    {
-        return new[] {
+   /// <summary>
+   /// The MetricHorsepower unit of <see cref="PowerQuantity"/>.
+   /// </summary>
+   public IUnit MetricHorsepower => GetUnit("MetricHorsepower");
+
+   /// <summary>
+   /// The MechanicalHorsepower unit of <see cref="PowerQuantity"/>.
+   /// </summary>
+   public IUnit MechanicalHorsepower => GetUnit("MechanicalHorsepower");
+
+   /// <summary>
+   /// The HydraulicHorsepower unit of <see cref="PowerQuantity"/>.
+   /// </summary>
+   public IUnit HydraulicHorsepower => GetUnit("HydraulicHorsepower");
+
+   /// <summary>
+   /// The ElectricalHorsepower unit of <see cref="PowerQuantity"/>.
+   /// </summary>
+   public IUnit ElectricalHorsepower => GetUnit("ElectricalHorsepower");
+
+   /// <summary>
+   /// The Kilowatt unit of <see cref="PowerQuantity"/>.
+   /// </summary>
+   public IUnit Kilowatt => GetUnit("Kilowatt");
+
+   /// <summary>
+   /// The Megawatt unit of <see cref="PowerQuantity"/>.
+   /// </summary>
+   public IUnit Megawatt => GetUnit("Megawatt");
+
+   /// <summary>
+   /// The Gigawatt unit of <see cref="PowerQuantity"/>.
+   /// </summary>
+   public IUnit Gigawatt => GetUnit("Gigawatt");
+
+   internal PowerQuantity()
+       : base("Power", "Watt")
+   {
+   }
+
+   /// <inheritdoc/>     
+   protected override IEnumerable<(string identifier, double conversionFactor)> GetConversionFactors()
+   {
+      return new[] {
             //Standard Unit
             ("Watt", 1),
                 
@@ -30,5 +71,5 @@ public sealed class PowerQuantity : ConversionFactorQuantityBase
             ("Megawatt", 1000000),
             ("Gigawatt", 1000000000)
         };
-    }
+   }
 }
