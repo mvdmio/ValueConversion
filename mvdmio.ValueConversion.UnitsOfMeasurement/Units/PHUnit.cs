@@ -49,4 +49,9 @@ public class PhUnit : IUnit
     {
         return value.ToString(cultureInfo);
     }
+    public string GetFormattedValue(double value, CultureInfo cultureInfo, int decimalPoints) {
+       if (decimalPoints > -1 && decimalPoints < 16)
+          value = Math.Round(value, decimalPoints);
+       return value.ToString(cultureInfo);
+    }
 }

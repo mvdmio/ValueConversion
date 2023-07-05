@@ -63,6 +63,19 @@ public abstract class UnitBase : IUnit
 
       return result;
    }
+   public string GetFormattedValue(double value, CultureInfo cultureInfo,int decimalPoints) {
+      if (decimalPoints > -1 && decimalPoints < 16)
+         value = Math.Round(value, decimalPoints);
+
+      var format = GetFormatInternal(cultureInfo) ?? UnitsFormatting._Default;
+      var result = format;
+
+      var symbol = GetSymbol(cultureInfo);
+      result = result.Replace("{v}", value.ToString(cultureInfo));
+      result = result.Replace("{sym}", symbol);
+
+      return result;
+   }
 
    /// <summary>
    /// Retrieve the symbol for this unit.

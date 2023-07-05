@@ -59,4 +59,7 @@ public interface IQuantityValue
     /// <param name="cultureInfo">The culture info to use to format the value.</param>
     /// <returns>The formatted string representation of this <see cref="IQuantityValue"/>.</returns>
     string GetFormattedValue(CultureInfo cultureInfo);
+
+    string GetFormattedValue(CultureInfo cultureInfo,int decimalPoints);
+
 }
