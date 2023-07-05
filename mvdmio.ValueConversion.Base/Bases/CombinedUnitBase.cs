@@ -59,5 +59,13 @@ public abstract class CombinedUnitBase : ICombinedUnit
     {
         var symbol = GetSymbol(cultureInfo);
         return $"{value} {symbol}";
-    }   
+    }
+   public string GetFormattedValue(double value, CultureInfo cultureInfo,int decimalPoints)
+   {
+      if (decimalPoints > -1 && decimalPoints < 16)
+         value = Math.Round(value, decimalPoints);
+
+      var symbol = GetSymbol(cultureInfo);
+      return $"{value} {symbol}";
+   }
 }

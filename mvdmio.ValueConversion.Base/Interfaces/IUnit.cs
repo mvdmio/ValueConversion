@@ -52,4 +52,7 @@ public interface IUnit
     /// <param name="cultureInfo">The CultureInfo that should be used to determine the correct formatting.</param>
     /// <returns>The value formatted with the correct symbol and correct symbol placement for the given Culture Info</returns>
     string GetFormattedValue(double value, CultureInfo cultureInfo);
+
+    string GetFormattedValue(double value, CultureInfo cultureInfo,int decimalPoints);
+
 }
