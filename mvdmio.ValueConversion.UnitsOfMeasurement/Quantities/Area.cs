@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using mvdmio.ValueConversion.Base;
 using mvdmio.ValueConversion.Base.Interfaces;
 using mvdmio.ValueConversion.UnitsOfMeasurement.Bases;
 
@@ -9,67 +10,66 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
 /// The area of a figure is the number of unit squares that cover the surface of a closed figure. 
 /// Area is measured in square units such as square centimteres, square feet, square inches, etc.
 /// </summary>
-public sealed class AreaQuantity : ConversionFactorQuantityBase
+public sealed class Area : ConversionFactorQuantityBase
 {
    /// <summary>
-   /// The Square Meter unit on <see cref="AreaQuantity"/>. This is the standard unit of <see cref="AreaQuantity"/>.
+   /// The Square Meter unit on <see cref="Area"/>. This is the standard unit of <see cref="Area"/>.
    /// </summary>
-   public IUnit SquareMeter => GetUnit("SquareMeter");
+   public static IUnit SquareMeter => Quantity.Known.Area().GetUnit("SquareMeter");
 
    /// <summary>
-   /// The Square Centimeter unit on <see cref="AreaQuantity"/>.
+   /// The Square Centimeter unit on <see cref="Area"/>.
    /// </summary>
-   public IUnit SquareCentimeter => GetUnit("SquareCentimeter");
+   public static IUnit SquareCentimeter => Quantity.Known.Area().GetUnit("SquareCentimeter");
 
    /// <summary>
-   /// The Square Centimeter unit on <see cref="AreaQuantity"/>.
+   /// The Square Centimeter unit on <see cref="Area"/>.
    /// </summary>
-   public IUnit SquareDecimeter => GetUnit("SquareDecimeter");
+   public static IUnit SquareDecimeter => Quantity.Known.Area().GetUnit("SquareDecimeter");
 
    /// <summary>
-   /// The Are unit on <see cref="AreaQuantity"/>.
+   /// The Are unit on <see cref="Area"/>.
    /// </summary>
-   public IUnit Are => GetUnit("Are");
+   public static IUnit Are => Quantity.Known.Area().GetUnit("Are");
 
    /// <summary>
-   /// The Hectare unit on <see cref="AreaQuantity"/>.
+   /// The Hectare unit on <see cref="Area"/>.
    /// </summary>
-   public IUnit Hectare => GetUnit("Hectare");
+   public static IUnit Hectare => Quantity.Known.Area().GetUnit("Hectare");
 
    /// <summary>
-   /// The Square Kilometer unit on <see cref="AreaQuantity"/>.
+   /// The Square Kilometer unit on <see cref="Area"/>.
    /// </summary>
-   public IUnit SquareKilometer => GetUnit("SquareKilometer");
+   public static IUnit SquareKilometer => Quantity.Known.Area().GetUnit("SquareKilometer");
 
    /// <summary>
-   /// The Acre unit on <see cref="AreaQuantity"/>.
+   /// The Acre unit on <see cref="Area"/>.
    /// </summary>
-   public IUnit Acre => GetUnit("Acre");
+   public static IUnit Acre => Quantity.Known.Area().GetUnit("Acre");
 
    /// <summary>
-   /// The Square Foot unit on <see cref="AreaQuantity"/>.
+   /// The Square Foot unit on <see cref="Area"/>.
    /// </summary>
-   public IUnit SquareFoot => GetUnit("SquareFoot");
+   public static IUnit SquareFoot => Quantity.Known.Area().GetUnit("SquareFoot");
 
    /// <summary>
-   /// The Square Inch unit on <see cref="AreaQuantity"/>.
+   /// The Square Inch unit on <see cref="Area"/>.
    /// </summary>
-   public IUnit SquareInch => GetUnit("SquareInch");
+   public static IUnit SquareInch => Quantity.Known.Area().GetUnit("SquareInch");
 
    /// <summary>
-   /// The Square Mile unit on <see cref="AreaQuantity"/>.
+   /// The Square Mile unit on <see cref="Area"/>.
    /// </summary>
-   public IUnit SquareMile => GetUnit("SquareMile");
+   public static IUnit SquareMile => Quantity.Known.Area().GetUnit("SquareMile");
 
    /// <summary>
-   /// The Square Yard unit on <see cref="AreaQuantity"/>.
+   /// The Square Yard unit on <see cref="Area"/>.
    /// </summary>
-   public IUnit SquareYard => GetUnit("SquareYard");
+   public static IUnit SquareYard => Quantity.Known.Area().GetUnit("SquareYard");
 
-   internal AreaQuantity()
+   internal Area()
        : base("Area", "SquareMeter")
    {
-
    }
 
    /// <inheritdoc/>     

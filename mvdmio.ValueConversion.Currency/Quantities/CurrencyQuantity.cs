@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using mvdmio.ValueConversion.Base;
 using mvdmio.ValueConversion.Base.Bases;
 using mvdmio.ValueConversion.Base.Interfaces;
 using mvdmio.ValueConversion.Currency.Units;
@@ -13,6 +14,26 @@ public sealed class CurrencyQuantity : QuantityBase
 {
     private readonly IUnit[] _units;
 
+    /// <summary>
+    /// The UnitedStatesDollar unit of <see cref="CurrencyQuantity"/>. This is the standard unit of <see cref="CurrencyQuantity"/>.
+    /// </summary>
+    public static IUnit UnitedStatsDollar => Quantity.Known.Currency().GetUnit("UnitedStatesDollar");
+    
+    /// <summary>
+    /// The Euro unit of <see cref="CurrencyQuantity"/>.
+    /// </summary>
+    public static IUnit Euro => Quantity.Known.Currency().GetUnit("Euro");
+    
+    /// <summary>
+    /// The MexicanPeso unit of <see cref="CurrencyQuantity"/>.
+    /// </summary>
+    public static IUnit MexicanPeso => Quantity.Known.Currency().GetUnit("MexicanPeso");
+    
+    /// <summary>
+    /// The CanadianDollar unit of <see cref="CurrencyQuantity"/>.
+    /// </summary>
+    public static IUnit CanadianDollar => Quantity.Known.Currency().GetUnit("CanadianDollar");
+    
     /// <summary>
     /// Constructor.
     /// </summary>

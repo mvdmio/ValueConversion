@@ -23,7 +23,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="ExchangeRateProvider\IntegrationTests" />
       <Folder Include="Quantities" />
     </ItemGroup>
 

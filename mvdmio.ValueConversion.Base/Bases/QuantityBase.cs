@@ -60,7 +60,7 @@ public abstract class QuantityBase : IQuantity
         var standardValue = quantityValue.GetStandardValue();
         var convertedValue = toUnit.FromStandardUnit(standardValue, quantityValue.Timestamp);
 
-        return new QuantityValue(quantityValue.Timestamp, convertedValue, toUnit);
+        return new QuantityValue(convertedValue, toUnit, quantityValue.Timestamp);
     }
 
     /// <inheritdoc />
@@ -80,6 +80,6 @@ public abstract class QuantityBase : IQuantity
     public IQuantityValue CreateValue(DateTime timestamp, double value, IUnit unit)
     {
 
-        return new QuantityValue(timestamp, value, unit);
+        return new QuantityValue(value, unit, timestamp);
     }
 }

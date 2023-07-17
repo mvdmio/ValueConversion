@@ -56,10 +56,23 @@ public interface IQuantityValue
    /// <summary>
    /// Retrieve the formatted string representation of this <see cref="IQuantityValue"/>.
    /// </summary>
+   /// <returns>The formatted string representation of this <see cref="IQuantityValue"/>.</returns>
+   string GetFormattedValue();
+   
+   /// <summary>
+   /// Retrieve the formatted string representation of this <see cref="IQuantityValue"/>.
+   /// </summary>
    /// <param name="cultureInfo">The culture info to use to format the value.</param>
    /// <returns>The formatted string representation of this <see cref="IQuantityValue"/>.</returns>
    string GetFormattedValue(CultureInfo cultureInfo);
 
+   /// <summary>
+   /// Retrieve the formatted string representation of this <see cref="IQuantityValue"/>.
+   /// </summary>
+   /// <param name="decimalPoints">The amount of decimal points to print in the formatted value.</param>
+   /// <returns>The formatted string representation of this <see cref="IQuantityValue"/>.</returns>
+   string GetFormattedValue(int decimalPoints);
+   
    /// <summary>
    /// Retrieve the formatted string representation of this <see cref="IQuantityValue"/>.
    /// </summary>

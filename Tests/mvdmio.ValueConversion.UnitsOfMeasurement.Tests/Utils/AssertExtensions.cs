@@ -5,7 +5,7 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Utils;
 
 public static class AssertExtensions
 {
-   public static void AreWithinTolerance(double expected, double actual, double tolerance = Comparer.DefaultTolerance)
+   public static void AreWithinTolerance(double expected, double actual, double tolerance = 0.1)
    {
       var diff = Math.Abs(expected - actual);
       Assert.True(diff < tolerance, $"Expected {expected} to be within {tolerance} of {actual}, but was {diff}.");

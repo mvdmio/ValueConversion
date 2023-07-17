@@ -20,10 +20,20 @@ public class QuantityValue : IQuantityValue
     /// <summary>
     /// Constructor.
     /// </summary>
-    /// <param name="timestamp">The timestamp at which the value was recorded.</param>
     /// <param name="value">The numeric value.</param>
     /// <param name="unit">The unit of the numeric value.</param>
-    public QuantityValue(DateTimeOffset timestamp, double value, IUnit unit)
+    public QuantityValue(double value, IUnit unit)
+        : this(value, unit, DateTimeOffset.Now)
+    {
+    }
+
+    /// <summary>
+    /// Constructor.
+    /// </summary>
+    /// <param name="value">The numeric value.</param>
+    /// <param name="unit">The unit of the numeric value.</param>
+    /// <param name="timestamp">The timestamp at which the value was recorded.</param>
+    public QuantityValue(double value, IUnit unit, DateTimeOffset timestamp)
     {
         _value = value;
         _quantity = unit.GetQuantity();
@@ -72,10 +82,13 @@ public class QuantityValue : IQuantityValue
     }
 
     /// <inheritdoc />
-    public string GetFormattedValue(CultureInfo cultureInfo)
-    {
-        return _unit.GetFormattedValue(_value, cultureInfo);
-    }
+    public string GetFormattedValue() => GetFormattedValue(CultureInfo.CurrentCulture, decimalPoints: 0);
+
+    /// <inheritdoc />
+    public string GetFormattedValue(CultureInfo cultureInfo) => GetFormattedValue(cultureInfo, decimalPoints: 0);
+
+    /// <inheritdoc />
+    public string GetFormattedValue(int decimalPoints) => GetFormattedValue(CultureInfo.CurrentCulture, decimalPoints);
 
     /// <inheritdoc />
     public string GetFormattedValue(CultureInfo cultureInfo, int decimalPoints) 

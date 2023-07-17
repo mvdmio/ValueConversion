@@ -10,7 +10,7 @@ namespace mvdmio.ValueConversion.Base.Bases;
 /// </summary>
 public abstract class CombinedQuantityBase : ICombinedQuantity
 {
-   private IList<ICombinedUnit> _units;
+   private readonly IList<ICombinedUnit> _units;
 
    /// <inheritdoc />
    public bool IsNamed { get; }

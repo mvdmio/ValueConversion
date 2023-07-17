@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using mvdmio.ValueConversion.Base;
 using mvdmio.ValueConversion.Base.Interfaces;
 using mvdmio.ValueConversion.UnitsOfMeasurement.Bases;
 
@@ -7,29 +8,29 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
 /// <summary>
 /// In mathematics, a ratio indicates how many times one number contains another.
 /// </summary>
-public class RatioQuantity : ConversionFactorQuantityBase
+public class Ratio : ConversionFactorQuantityBase
 {
    /// <summary>
-   /// The Percent unit of <see cref="RatioQuantity"/>. This is the standard unit of <see cref="RatioQuantity"/>.
+   /// The Percent unit of <see cref="Ratio"/>. This is the standard unit of <see cref="Ratio"/>.
    /// </summary>
-   public IUnit Percent => GetUnit("Percent");
+   public static IUnit Percent => Quantity.Known.Ratio().GetUnit("Percent");
 
    /// <summary>
-   /// The Permille unit of <see cref="RatioQuantity"/>.
+   /// The Permille unit of <see cref="Ratio"/>.
    /// </summary>
-   public IUnit Permille => GetUnit("Permille");
+   public static IUnit Permille => Quantity.Known.Ratio().GetUnit("Permille");
 
    /// <summary>
-   /// The PartsPerMillion unit of <see cref="RatioQuantity"/>.
+   /// The PartsPerMillion unit of <see cref="Ratio"/>.
    /// </summary>
-   public IUnit PartsPerMillion => GetUnit("PartsPerMillion");
+   public static IUnit PartsPerMillion => Quantity.Known.Ratio().GetUnit("PartsPerMillion");
 
    /// <summary>
-   /// The PartsPerBillion unit of <see cref="RatioQuantity"/>.
+   /// The PartsPerBillion unit of <see cref="Ratio"/>.
    /// </summary>
-   public IUnit PartsPerBillion => GetUnit("PartsPerBillion");
+   public static IUnit PartsPerBillion => Quantity.Known.Ratio().GetUnit("PartsPerBillion");
 
-   internal RatioQuantity()
+   internal Ratio()
        : base("Ratio", "Percent")
    {
    }

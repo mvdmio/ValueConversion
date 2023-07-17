@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using mvdmio.ValueConversion.Base;
 using mvdmio.ValueConversion.Base.Interfaces;
 using mvdmio.ValueConversion.UnitsOfMeasurement.Bases;
 
@@ -9,49 +10,49 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
 /// Energy is a conserved quantity; the law of conservation of energy states that energy can be converted in form, but not created or destroyed.
 /// The SI unit of energy is the joule, which is the energy transferred to an object by the work of moving it a distance of 1 metre against a force of 1 newton. 
 /// </summary>
-public sealed class EnergyQuantity : ConversionFactorQuantityBase
+public sealed class Energy : ConversionFactorQuantityBase
 {
    /// <summary>
-   /// The Joule unit of <see cref="EnergyQuantity"/>. This is the standard unit of <see cref="EnergyQuantity"/>.
+   /// The Joule unit of <see cref="Energy"/>. This is the standard unit of <see cref="Energy"/>.
    /// </summary>
-   public IUnit Joule => GetUnit("Joule");
+   public static IUnit Joule => Quantity.Known.Energy().GetUnit("Joule");
 
    /// <summary>
-   /// The Calorie unit of <see cref="EnergyQuantity"/>.
+   /// The Calorie unit of <see cref="Energy"/>.
    /// </summary>
-   public IUnit Calorie => GetUnit("Calorie");
+   public static IUnit Calorie => Quantity.Known.Energy().GetUnit("Calorie");
 
    /// <summary>
-   /// The Kilocalorie unit of <see cref="EnergyQuantity"/>.
+   /// The Kilocalorie unit of <see cref="Energy"/>.
    /// </summary>
-   public IUnit Kilocalorie => GetUnit("Kilocalorie");
+   public static IUnit Kilocalorie => Quantity.Known.Energy().GetUnit("Kilocalorie");
 
    /// <summary>
-   /// The Kilojoule unit of <see cref="EnergyQuantity"/>.
+   /// The Kilojoule unit of <see cref="Energy"/>.
    /// </summary>
-   public IUnit Kilojoule => GetUnit("Kilojoule");
+   public static IUnit Kilojoule => Quantity.Known.Energy().GetUnit("Kilojoule");
 
    /// <summary>
-   /// The KilowattHour unit of <see cref="EnergyQuantity"/>.
+   /// The KilowattHour unit of <see cref="Energy"/>.
    /// </summary>
-   public IUnit KilowattHour => GetUnit("KilowattHour");
+   public static IUnit KilowattHour => Quantity.Known.Energy().GetUnit("KilowattHour");
 
    /// <summary>
-   /// The MegaJoule unit of <see cref="EnergyQuantity"/>.
+   /// The MegaJoule unit of <see cref="Energy"/>.
    /// </summary>
-   public IUnit MegaJoule => GetUnit("MegaJoule");
+   public static IUnit MegaJoule => Quantity.Known.Energy().GetUnit("MegaJoule");
 
    /// <summary>
-   /// The MegawattHour unit of <see cref="EnergyQuantity"/>.
+   /// The MegawattHour unit of <see cref="Energy"/>.
    /// </summary>
-   public IUnit MegawattHour => GetUnit("MegawattHour");
+   public static IUnit MegawattHour => Quantity.Known.Energy().GetUnit("MegawattHour");
 
    /// <summary>
-   /// The WattHour unit of <see cref="EnergyQuantity"/>.
+   /// The WattHour unit of <see cref="Energy"/>.
    /// </summary>
-   public IUnit WattHour => GetUnit("WattHour");
+   public static IUnit WattHour => Quantity.Known.Energy().GetUnit("WattHour");
 
-   internal EnergyQuantity()
+   internal Energy()
        : base("Energy", "Joule")
    {
    }

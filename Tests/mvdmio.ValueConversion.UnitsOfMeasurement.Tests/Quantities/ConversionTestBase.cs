@@ -8,7 +8,7 @@ public class ConversionTestBase
 {
     private double GetConvertedValue(double input, IUnit originalUnit, IUnit convertedUnit)
     {
-        var originalValue = new QuantityValue(DateTimeOffset.Now, input, originalUnit);
+        var originalValue = new QuantityValue(input, originalUnit);
         var convertedValue = originalValue.As(convertedUnit);
 
         return convertedValue.GetValue();

@@ -11,12 +11,7 @@ public class MockExchangeRateProvider : IExchangeRateProvider
         { "CanadianDollar", 1.41 },
     };
 
-    public CurrencyExchangeRateValue GetLatestExchangeRate(string from, string to)
-    {
-        return GetExchangeRate(from, to, DateTime.Now);
-    }
-
-    public CurrencyExchangeRateValue GetExchangeRate(string from, string to, DateTime date)
+    public CurrencyExchangeRateValue GetExchangeRate(string from, string to, DateTimeOffset _)
     {
         if (!_conversionDictionary.TryGetValue(from, out var fromValue))
             throw new InvalidOperationException($"No mocked exchange rate could be found for {from}");
@@ -26,25 +21,6 @@ public class MockExchangeRateProvider : IExchangeRateProvider
 
         var exchangeRate = toValue / fromValue;
         var result = new CurrencyExchangeRateValue(from, to, exchangeRate);
-
-        return result;
-    }
-
-    public IDictionary<DateTime, CurrencyExchangeRateValue> GetExchangeRates(string from, string to, DateTime start)
-    {
-        return GetExchangeRates(from, to, start, DateTime.Now);
-    }
-
-    public IDictionary<DateTime, CurrencyExchangeRateValue> GetExchangeRates(string from, string to, DateTime start, DateTime end)
-    {
-        var totalDays = (start.Date - end.Date).TotalDays;
-        var exchangeRate = GetLatestExchangeRate(from, to);
-
-        var result = new Dictionary<DateTime, CurrencyExchangeRateValue>();
-        for (var i = 0; i < totalDays; i++)
-        {
-            result.Add(start.Date.AddDays(i), exchangeRate);
-        }
 
         return result;
     }

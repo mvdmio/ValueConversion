@@ -6,7 +6,7 @@ using mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Units;
 
 /// <summary>
-/// Unit for <see cref="PhQuantity"/>.
+/// Unit for <see cref="Acidity"/>.
 /// </summary>
 public class PhUnit : IUnit
 {

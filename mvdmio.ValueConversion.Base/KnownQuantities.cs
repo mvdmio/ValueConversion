@@ -7,6 +7,6 @@ namespace mvdmio.ValueConversion.Base;
 /// </summary>
 public class KnownQuantities
 {
-   /// <inheritdoc cref="ScalarQuantity" />
-   public ScalarQuantity Scalar() => new();
+   /// <inheritdoc cref="Quantities.Scalar" />
+   public Scalar Scalar() => new();
 }

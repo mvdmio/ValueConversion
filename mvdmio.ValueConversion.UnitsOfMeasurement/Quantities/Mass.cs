@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using mvdmio.ValueConversion.Base;
 using mvdmio.ValueConversion.Base.Interfaces;
 using mvdmio.ValueConversion.UnitsOfMeasurement.Bases;
 
@@ -13,59 +14,59 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
 /// rather than balance scale comparing it directly with known masses. An object on the Moon would weigh less than it does on Earth because of the lower gravity, 
 /// but it would still have the same mass. This is because weight is a force, while mass is the property that (along with gravity) determines the strength of this force. 
 /// </summary>
-public class MassQuantity : ConversionFactorQuantityBase
+public class Mass : ConversionFactorQuantityBase
 {
    /// <summary>
-   /// The Kilogram unit of <see cref="MassQuantity"/>. This is the standard unit of <see cref="MassQuantity"/>.
+   /// The Kilogram unit of <see cref="Mass"/>. This is the standard unit of <see cref="Mass"/>.
    /// </summary>
-   public IUnit Kilogram => GetUnit("Kilogram");
+   public static IUnit Kilogram => Quantity.Known.Mass().GetUnit("Kilogram");
 
    /// <summary>
-   /// The Microgram unit of <see cref="MassQuantity"/>.
+   /// The Microgram unit of <see cref="Mass"/>.
    /// </summary>
-   public IUnit Microgram => GetUnit("Microgram");
+   public static IUnit Microgram => Quantity.Known.Mass().GetUnit("Microgram");
 
    /// <summary>
-   /// The Milligram unit of <see cref="MassQuantity"/>.
+   /// The Milligram unit of <see cref="Mass"/>.
    /// </summary>
-   public IUnit Milligram => GetUnit("Milligram");
+   public static IUnit Milligram => Quantity.Known.Mass().GetUnit("Milligram");
 
    /// <summary>
-   /// The Gram unit of <see cref="MassQuantity"/>.
+   /// The Gram unit of <see cref="Mass"/>.
    /// </summary>
-   public IUnit Gram => GetUnit("Gram");
+   public static IUnit Gram => Quantity.Known.Mass().GetUnit("Gram");
 
    /// <summary>
-   /// The Tonne unit of <see cref="MassQuantity"/>.
+   /// The Tonne unit of <see cref="Mass"/>.
    /// </summary>
-   public IUnit Tonne => GetUnit("Tonne");
+   public static IUnit Tonne => Quantity.Known.Mass().GetUnit("Tonne");
 
    /// <summary>
-   /// The Kilotonne unit of <see cref="MassQuantity"/>.
+   /// The Kilotonne unit of <see cref="Mass"/>.
    /// </summary>
-   public IUnit Kilotonne => GetUnit("Kilotonne");
+   public static IUnit Kilotonne => Quantity.Known.Mass().GetUnit("Kilotonne");
 
    /// <summary>
-   /// The Ounce unit of <see cref="MassQuantity"/>.
+   /// The Ounce unit of <see cref="Mass"/>.
    /// </summary>
-   public IUnit Ounce => GetUnit("Ounce");
+   public static IUnit Ounce => Quantity.Known.Mass().GetUnit("Ounce");
 
    /// <summary>
-   /// The Pound unit of <see cref="MassQuantity"/>.
+   /// The Pound unit of <see cref="Mass"/>.
    /// </summary>
-   public IUnit Pound => GetUnit("Pound");
+   public static IUnit Pound => Quantity.Known.Mass().GetUnit("Pound");
 
    /// <summary>
-   /// The Stone unit of <see cref="MassQuantity"/>.
+   /// The Stone unit of <see cref="Mass"/>.
    /// </summary>
-   public IUnit Stone => GetUnit("Stone");
+   public static IUnit Stone => Quantity.Known.Mass().GetUnit("Stone");
 
    /// <summary>
-   /// The Kilopound unit of <see cref="MassQuantity"/>.
+   /// The Kilopound unit of <see cref="Mass"/>.
    /// </summary>
-   public IUnit Kilopound => GetUnit("Kilopound");
+   public static IUnit Kilopound => Quantity.Known.Mass().GetUnit("Kilopound");
 
-   internal MassQuantity()
+   internal Mass()
        : base("Mass", "Kilogram")
    {
    }

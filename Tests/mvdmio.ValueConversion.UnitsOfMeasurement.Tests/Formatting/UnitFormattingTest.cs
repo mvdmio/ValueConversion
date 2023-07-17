@@ -56,7 +56,7 @@ public class UnitFormattingTest
             {
                 try
                 {
-                    var formattedValue = unit.GetFormattedValue(value: 1, CultureInfo.InvariantCulture);
+                    var formattedValue = unit.GetFormattedValue(value: 1, CultureInfo.InvariantCulture, 2);
 
                     if (!string.IsNullOrWhiteSpace(formattedValue))
                        continue;

@@ -93,12 +93,17 @@ public class CombinedQuantityValue : IQuantityValue
     }
 
     /// <inheritdoc />
-    public string GetFormattedValue(CultureInfo cultureInfo)
-    {
-        return _unit.GetFormattedValue(_value, cultureInfo);
-    }
+    public string GetFormattedValue() => GetFormattedValue(CultureInfo.CurrentCulture, decimalPoints: 0);
 
-    public string GetFormattedValue(CultureInfo cultureInfo,int decimalPoints) {
+    /// <inheritdoc />
+    public string GetFormattedValue(CultureInfo cultureInfo) => GetFormattedValue(cultureInfo, decimalPoints: 0);
+
+    /// <inheritdoc />
+    public string GetFormattedValue(int decimalPoints) => GetFormattedValue(CultureInfo.CurrentCulture, decimalPoints);
+
+    /// <inheritdoc />
+    public string GetFormattedValue(CultureInfo cultureInfo, int decimalPoints)
+    {
        return _unit.GetFormattedValue(_value, cultureInfo, decimalPoints);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using mvdmio.ValueConversion.Base;
 using mvdmio.ValueConversion.Base.Interfaces;
 using mvdmio.ValueConversion.UnitsOfMeasurement.Bases;
 
@@ -9,24 +10,24 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
 /// In the SI system, it is specified in units S (Siemens).
 /// The resistance, and thus conductance of an object depends in large part on the material it is made of.
 /// </summary>
-public sealed class ElectricConductanceQuantity : ConversionFactorQuantityBase
+public sealed class ElectricConductance : ConversionFactorQuantityBase
 {
    /// <summary>
-   /// The Siemens unit of <see cref="ElectricConductanceQuantity"/>. This is the standard unit of <see cref="ElectricConductanceQuantity"/>.
+   /// The Siemens unit of <see cref="ElectricConductance"/>. This is the standard unit of <see cref="ElectricConductance"/>.
    /// </summary>
-   public IUnit Siemens => GetUnit("Siemens");
+   public static IUnit Siemens => Quantity.Known.ElectricConductance().GetUnit("Siemens");
 
    /// <summary>
-   /// The Microsiemens unit of <see cref="ElectricConductanceQuantity"/>.
+   /// The Microsiemens unit of <see cref="ElectricConductance"/>.
    /// </summary>
-   public IUnit Microsiemens => GetUnit("Microsiemens");
+   public static IUnit Microsiemens => Quantity.Known.ElectricConductance().GetUnit("Microsiemens");
 
    /// <summary>
-   /// The Millisiemens unit of <see cref="ElectricConductanceQuantity"/>.
+   /// The Millisiemens unit of <see cref="ElectricConductance"/>.
    /// </summary>
-   public IUnit Millisiemens => GetUnit("Millisiemens");
+   public static IUnit Millisiemens => Quantity.Known.ElectricConductance().GetUnit("Millisiemens");
 
-   internal ElectricConductanceQuantity()
+   internal ElectricConductance()
        : base("ElectricConductance", "Siemens")
    {
    }

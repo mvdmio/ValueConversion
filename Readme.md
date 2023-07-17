@@ -5,14 +5,14 @@ Based on examples of [UnitsNet](https://github.com/angularsen/UnitsNet).
 ## Base package
 This package contains the entry point for working with values of a given unit or quantity. Make sure to include the child packages with the specific types you need for your project.
 
-Currently, the child packages are:
+The child packages are:
 - `mvdmio.ValueConversion.Currency`
 - `mvdmio.ValueConversion.UnitsOfMeasurement`
 
 ## Currency
 The Currency package contains Quantity definitions for Currency.
 
-Currently, the following currency units are defined:
+The following currency units are defined:
 - `UnitedStatesDollar`
 - `Euro`
 - `MexicanPeso`
@@ -21,7 +21,7 @@ Currently, the following currency units are defined:
 ## Units of Measurement
 The UnitsOfMeasurement package contains Quantity definitions for a wide range of [SI quantities](https://en.wikipedia.org/wiki/International_System_of_Units).
 
-Currently, the following UnitsOfMeasurement quantites are defined:
+The following UnitsOfMeasurement quantities are defined:
 - `Angle` (e.g. Degree or Radian)
 - `Area` (e.g. SquareMeter, Hectare, or Acre)
 - `Distance` (e.g. Meter, Kilometer, or Inch)
@@ -43,34 +43,44 @@ As well as a couple of pre-defined (named) combined quantities:
 - `Velocity` (Distance / Duration)
 
 # Usage Examples
+For all examples, see the Example project in this repository.
 
+## Temperature: Celsius to Fahrenheit.
 ``` csharp
-// Setup quantities from child packages
-Quantity.Setup.WithUnitsOfMeasurement();
-Quantity.Setup.WithCurrencies();
+var temperatureInCelsius = new QuantityValue(10, Temperature.DegreeCelsius);         // 10 °C
+var temperatureInFahrenheit = temperatureInCelsius.As(Temperature.DegreeFahrenheit); // 50 °F
 
-// Retrieve the 'Area' quantity
-var areaQuantity = Quantity.Known.Area;
+var formattedCelsius = temperatureInCelsius.GetFormattedValue(decimalPoints: 2);
+var formattedFahrenheit = temperatureInFahrenheit.GetFormattedValue(decimalPoints: 2);
+Console.WriteLine($@"{formattedCelsius} = {formattedFahrenheit}"); 
+```
 
-// Retrieve a 'square meters' unit
-var squareMetersUnit = areaQuantity.GetUnit(AreaType.SquareMeters);
+## Temperature: Fahrenheit to Kelvin
+``` csharp
+var temperatureInFahrenheit = new QuantityValue(93, Temperature.DegreeCelsius); // 93 °F
+var temperatureInKelvin = temperatureInFahrenheit.As(Temperature.Kelvin);       // 366.15 K
 
-// Retrieve the 'Currency' quantity
-var currencyQuantity = Quantity.Currency;
+var formattedFahrenheit = temperatureInFahrenheit.GetFormattedValue(decimalPoints: 2);
+var formattedKelvin = temperatureInKelvin.GetFormattedValue(decimalPoints: 2);
+Console.WriteLine($@"{formattedFahrenheit} = {formattedKelvin}"); 
+```
 
-// Create a ratio combined quantity between 'Currency' and 'Area'
-var currencyPerAreaQuantity = Quantity.Rate(currencyQuantity, areaQuantity);
+## Distance: Meters to Yards
+``` csharp
+var distanceInMeters = new QuantityValue(10, Distance.Meter); // 10 meter
+var distanceInYards = distanceInMeters.As(Distance.Yard);     // 10.94 yd
+ 
+var formattedMeters = distanceInMeters.GetFormattedValue(decimalPoints: 2);
+var formattedYards = distanceInYards.GetFormattedValue(decimalPoints: 2);
+Console.WriteLine($@"{formattedMeters} = {formattedYards}"); 
+```
 
-// Retrieve the 'USD' unit for currency
-var usdUnit = Unit.OfCurrency(CurrencyType.UnitedStatesDollar);
+## Distance: Kilometers to Miles
+``` csharp
+var distanceInMeters = new QuantityValue(100, Distance.Kilometer); // 100 km
+var distanceInMiles = distanceInMeters.As(Distance.Mile);          // 62.14 mi
 
-// Retrieve the '$/m2' unit for CurrencyPerArea
-var usdPerSquareMeterUnit = currencyPerAreaQuantity.GetUnit(usdUnit, squareMetersUnit);
-
-// Create a value of 10 $/m2
-var usdPerSquareMeterValue = currencyPerAreaQuantity.CreateValue(DateTime.Now, 10, usdPerSquareMeterUnit);
-
-// Convert to Euros per square meter
-var euroPerSquareMeterUnit = currencyPerArea.GetUnit(Unit.OfCurrency("Euro"), squareMetersUnit);
-var euroPerSquareMeterValue = usdPerSquareMeterValue.As(euroPerSquareMeterUnit);
+var formattedMeters = distanceInMeters.GetFormattedValue(decimalPoints: 2);
+var formattedMiles = distanceInMiles.GetFormattedValue(decimalPoints: 2);
+Console.WriteLine($@"{formattedMeters} = {formattedMiles}");
 ```

@@ -7,7 +7,7 @@ namespace mvdmio.ValueConversion.Base.Units;
 
 /// <summary>
 /// This unit is used for values that do not have a quantity.
-/// We've created a <see cref="ScalarQuantity"/> and <see cref="ScalarUnit"/> for these cases.
+/// We've created a <see cref="Scalar"/> and <see cref="ScalarUnit"/> for these cases.
 /// </summary>
 public class ScalarUnit : IUnit
 {

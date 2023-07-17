@@ -1,44 +1,35 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using mvdmio.ValueConversion.Base.Bases;
 using mvdmio.ValueConversion.Base.Interfaces;
-using mvdmio.ValueConversion.UnitsOfMeasurement.Units;
+using mvdmio.ValueConversion.Base.Units;
 
-namespace mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
+namespace mvdmio.ValueConversion.Base.Quantities;
 
 /// <summary>
-/// Defines the pH quantity
+/// Used for values that do not have a unit, like count.
 /// </summary>
-public class PhQuantity : IQuantity
+public class Scalar : IQuantity
 {
     private readonly IList<IUnit> _units;
 
     /// <inheritdoc/>
     public IUnit StandardUnit => GetUnits().First();
-
-    /// <summary>
-    /// The pH unit of <see cref="PhQuantity"/>. This is the standard unit of <see cref="PhQuantity"/>.
-    /// </summary>
-    public IUnit pH => StandardUnit;
-    
+        
     /// <inheritdoc/>
-    public virtual string Identifier { get; } = "pH";
+    public string Identifier => "Scalar";
 
-    internal PhQuantity()
+    internal Scalar()
     {
        _units = new List<IUnit> {
-          new PhUnit(this)
+          new ScalarUnit(this)
        };
     }
 
     /// <inheritdoc/>
     public IUnit GetUnit(string unitIdentifier)
     {
-        // Special case for systems that use an older version of UnitsOfMeasurement. In the past, the unit for pH was 'scalar', this should be handled as 'pH'
-        if(unitIdentifier.Equals("Scalar", StringComparison.InvariantCultureIgnoreCase))
-            return GetUnit("pH");
-
         var unit = GetUnits().SingleOrDefault(x => x.Identifier.Equals(unitIdentifier, StringComparison.InvariantCultureIgnoreCase));
 
         if(unit == null)
@@ -57,7 +48,7 @@ public class PhQuantity : IQuantity
     /// <inheritdoc/>
     public IQuantityValue Convert(IQuantityValue quantityValue, IUnit toUnit)
     {
-        return quantityValue; // pH values don't support conversions, just return the original.
+        return quantityValue; // Scalar values don't support conversions, just return the original.
     }
 
     /// <inheritdoc />
@@ -79,14 +70,14 @@ public class PhQuantity : IQuantity
         var supportedUnit = GetUnits().SingleOrDefault(x => x.Identifier == unit.Identifier);
 
         if (supportedUnit == null)
-            throw new InvalidOperationException($"Cannot create pH Quantity value for unit {unit.Identifier}");
+            throw new InvalidOperationException($"Cannot create Scalar Quantity value for unit {unit.Identifier}");
 
-        return new QuantityValue(timestamp, value, unit);
+        return new QuantityValue(value, unit, timestamp);
     }
 
     /// <inheritdoc/>
     public IEnumerable<IUnit> GetUnits()
     {
-        return _units;
+       return _units;
     }
 }

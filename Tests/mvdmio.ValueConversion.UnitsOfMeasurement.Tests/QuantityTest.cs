@@ -142,7 +142,7 @@ public class QuantityTest
    }
 
    [Fact]
-   public void AllQuantitiesShouldHaveTheirKnownUnitsDefinedAsProperties()
+   public void AllQuantitiesShouldHaveTheirKnownUnitsDefinedAsStaticProperties()
    {
       var baseQuantities = Quantity.GetAll().Where(x => !x.GetType().IsAssignableTo(typeof(ICombinedQuantity)));
       var missingProperties = new List<string>();
@@ -154,7 +154,7 @@ public class QuantityTest
          var knownUnits = quantity.GetUnits();
          foreach (var unit in knownUnits)
          {
-            var unitPropertyInfo = quantityType.GetProperty(unit.Identifier, BindingFlags.Instance | BindingFlags.Public | BindingFlags.GetProperty);
+            var unitPropertyInfo = quantityType.GetProperty(unit.Identifier, BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static |BindingFlags.GetProperty);
             if (unitPropertyInfo is null)
             {
                missingProperties.Add($"Missing: unit {unit.Identifier} on quantity {quantity.Identifier}");
