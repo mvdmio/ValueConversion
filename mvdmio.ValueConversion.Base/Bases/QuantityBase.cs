@@ -58,9 +58,9 @@ public abstract class QuantityBase : IQuantity
             throw new InvalidCastException($"{GetType().FullName} cannot convert quantity of type {quantityValue.GetQuantity().Identifier}");
 
         var standardValue = quantityValue.GetStandardValue();
-        var convertedValue = toUnit.FromStandardUnit(standardValue, quantityValue.Timestamp);
+        var convertedValue = toUnit.FromStandardUnit(standardValue);
 
-        return new QuantityValue(convertedValue, toUnit, quantityValue.Timestamp);
+        return new QuantityValue(convertedValue, toUnit);
     }
 
     /// <inheritdoc />
@@ -73,13 +73,7 @@ public abstract class QuantityBase : IQuantity
     /// <inheritdoc />
     public IQuantityValue CreateValue(double value, IUnit unit)
     {
-       return CreateValue(DateTime.UtcNow, value, unit);
-    }
 
-    /// <inheritdoc />
-    public IQuantityValue CreateValue(DateTime timestamp, double value, IUnit unit)
-    {
-
-        return new QuantityValue(value, unit, timestamp);
+        return new QuantityValue(value, unit);
     }
 }

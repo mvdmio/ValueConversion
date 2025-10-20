@@ -9,7 +9,7 @@ public class ConversionImplementationCheckBase
    {
       foreach (var fromUnit in quantity.GetUnits())
       {
-         var fromValue = quantity.CreateValue(DateTime.Now, 1, fromUnit);
+         var fromValue = quantity.CreateValue(1, fromUnit);
 
          foreach (var toUnit in quantity.GetUnits())
          {

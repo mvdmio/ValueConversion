@@ -1,6 +1,7 @@
 ﻿// ReSharper disable UnusedMember.Global | Public Interface type. Members are used by users of this library.
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 namespace mvdmio.ValueConversion.Base.Interfaces;
@@ -10,11 +11,6 @@ namespace mvdmio.ValueConversion.Base.Interfaces;
 /// </summary>
 public interface IQuantityValue
 {
-   /// <summary>
-   /// The timestamp when the value was recorded.
-   /// </summary>
-   DateTimeOffset Timestamp { get; }
-
    /// <summary>
    /// Retrieve the <see cref="IQuantity"/> of the value.
    /// </summary>
@@ -52,32 +48,12 @@ public interface IQuantityValue
    /// <param name="other">The <see cref="IQuantityValue"/> to compare this <see cref="IQuantityValue"/> with.</param>
    /// <returns>True when the value in standard unit of both are equal. False otherwise.</returns>
    bool IsEqualTo(IQuantityValue other);
-
-   /// <summary>
-   /// Retrieve the formatted string representation of this <see cref="IQuantityValue"/>.
-   /// </summary>
-   /// <returns>The formatted string representation of this <see cref="IQuantityValue"/>.</returns>
-   string GetFormattedValue();
    
    /// <summary>
    /// Retrieve the formatted string representation of this <see cref="IQuantityValue"/>.
    /// </summary>
+   /// <param name="format">The formatting to use for the value.</param>
    /// <param name="cultureInfo">The culture info to use to format the value.</param>
    /// <returns>The formatted string representation of this <see cref="IQuantityValue"/>.</returns>
-   string GetFormattedValue(CultureInfo cultureInfo);
-
-   /// <summary>
-   /// Retrieve the formatted string representation of this <see cref="IQuantityValue"/>.
-   /// </summary>
-   /// <param name="decimalPoints">The amount of decimal points to print in the formatted value.</param>
-   /// <returns>The formatted string representation of this <see cref="IQuantityValue"/>.</returns>
-   string GetFormattedValue(int decimalPoints);
-   
-   /// <summary>
-   /// Retrieve the formatted string representation of this <see cref="IQuantityValue"/>.
-   /// </summary>
-   /// <param name="cultureInfo">The culture info to use to format the value.</param>
-   /// <param name="decimalPoints">The amount of decimal points to print in the formatted value.</param>
-   /// <returns>The formatted string representation of this <see cref="IQuantityValue"/>.</returns>
-   string GetFormattedValue(CultureInfo cultureInfo, int decimalPoints);
+   string GetFormattedValue([StringSyntax(StringSyntaxAttribute.NumericFormat)] string? format = null, CultureInfo? cultureInfo = null);
 }

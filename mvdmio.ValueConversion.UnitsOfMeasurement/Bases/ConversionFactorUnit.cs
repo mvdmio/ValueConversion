@@ -1,5 +1,4 @@
-﻿using System;
-using mvdmio.ValueConversion.Base.Interfaces;
+﻿using mvdmio.ValueConversion.Base.Interfaces;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Bases
 {
@@ -17,13 +16,13 @@ namespace mvdmio.ValueConversion.UnitsOfMeasurement.Bases
         }
 
         /// <inheritdoc />
-        public sealed override double FromStandardUnit(double value, DateTimeOffset timestamp)
+        public sealed override double FromStandardUnit(double value)
         {
             return value / _toStandardValueConversionFactor;
         }
 
         /// <inheritdoc />
-        public sealed override double ToStandardUnit(double value, DateTimeOffset timestamp)
+        public sealed override double ToStandardUnit(double value)
         {
             return value * _toStandardValueConversionFactor;
         }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace mvdmio.ValueConversion.UnitsOfMeasurement.Units.Temperature;
+﻿namespace mvdmio.ValueConversion.UnitsOfMeasurement.Units.Temperature;
 
 /// <summary>
 /// Unit for representing temperature as degrees Fahrenheit.
@@ -13,13 +11,13 @@ public class DegreeFahrenheitUnit : TemperatureUnit
     }
 
     /// <inheritdoc/>
-    public override double FromStandardUnit(double value, DateTimeOffset timestamp)
+    public override double FromStandardUnit(double value)
     {
         return (value * 1.8) + 32;
     }
 
     /// <inheritdoc/>
-    public override double ToStandardUnit(double value, DateTimeOffset timestamp)
+    public override double ToStandardUnit(double value)
     {
         return (value - 32) / 1.8;
     }

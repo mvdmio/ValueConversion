@@ -11,7 +11,7 @@ public class PressureConversionImplementationCheck
     {
         foreach (var fromUnit in Quantity.Known.Pressure().GetUnits())
         {
-            var fromValue = Quantity.Known.Pressure().CreateValue(DateTime.Now, value: 1, fromUnit);
+            var fromValue = Quantity.Known.Pressure().CreateValue(value: 1, fromUnit);
 
             foreach (var toUnit in Quantity.Known.Pressure().GetUnits())
             {

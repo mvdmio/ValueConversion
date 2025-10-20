@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using mvdmio.ValueConversion.Base.Interfaces;
 using mvdmio.ValueConversion.Base.Resources.UnitsFormatting;
@@ -29,10 +29,10 @@ public abstract class UnitBase : IUnit
    }
 
    /// <inheritdoc />
-   public abstract double FromStandardUnit(double value, DateTimeOffset timestamp);
+   public abstract double FromStandardUnit(double value);
 
    /// <inheritdoc />
-   public abstract double ToStandardUnit(double value, DateTimeOffset timestamp);
+   public abstract double ToStandardUnit(double value);
 
    /// <inheritdoc />
    public IQuantity GetQuantity()
@@ -41,7 +41,7 @@ public abstract class UnitBase : IUnit
    }
 
    /// <inheritdoc />
-   public string GetSymbol(CultureInfo cultureInfo)
+   public string GetSymbol(CultureInfo? cultureInfo = null)
    {
       var symbol = GetSymbolInternal(cultureInfo);
 
@@ -52,28 +52,13 @@ public abstract class UnitBase : IUnit
    }
 
    /// <inheritdoc />
-   public string GetFormattedValue(double value, CultureInfo cultureInfo)
+   public string GetFormattedValue(double value, [StringSyntax(StringSyntaxAttribute.NumericFormat)] string? format = null, CultureInfo? cultureInfo = null)
    {
-      var format = GetFormatInternal(cultureInfo) ?? UnitsFormatting._Default;
-      var result = format;
+      var unitFormat = GetFormatInternal(cultureInfo) ?? UnitsFormatting._Default;
+      var result = unitFormat;
 
       var symbol = GetSymbol(cultureInfo);
-      result = result.Replace("{v}", value.ToString(cultureInfo));
-      result = result.Replace("{sym}", symbol);
-
-      return result;
-   }
-
-   /// <inheritdoc />
-   public string GetFormattedValue(double value, CultureInfo cultureInfo,int decimalPoints)
-   {
-      var roundedValue = Math.Round(value, decimalPoints);
-      
-      var format = GetFormatInternal(cultureInfo) ?? UnitsFormatting._Default;
-      var result = format;
-
-      var symbol = GetSymbol(cultureInfo);
-      result = result.Replace("{v}", roundedValue.ToString(cultureInfo));
+      result = result.Replace("{v}", value.ToString(format, cultureInfo));
       result = result.Replace("{sym}", symbol);
 
       return result;
@@ -84,12 +69,12 @@ public abstract class UnitBase : IUnit
    /// </summary>
    /// <param name="cultureInfo">The culture info to use.</param>
    /// <returns>The symbol for this unit.</returns>
-   protected abstract string? GetSymbolInternal(CultureInfo cultureInfo);
+   protected abstract string? GetSymbolInternal(CultureInfo? cultureInfo = null);
 
    /// <summary>
    /// Retrieve the value format for this unit..
    /// </summary>
    /// <param name="cultureInfo">The culture info to use.</param>
    /// <returns>The value format for this unit, or null when the default format should be used.</returns>
-   protected abstract string? GetFormatInternal(CultureInfo cultureInfo);
+   protected abstract string? GetFormatInternal(CultureInfo? cultureInfo = null);
 }

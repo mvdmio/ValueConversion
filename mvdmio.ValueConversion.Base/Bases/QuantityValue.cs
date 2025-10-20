@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using mvdmio.ValueConversion.Base.Interfaces;
 using mvdmio.ValueConversion.Base.Utils;
@@ -13,33 +14,17 @@ public class QuantityValue : IQuantityValue
     private readonly double _value;
     private readonly IQuantity _quantity;
     private readonly IUnit _unit;
-
-    /// <inheritdoc />
-    public DateTimeOffset Timestamp { get; }
-
+    
     /// <summary>
     /// Constructor.
     /// </summary>
     /// <param name="value">The numeric value.</param>
     /// <param name="unit">The unit of the numeric value.</param>
     public QuantityValue(double value, IUnit unit)
-        : this(value, unit, DateTimeOffset.Now)
-    {
-    }
-
-    /// <summary>
-    /// Constructor.
-    /// </summary>
-    /// <param name="value">The numeric value.</param>
-    /// <param name="unit">The unit of the numeric value.</param>
-    /// <param name="timestamp">The timestamp at which the value was recorded.</param>
-    public QuantityValue(double value, IUnit unit, DateTimeOffset timestamp)
     {
         _value = value;
         _quantity = unit.GetQuantity();
         _unit = unit;
-
-        Timestamp = timestamp;
     }
 
     /// <inheritdoc />
@@ -63,7 +48,7 @@ public class QuantityValue : IQuantityValue
     /// <inheritdoc />
     public double GetStandardValue()
     {
-        return _unit.ToStandardUnit(_value, Timestamp);
+        return _unit.ToStandardUnit(_value);
     }
 
     /// <inheritdoc />
@@ -82,17 +67,8 @@ public class QuantityValue : IQuantityValue
     }
 
     /// <inheritdoc />
-    public string GetFormattedValue() => GetFormattedValue(CultureInfo.CurrentCulture, decimalPoints: 0);
-
-    /// <inheritdoc />
-    public string GetFormattedValue(CultureInfo cultureInfo) => GetFormattedValue(cultureInfo, decimalPoints: 0);
-
-    /// <inheritdoc />
-    public string GetFormattedValue(int decimalPoints) => GetFormattedValue(CultureInfo.CurrentCulture, decimalPoints);
-
-    /// <inheritdoc />
-    public string GetFormattedValue(CultureInfo cultureInfo, int decimalPoints) 
+    public string GetFormattedValue([StringSyntax(StringSyntaxAttribute.NumericFormat)] string? format = null, CultureInfo? cultureInfo = null)
     {
-       return _unit.GetFormattedValue(_value, cultureInfo, decimalPoints);
+       return _unit.GetFormattedValue(_value, format, cultureInfo);
     }
 }

@@ -11,7 +11,7 @@ public class DurationConversionImplementationCheck
     {
         foreach (var fromUnit in Quantity.Known.Area().GetUnits())
         {
-            var fromValue = Quantity.Known.Area().CreateValue(DateTime.Now, 1, fromUnit);
+            var fromValue = Quantity.Known.Area().CreateValue(1, fromUnit);
 
             foreach (var toUnit in Quantity.Known.Area().GetUnits())
             {

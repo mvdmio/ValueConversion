@@ -71,18 +71,12 @@ public class Acidity : IQuantity
     /// <inheritdoc/>
     public IQuantityValue CreateValue(double value, IUnit unit)
     {
-        return CreateValue(DateTime.UtcNow, value, unit);
-    }
-
-    /// <inheritdoc/>
-    public IQuantityValue CreateValue(DateTime timestamp, double value, IUnit unit)
-    {
         var supportedUnit = GetUnits().SingleOrDefault(x => x.Identifier == unit.Identifier);
 
         if (supportedUnit == null)
             throw new InvalidOperationException($"Cannot create pH Quantity value for unit {unit.Identifier}");
 
-        return new QuantityValue(value, unit, timestamp);
+        return new QuantityValue(value, unit);
     }
 
     /// <inheritdoc/>

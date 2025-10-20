@@ -1,7 +1,6 @@
 ﻿// ReSharper disable UnusedMemberInSuper.Global | Public Interface type. Members are used by users of this library.
 // ReSharper disable UnusedMember.Global | Public Interface type. Members are used by users of this library.
 
-using System;
 using System.Collections.Generic;
 
 namespace mvdmio.ValueConversion.Base.Interfaces;
@@ -69,13 +68,4 @@ public interface IQuantity
    /// <param name="unit">The unit of the given value.</param>
    /// <returns>A new <see cref="IQuantityValue"/> with the given unit.</returns>
    IQuantityValue CreateValue(double value, IUnit unit);
-
-   /// <summary>
-   /// Create a new <see cref="IQuantityValue"/> with the given unit.
-   /// </summary>
-   /// <param name="timestamp">The timestamp when the value was recorded.</param>
-   /// <param name="value">The value to use.</param>
-   /// <param name="unit">The unit of the given value.</param>
-   /// <returns>A new <see cref="IQuantityValue"/> with the given unit.</returns>
-   IQuantityValue CreateValue(DateTime timestamp, double value, IUnit unit);
 }

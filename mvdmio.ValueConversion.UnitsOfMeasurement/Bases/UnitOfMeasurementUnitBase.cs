@@ -18,14 +18,14 @@ public abstract class UnitOfMeasurementUnitBase : UnitBase
    }
 
    /// <inheritdoc />
-   protected override string? GetSymbolInternal(CultureInfo cultureInfo)
+   protected override string? GetSymbolInternal(CultureInfo? cultureInfo = null)
    {
-      return UnitSymbols.ResourceManager.GetString(Identifier, cultureInfo);
+      return UnitSymbols.ResourceManager.GetString(Identifier, cultureInfo ?? CultureInfo.CurrentCulture);
    }
 
    /// <inheritdoc />
-   protected override string? GetFormatInternal(CultureInfo cultureInfo)
+   protected override string? GetFormatInternal(CultureInfo? cultureInfo = null)
    {
-      return UnitsFormatting.ResourceManager.GetString(Identifier, cultureInfo);
+      return UnitsFormatting.ResourceManager.GetString(Identifier, cultureInfo ?? CultureInfo.CurrentCulture);
    }
 }

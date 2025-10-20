@@ -41,6 +41,6 @@ public interface ICombinedQuantity : IQuantity
    /// <inheritdoc cref="IQuantity.Convert(IQuantityValue, IUnit)" />
    IQuantityValue Convert(IQuantityValue quantityValue, ICombinedUnit toUnit);
 
-   /// <inheritdoc cref="IQuantity.CreateValue(DateTime, double, IUnit)" />
+   /// <inheritdoc cref="IQuantity.CreateValue(double, IUnit)" />
    IQuantityValue CreateValue(DateTime timestamp, double value, ICombinedUnit unit);
 }

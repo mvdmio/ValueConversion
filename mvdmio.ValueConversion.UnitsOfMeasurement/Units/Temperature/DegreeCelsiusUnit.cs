@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace mvdmio.ValueConversion.UnitsOfMeasurement.Units.Temperature;
+﻿namespace mvdmio.ValueConversion.UnitsOfMeasurement.Units.Temperature;
 
 /// <summary>
 /// Unit for representing temperature as degrees Celsius.
@@ -13,13 +11,13 @@ public class DegreeCelsiusUnit : TemperatureUnit
     }
 
     /// <inheritdoc/>
-    public override double FromStandardUnit(double value, DateTimeOffset timestamp)
+    public override double FromStandardUnit(double value)
     {
         return value;
     }
 
     /// <inheritdoc/>
-    public override double ToStandardUnit(double value, DateTimeOffset timestamp)
+    public override double ToStandardUnit(double value)
     {
         return value;
     }

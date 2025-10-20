@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 namespace mvdmio.ValueConversion.Base.Interfaces;
@@ -24,17 +24,15 @@ public interface IUnit
     /// Converts the given value from the standard unit of this quantity into this unit.
     /// </summary>
     /// <param name="value">The value that should be converted.</param>
-    /// <param name="timestamp">The timestamp when this value was recorded. Mainly used by time-dependent conversions like Currency.</param>
     /// <returns>The value converted to this unit.</returns>
-    double FromStandardUnit(double value, DateTimeOffset timestamp);
+    double FromStandardUnit(double value);
 
     /// <summary>
     /// Converts the given value from this unit to standard unit.
     /// </summary>
     /// <param name="value">The value that should be converted.</param>
-    /// <param name="timestamp">The timestamp when this value was recorded. Mainly used by time-dependent conversions like Currency.</param>
     /// <returns>The value converted to the standard unit of this quantity.</returns>
-    double ToStandardUnit(double value, DateTimeOffset timestamp);
+    double ToStandardUnit(double value);
 
     /// <summary>
     /// Retrieves the symbol that corresponds to this unit.
@@ -43,14 +41,14 @@ public interface IUnit
     /// <param name="cultureInfo">The cultureInfo that should be used to determine the correct symbol.</param>
     /// <returns>The symbol that corresponds to this unit and the given CultureInfo.</returns>
     string GetSymbol(CultureInfo cultureInfo);
-    
+
     /// <summary>
     /// Formats the given value into a string with the correct symbol and given amount of decimal points.
     /// Can be used to display the value as a string with the correct symbol and correct symbol placement.
     /// </summary>
     /// <param name="value">The value that should be formatted</param>
+    /// <param name="format">The formatting to use for the number.</param>
     /// <param name="cultureInfo">The CultureInfo that should be used to determine the correct formatting.</param>
-    /// <param name="decimalPoints">The amount of decimals to print in the formatted value.</param>
     /// <returns>The value formatted with the correct symbol and correct symbol placement for the given Culture Info</returns>
-    string GetFormattedValue(double value, CultureInfo cultureInfo, int decimalPoints);
+    string GetFormattedValue(double value, [StringSyntax(StringSyntaxAttribute.NumericFormat)] string? format = null, CultureInfo? cultureInfo = null);
 }

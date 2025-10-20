@@ -11,7 +11,7 @@ public class VolumeConversionImplementationCheck
     {
         foreach (var fromUnit in Quantity.Known.Volume().GetUnits())
         {
-            var fromValue = Quantity.Known.Volume().CreateValue(DateTime.Now, value: 1, fromUnit);
+            var fromValue = Quantity.Known.Volume().CreateValue(value: 1, fromUnit);
 
             foreach (var toUnit in Quantity.Known.Volume().GetUnits())
             {

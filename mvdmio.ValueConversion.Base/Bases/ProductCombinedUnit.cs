@@ -1,5 +1,4 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using mvdmio.ValueConversion.Base.Interfaces;
 
 namespace mvdmio.ValueConversion.Base.Bases;
@@ -9,7 +8,7 @@ namespace mvdmio.ValueConversion.Base.Bases;
 /// </summary>
 public class ProductCombinedUnit : CombinedUnitBase
 {
-    private const string _combinerCharacter = "*";
+    private const string COMBINER_CHARACTER = "*";
 
     /// <inheritdoc />
     public override string Identifier { get; }
@@ -27,19 +26,19 @@ public class ProductCombinedUnit : CombinedUnitBase
     }
 
     /// <inheritdoc />
-    public override double FromStandardUnit(double value, DateTimeOffset timestamp)
+    public override double FromStandardUnit(double value)
     {
-        var numeratorUnitConversionFactor = NumeratorUnit.FromStandardUnit(1, timestamp);
-        var denominatorUnitConversionFactor = DenominatorUnit.FromStandardUnit(1, timestamp);
+        var numeratorUnitConversionFactor = NumeratorUnit.FromStandardUnit(1);
+        var denominatorUnitConversionFactor = DenominatorUnit.FromStandardUnit(1);
 
         return value * (numeratorUnitConversionFactor / denominatorUnitConversionFactor);
     }
 
     /// <inheritdoc />
-    public override double ToStandardUnit(double value, DateTimeOffset timestamp)
+    public override double ToStandardUnit(double value)
     {
-        var numeratorUnitConversionFactor = NumeratorUnit.ToStandardUnit(1, timestamp);
-        var denominatorUnitConversionFactor = DenominatorUnit.ToStandardUnit(1, timestamp);
+        var numeratorUnitConversionFactor = NumeratorUnit.ToStandardUnit(1);
+        var denominatorUnitConversionFactor = DenominatorUnit.ToStandardUnit(1);
 
         return value * (numeratorUnitConversionFactor / denominatorUnitConversionFactor);
     }
@@ -50,6 +49,6 @@ public class ProductCombinedUnit : CombinedUnitBase
         var numeratorSymbol = NumeratorUnit.GetSymbol(cultureInfo);
         var denominatorSymbol = DenominatorUnit.GetSymbol(cultureInfo);
 
-        return $"{numeratorSymbol}{_combinerCharacter}{denominatorSymbol}";
+        return $"{numeratorSymbol}{COMBINER_CHARACTER}{denominatorSymbol}";
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using mvdmio.ValueConversion.Base.Interfaces;
 
@@ -35,10 +36,10 @@ public abstract class CombinedUnitBase : ICombinedUnit
    }
 
    /// <inheritdoc />
-   public abstract double FromStandardUnit(double value, DateTimeOffset timestamp);
+   public abstract double FromStandardUnit(double value);
 
    /// <inheritdoc />
-   public abstract double ToStandardUnit(double value, DateTimeOffset timestamp);
+   public abstract double ToStandardUnit(double value);
 
    /// <inheritdoc />
    public abstract string GetSymbol(CultureInfo cultureInfo);
@@ -55,16 +56,9 @@ public abstract class CombinedUnitBase : ICombinedUnit
    }
 
    /// <inheritdoc />
-   public string GetFormattedValue(double value, CultureInfo cultureInfo)
+   public string GetFormattedValue(double value, [StringSyntax(StringSyntaxAttribute.NumericFormat)] string? format = null, CultureInfo? cultureInfo = null)
    {
-      var symbol = GetSymbol(cultureInfo);
-      return $"{value} {symbol}";
-   }
-
-   /// <inheritdoc />
-   public string GetFormattedValue(double value, CultureInfo cultureInfo, int decimalPoints)
-   {
-      var symbol = GetSymbol(cultureInfo);
-      return $"{Math.Round(value, decimalPoints)} {symbol}";
+      var symbol = GetSymbol(cultureInfo ?? CultureInfo.CurrentCulture);
+      return $"{value.ToString(format, cultureInfo)} {symbol}";
    }
 }

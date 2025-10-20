@@ -105,16 +105,10 @@ public abstract class CombinedQuantityBase : ICombinedQuantity
    /// <inheritdoc />
    public IQuantityValue CreateValue(double value, IUnit unit)
    {
-      return CreateValue(DateTime.UtcNow, value, unit);
-   }
-
-   /// <inheritdoc />
-   public IQuantityValue CreateValue(DateTime timestamp, double value, IUnit unit)
-   {
       if (unit is not ICombinedUnit typedUnit || GetUnits().All(x => x.Identifier != unit.Identifier))
          throw new InvalidCastException($"Cannot create value of unit {unit.Identifier} from quantity {GetType().FullName}");
 
-      return CreateValue(timestamp, value, typedUnit);
+      return CreateValue(value, typedUnit);
    }
 
    /// <inheritdoc />
@@ -147,15 +141,15 @@ public abstract class CombinedQuantityBase : ICombinedQuantity
          throw new InvalidCastException($"{GetType().FullName} cannot convert quantity values of quantity type {quantityValue.GetQuantity().Identifier}");
 
       var value = quantityValue.GetStandardValue();
-      var convertedValue = toUnit.FromStandardUnit(value, quantityValue.Timestamp);
+      var convertedValue = toUnit.FromStandardUnit(value);
 
-      return new CombinedQuantityValue(quantityValue.Timestamp, convertedValue, toUnit);
+      return new CombinedQuantityValue(convertedValue, toUnit);
    }
 
    /// <inheritdoc />
    public IQuantityValue CreateValue(DateTime timestamp, double value, ICombinedUnit unit)
    {
-      return new CombinedQuantityValue(timestamp, value, unit);
+      return new CombinedQuantityValue(value, unit);
    }
 
    /// <summary>

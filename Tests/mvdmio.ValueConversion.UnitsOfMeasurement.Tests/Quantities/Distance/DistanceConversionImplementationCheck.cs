@@ -11,7 +11,7 @@ public class DistanceConversionImplementationCheck
     {
         foreach (var fromDistanceUnit in Quantity.Known.Distance().GetUnits())
         {
-            var fromValue = Quantity.Known.Distance().CreateValue(DateTime.Now, value: 1, fromDistanceUnit);
+            var fromValue = Quantity.Known.Distance().CreateValue(value: 1, fromDistanceUnit);
 
             foreach (var toDistanceUnit in Quantity.Known.Distance().GetUnits())
             {

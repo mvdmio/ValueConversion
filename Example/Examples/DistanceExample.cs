@@ -10,8 +10,8 @@ public static class DistanceExample
       var distanceInMeters = new QuantityValue(10, Distance.Meter); // 10 meter
       var distanceInYards = distanceInMeters.As(Distance.Yard);     // 10.94 yd
          
-      var formattedMeters = distanceInMeters.GetFormattedValue(decimalPoints: 2);
-      var formattedYards = distanceInYards.GetFormattedValue(decimalPoints: 2);
+      var formattedMeters = distanceInMeters.GetFormattedValue("F");
+      var formattedYards = distanceInYards.GetFormattedValue("F");
       Console.WriteLine($@"{formattedMeters} = {formattedYards}"); 
    }
 
@@ -20,8 +20,8 @@ public static class DistanceExample
       var distanceInMeters = new QuantityValue(100, Distance.Kilometer); // 100 km
       var distanceInMiles = distanceInMeters.As(Distance.Mile);          // 62.14 mi
 
-      var formattedMeters = distanceInMeters.GetFormattedValue(decimalPoints: 2);
-      var formattedMiles = distanceInMiles.GetFormattedValue(decimalPoints: 2);
+      var formattedMeters = distanceInMeters.GetFormattedValue("F");
+      var formattedMiles = distanceInMiles.GetFormattedValue("F");
       Console.WriteLine($@"{formattedMeters} = {formattedMiles}");
    }
 }

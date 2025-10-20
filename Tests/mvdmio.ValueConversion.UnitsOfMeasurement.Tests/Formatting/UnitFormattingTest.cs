@@ -1,7 +1,6 @@
 ﻿using System.Globalization;
 using mvdmio.ValueConversion.Base;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Tests.Formatting;
 
@@ -56,7 +55,7 @@ public class UnitFormattingTest
             {
                 try
                 {
-                    var formattedValue = unit.GetFormattedValue(value: 1, CultureInfo.InvariantCulture, 2);
+                    var formattedValue = unit.GetFormattedValue(value: 1, "F", CultureInfo.InvariantCulture);
 
                     if (!string.IsNullOrWhiteSpace(formattedValue))
                        continue;

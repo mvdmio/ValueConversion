@@ -12,15 +12,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mvdmio.ValueConversion.Currency", "mvdmio.ValueConversion.Currency\mvdmio.ValueConversion.Currency.csproj", "{1EC46956-D942-498B-A4FB-91319C751662}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{140ECF51-4C6E-4BF8-BB8E-A978FAF2A364}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mvdmio.ValueConversion.Base", "mvdmio.ValueConversion.Base\mvdmio.ValueConversion.Base.csproj", "{6F0432B8-A6C4-477E-B157-7C83287E0ED4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mvdmio.ValueConversion.Base.Tests", "Tests\mvdmio.ValueConversion.Base.Tests\mvdmio.ValueConversion.Base.Tests.csproj", "{6FC71C2B-1B2F-4ED8-ADE3-8021D62F8ABD}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mvdmio.ValueConversion.Currency.Tests", "Tests\mvdmio.ValueConversion.Currency.Tests\mvdmio.ValueConversion.Currency.Tests.csproj", "{EF2FFD99-85E9-4C6E-9A0A-674A38BBCEB5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mvdmio.ValueConversion.UnitsOfMeasurement.Tests", "Tests\mvdmio.ValueConversion.UnitsOfMeasurement.Tests\mvdmio.ValueConversion.UnitsOfMeasurement.Tests.csproj", "{6BBE623A-F1A4-42F3-9ED7-040A22BFE2B0}"
 EndProject
@@ -36,10 +32,6 @@ Global
 		{25412465-7B69-4077-A346-4049531F4207}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25412465-7B69-4077-A346-4049531F4207}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25412465-7B69-4077-A346-4049531F4207}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1EC46956-D942-498B-A4FB-91319C751662}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1EC46956-D942-498B-A4FB-91319C751662}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1EC46956-D942-498B-A4FB-91319C751662}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1EC46956-D942-498B-A4FB-91319C751662}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6F0432B8-A6C4-477E-B157-7C83287E0ED4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6F0432B8-A6C4-477E-B157-7C83287E0ED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F0432B8-A6C4-477E-B157-7C83287E0ED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -48,10 +40,6 @@ Global
 		{6FC71C2B-1B2F-4ED8-ADE3-8021D62F8ABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FC71C2B-1B2F-4ED8-ADE3-8021D62F8ABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FC71C2B-1B2F-4ED8-ADE3-8021D62F8ABD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EF2FFD99-85E9-4C6E-9A0A-674A38BBCEB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF2FFD99-85E9-4C6E-9A0A-674A38BBCEB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF2FFD99-85E9-4C6E-9A0A-674A38BBCEB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF2FFD99-85E9-4C6E-9A0A-674A38BBCEB5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6BBE623A-F1A4-42F3-9ED7-040A22BFE2B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6BBE623A-F1A4-42F3-9ED7-040A22BFE2B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BBE623A-F1A4-42F3-9ED7-040A22BFE2B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -66,7 +54,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6FC71C2B-1B2F-4ED8-ADE3-8021D62F8ABD} = {140ECF51-4C6E-4BF8-BB8E-A978FAF2A364}
-		{EF2FFD99-85E9-4C6E-9A0A-674A38BBCEB5} = {140ECF51-4C6E-4BF8-BB8E-A978FAF2A364}
 		{6BBE623A-F1A4-42F3-9ED7-040A22BFE2B0} = {140ECF51-4C6E-4BF8-BB8E-A978FAF2A364}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

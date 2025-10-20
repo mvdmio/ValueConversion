@@ -11,7 +11,7 @@ public class SubstanceConversionImplementationCheck
     {
         foreach (var fromUnit in Quantity.Known.Substance().GetUnits())
         {
-            var fromValue = Quantity.Known.Substance().CreateValue(DateTime.Now, value: 1, fromUnit);
+            var fromValue = Quantity.Known.Substance().CreateValue(value: 1, fromUnit);
 
             foreach (var toUnit in Quantity.Known.Substance().GetUnits())
             {

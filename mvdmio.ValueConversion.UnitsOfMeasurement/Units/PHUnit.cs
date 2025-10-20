@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using mvdmio.ValueConversion.Base.Interfaces;
 using mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
@@ -6,7 +7,7 @@ using mvdmio.ValueConversion.UnitsOfMeasurement.Quantities;
 namespace mvdmio.ValueConversion.UnitsOfMeasurement.Units;
 
 /// <summary>
-/// Unit for <see cref="Acidity"/>.
+///   Unit for <see cref="Acidity"/>.
 /// </summary>
 public class PhUnit : IUnit
 {
@@ -27,32 +28,26 @@ public class PhUnit : IUnit
    }
 
    /// <inheritdoc/>
-   public double FromStandardUnit(double value, DateTimeOffset timestamp)
+   public double FromStandardUnit(double value)
    {
       return value;
    }
 
    /// <inheritdoc/>
-   public double ToStandardUnit(double value, DateTimeOffset timestamp)
+   public double ToStandardUnit(double value)
    {
       return value;
    }
 
    /// <inheritdoc/>
-   public string GetSymbol(CultureInfo cultureInfo)
+   public string GetSymbol(CultureInfo? cultureInfo = null)
    {
       return string.Empty;
    }
 
-   /// <inheritdoc/>
-   public string GetFormattedValue(double value, CultureInfo cultureInfo)
-   {
-      return value.ToString(cultureInfo);
-   }
-
    /// <inheritdoc />
-   public string GetFormattedValue(double value, CultureInfo cultureInfo, int decimalPoints)
+   public string GetFormattedValue(double value, [StringSyntax(StringSyntaxAttribute.NumericFormat)] string? format = null, CultureInfo? cultureInfo = null)
    {
-      return Math.Round(value,decimalPoints).ToString(cultureInfo);
+      return value.ToString(format, cultureInfo);
    }
 }

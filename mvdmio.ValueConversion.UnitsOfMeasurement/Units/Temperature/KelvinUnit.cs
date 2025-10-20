@@ -13,13 +13,13 @@ public class KelvinUnit : TemperatureUnit
     }
 
     /// <inheritdoc/>
-    public override double FromStandardUnit(double value, DateTimeOffset timestamp)
+    public override double FromStandardUnit(double value)
     {
         return value + 273.15;
     }
 
     /// <inheritdoc/>
-    public override double ToStandardUnit(double value, DateTimeOffset timestamp)
+    public override double ToStandardUnit(double value)
     {
         return value - 273.15;
     }

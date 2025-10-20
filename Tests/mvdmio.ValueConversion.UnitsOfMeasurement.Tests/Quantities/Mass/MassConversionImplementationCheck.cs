@@ -11,7 +11,7 @@ public class MassConversionImplementationCheck
     {
         foreach (var fromUnit in Quantity.Known.Mass().GetUnits())
         {
-            var fromValue = Quantity.Known.Mass().CreateValue(DateTime.Now, value: 1, fromUnit);
+            var fromValue = Quantity.Known.Mass().CreateValue(value: 1, fromUnit);
 
             foreach (var toUnit in Quantity.Known.Mass().GetUnits())
             {

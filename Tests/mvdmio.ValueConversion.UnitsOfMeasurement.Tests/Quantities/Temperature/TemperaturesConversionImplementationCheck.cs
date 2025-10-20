@@ -11,7 +11,7 @@ public class TemperaturesConversionImplementationCheck
     {
         foreach (var fromUnit in Quantity.Known.Temperature().GetUnits())
         {
-            var fromValue = Quantity.Known.Temperature().CreateValue(DateTime.Now, value: 1, fromUnit);
+            var fromValue = Quantity.Known.Temperature().CreateValue(value: 1, fromUnit);
 
             foreach (var toUnit in Quantity.Known.Temperature().GetUnits())
             {

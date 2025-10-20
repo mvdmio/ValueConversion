@@ -9,7 +9,7 @@ namespace mvdmio.ValueConversion.Base.Bases;
 /// </summary>
 public class RateCombinedUnit : CombinedUnitBase 
 {
-    private const string _combinerCharacter = "/";
+    private const string COMBINER_CHARACTER = "/";
 
     /// <inheritdoc />
     public override string Identifier { get; }
@@ -27,19 +27,19 @@ public class RateCombinedUnit : CombinedUnitBase
     }
 
     /// <inheritdoc />
-    public override double FromStandardUnit(double value, DateTimeOffset timestamp)
+    public override double FromStandardUnit(double value)
     {
-        var numeratorUnitConversionFactor = NumeratorUnit.FromStandardUnit(1, timestamp);
-        var denominatorUnitConversionFactor = DenominatorUnit.FromStandardUnit(1, timestamp);
+        var numeratorUnitConversionFactor = NumeratorUnit.FromStandardUnit(1);
+        var denominatorUnitConversionFactor = DenominatorUnit.FromStandardUnit(1);
 
         return value * (numeratorUnitConversionFactor / denominatorUnitConversionFactor);
     }
 
     /// <inheritdoc />
-    public override double ToStandardUnit(double value, DateTimeOffset timestamp)
+    public override double ToStandardUnit(double value)
     {
-        var numeratorUnitConversionFactor = NumeratorUnit.ToStandardUnit(1, timestamp);
-        var denominatorUnitConversionFactor = DenominatorUnit.ToStandardUnit(1, timestamp);
+        var numeratorUnitConversionFactor = NumeratorUnit.ToStandardUnit(1);
+        var denominatorUnitConversionFactor = DenominatorUnit.ToStandardUnit(1);
 
         return value * (numeratorUnitConversionFactor / denominatorUnitConversionFactor);
     }
@@ -50,12 +50,12 @@ public class RateCombinedUnit : CombinedUnitBase
         var numeratorSymbol = NumeratorUnit.GetSymbol(cultureInfo);
         var denominatorSymbol = DenominatorUnit.GetSymbol(cultureInfo);
 
-        return $"{numeratorSymbol}{_combinerCharacter}{denominatorSymbol}";
+        return $"{numeratorSymbol}{COMBINER_CHARACTER}{denominatorSymbol}";
     }
 
     private static string GetCombinedUnitIdentifier(IUnit numerator, IUnit denominator)
     {
         static string GetIdentifier(IUnit unit) => unit is ICombinedUnit ? $"({unit.Identifier})" : unit.Identifier;
-        return $"{GetIdentifier(numerator)}{_combinerCharacter}{GetIdentifier(denominator)}";
+        return $"{GetIdentifier(numerator)}{COMBINER_CHARACTER}{GetIdentifier(denominator)}";
     }
 }
